@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Afrizone major problem accounts dashboard</title>
+<title>Afrizone collections driver</title>
 <style>
 :root {
   --bg:#07111f; --panel:#0f1b31; --panel2:#162642; --line:#223456; --text:#edf4ff; --muted:#9eb3d5;
@@ -62,482 +62,289 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
 
 <div class="wrap">
   <div class="hero">
-    <h1>Afrizone major problem accounts</h1>
-    <p>This view no longer treats every small 30-day carryover as a problem. It now requires the file to be worsening and to have corroborating legal, arrangement, query, clearance, or heavy-aged-debt evidence in the note trail before it earns a major-worklist slot.</p>
+    <h1>Afrizone collections driver</h1>
+    <p>This is not a mirror of WCU. It is the manager view: where money is stuck, why it is stuck, and what has to be forced next.</p>
     <p class="small">Community: AFR - Afrizone · Extracted: 2026-06-03T08:22:53.365Z</p>
   </div>
 
   <div class="grid kpis">
-    <div class="card"><div class="kpi-label">Verified major problems</div><div class="kpi-value">12</div></div>
-    <div class="card"><div class="kpi-label">30+ debt in major problems</div><div class="kpi-value">R 299,374.90</div></div>
-    <div class="card"><div class="kpi-label">Invalid arrangements / PTPs</div><div class="kpi-value">7</div></div>
-    <div class="card"><div class="kpi-label">30+ rows parked in watchlist</div><div class="kpi-value">35</div></div>
+    <div class="card"><div class="kpi-label">Verified action files</div><div class="kpi-value">12</div></div>
+    <div class="card"><div class="kpi-label">30+ debt to drive</div><div class="kpi-value">R 299,374.90</div></div>
+    <div class="card"><div class="kpi-label">Legal-stage exposure</div><div class="kpi-value">R 208,680.66</div></div>
+    <div class="card"><div class="kpi-label">Broken arrangements</div><div class="kpi-value">7</div></div>
   </div>
 
   <div class="grid story-grid">
     <div class="card">
-      <h2>The story right now</h2>
-      <div class="list"><div class="list-item">This page now focuses on 12 verified major problem accounts backed by the note trail, not every row with a small 30-day carryover.</div><div class="list-item">32 rows show current month balances that are not curing against the prior 30-day figure, but only 12 have enough legal, arrangement, query, clearance, or heavy-aged-debt evidence to treat as major files from this snapshot.</div><div class="list-item">7 major files show invalid arrangements / promises under your rule set.</div><div class="list-item">4 of those invalid arrangement files show AOD language and should move to judgment on default, not back into reminder loops.</div><div class="list-item">The legal queue carries R 208,680.66 of old debt across 8 major files, so legal drift is still the biggest money blockage.</div><div class="list-item">2 major files show stale follow-up, so internal drift remains a core failure point.</div></div>
+      <h2>The story</h2>
+      <div class="list"><div class="list-item">8 legal-stage files hold R 208,680.66 of the verified problem book. This is the main place progress has to be forced.</div><div class="list-item">7 files are sitting in broken arrangements or failed promise cycles. These need consequence, not more soft reminders.</div><div class="list-item">1 file(s) are blocked by query/admin ambiguity. That is trapped money, not harmless admin noise.</div><div class="list-item">2 file(s) show stale follow-up. The issue is not just debt; it is lack of accountable movement.</div></div>
     </div>
     <div class="card">
-      <h2>Where we are failing</h2>
-      <div class="list"><div class="list-item"><strong>Arrangement is not curing arrears. The balance is not reducing.</strong><br>7 accounts</div><div class="list-item"><strong>Main issue is aged debt still sitting 30+ days without cure.</strong><br>4 accounts</div><div class="list-item"><strong>AOD default has not been converted into judgment action fast enough.</strong><br>4 accounts</div><div class="list-item"><strong>Follow-up is stale. The file has gone quiet.</strong><br>2 accounts</div><div class="list-item"><strong>Legal file is not visibly advancing.</strong><br>2 accounts</div></div>
+      <h2>What you do with this</h2>
+      <div class="list">
+        <div class="list-item"><strong>1.</strong> Push every legal file to a dated next milestone.</div>
+        <div class="list-item"><strong>2.</strong> Stop recycling failed arrangements. One reminder, then consequences.</div>
+        <div class="list-item"><strong>3.</strong> Kill blocked query/transfer files by naming one owner and one due date.</div>
+        <div class="list-item"><strong>4.</strong> Treat stale files as process failure, not just debtor failure.</div>
+      </div>
     </div>
   </div>
 
   <div class="grid priority-grid">
         <div class="priority-card p1">
           <h3>P1</h3>
-          <div class="small">Immediate control</div>
+          <div class="small">Immediate chase / escalation</div>
           <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">11</p>
           <p>R 290,276.93 in 30+ debt</p>
-          <div><span class="pill bad">6 invalid arrangements</span><span class="pill bad">2 stale files</span></div>
         </div>
         <div class="priority-card p2">
           <h3>P2</h3>
-          <div class="small">Active recovery</div>
+          <div class="small">Active recovery this cycle</div>
           <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">1</p>
           <p>R 9,097.97 in 30+ debt</p>
-          <div><span class="pill bad">1 invalid arrangements</span><span class="pill bad">0 stale files</span></div>
         </div>
         <div class="priority-card p3">
           <h3>P3</h3>
-          <div class="small">Watch and close</div>
+          <div class="small">Short-dated follow-up only</div>
           <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">0</p>
           <p>R 0.00 in 30+ debt</p>
-          <div><span class="pill bad">0 invalid arrangements</span><span class="pill bad">0 stale files</span></div>
         </div></div>
 
-  <div class="card" style="margin-top:18px;">
-    <h2>Where the money is getting stuck</h2>
-    <div class="list"><div class="list-item"><strong>legal-active</strong><br>R 208,680.66<div class="bar"><span style="width:69.7%"></span></div></div><div class="list-item"><strong>arrangement / promise cycle</strong><br>R 70,323.49<div class="bar"><span style="width:23.5%"></span></div></div><div class="list-item"><strong>early-stage notice</strong><br>R 20,370.75<div class="bar"><span style="width:6.8%"></span></div></div></div>
-    <p class="small">This is the bottleneck view for the verified major problem files only.</p>
+  <div class="card table-wrap" style="margin-top:18px;">
+    <h2>Management orders this cycle</h2>
+    <table>
+      <thead>
+        <tr><th>Drive</th><th>Files</th><th>Exposure</th><th>Instruction</th></tr>
+      </thead>
+      <tbody><tr><td><strong>Force legal movement</strong></td><td>8 files</td><td>R 208,680.66 trapped</td><td>Get the next dated attorney milestone on every legal file. No passive waiting.</td></tr><tr><td><strong>Kill broken arrangements fast</strong></td><td>7 files</td><td>R 117,694.64</td><td>One failed reminder, then attorneys. Do not recycle PTP language.</td></tr><tr><td><strong>Unblock query / transfer holds</strong></td><td>1 query hold(s)</td><td>R 20,370.75</td><td>Name one resolver and one due date, otherwise the debt just keeps aging.</td></tr><tr><td><strong>Fix stale follow-up</strong></td><td>2 stale file(s)</td><td>R 18,127.28</td><td>Every stale file needs a fresh owner and a next dated action.</td></tr></tbody>
+    </table>
   </div>
 
-  <div class="card" style="margin-top:18px;">
-    <h2>Read these first</h2>
-    <p class="muted">No need to click through the whole book. Start with the biggest stories.</p>
-    <div class="grid account-grid">
-        <div class="account-card">
-          <div><span class="pill p1">P1</span><span class="pill info">Attorney stage: warrant granted</span></div>
-          <h3><a href="accounts/rud001-d27-rudolph-phillippus-van-zyl.html">RUD001-D27: *Rudolph Phillippus Van Zyl</a></h3>
-          <p><strong>R 81,740.74</strong> in 30+ debt · current still due: <strong>R 1,716.80</strong></p>
-          <p>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</p>
-          <p><strong>Stuck:</strong> It is getting stuck in the attorney / legal queue.</p>
-          <p><strong>Next step:</strong> Get a dated legal progress update and force the next milestone so the file cannot sit idle.</p>
-          <p class="small">Owner in notes: BLR</p>
-        </div>
-        <div class="account-card">
-          <div><span class="pill p1">P1</span><span class="pill info">Arrangement stage: promise to pay</span></div>
-          <h3><a href="accounts/oum001-d25-ouma-hlenkani-pertunia-nkole-nkole-hespency-nkole.html">OUM001-D25: *Ouma Hlenkani Pertunia Nkole &amp; Nkole Hespency Nkole</a></h3>
-          <p><strong>R 57,903.00</strong> in 30+ debt · current still due: <strong>R 1,716.80</strong></p>
-          <p>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</p>
-          <p><strong>Stuck:</strong> It is getting stuck in repeated promises / arrangement recycling.</p>
-          <p><strong>Next step:</strong> Arrangement failed. Send one reminder only. If unpaid after that reminder, hand the file to attorneys.</p>
-          <p class="small">Owner in notes: RVD</p>
-        </div>
-        <div class="account-card">
-          <div><span class="pill p1">P1</span><span class="pill info">Attorney stage: rent attachment / enforcement</span></div>
-          <h3><a href="accounts/tho001-d14-thokozile-patience-cindi.html">THO001-D14: * Thokozile Patience Cindi</a></h3>
-          <p><strong>R 42,694.62</strong> in 30+ debt · current still due: <strong>R 1,983.04</strong></p>
-          <p>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</p>
-          <p><strong>Stuck:</strong> It is getting stuck in the attorney / legal queue.</p>
-          <p><strong>Next step:</strong> Get a dated legal progress update and force the next milestone so the file cannot sit idle.</p>
-          <p class="small">Owner in notes: BLR, RVD</p>
-        </div>
-        <div class="account-card">
-          <div><span class="pill p1">P1</span><span class="pill info">Attorney stage: ready for judgment</span></div>
-          <h3><a href="accounts/sib003-d36-sibongile-johannah-kubheka.html">SIB003-D36: SIBONGILE JOHANNAH KUBHEKA</a></h3>
-          <p><strong>R 21,912.80</strong> in 30+ debt · current still due: <strong>R 1,716.80</strong></p>
-          <p>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</p>
-          <p><strong>Stuck:</strong> It is getting stuck in the attorney / legal queue.</p>
-          <p><strong>Next step:</strong> Get a dated legal progress update and force the next milestone so the file cannot sit idle.</p>
-          <p class="small">Owner in notes: Attorney / legal operator not clearly named in the notes</p>
-        </div>
-        <div class="account-card">
-          <div><span class="pill p1">P1</span><span class="pill info">Query / admin hold</span></div>
-          <h3><a href="accounts/tom002-d41t-tom-jobb-ngwenya.html">TOM002-D41t: Tom Jobb Ngwenya</a></h3>
-          <p><strong>R 20,370.75</strong> in 30+ debt · current still due: <strong>R 697.59</strong></p>
-          <p>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</p>
-          <p><strong>Stuck:</strong> It is getting stuck in the early-stage notice lane.</p>
-          <p><strong>Next step:</strong> Push the account up a level now. It is carrying old debt and still rolling forward.</p>
-          <p class="small">Owner in notes: LG, PM, RVD</p>
-        </div>
-        <div class="account-card">
-          <div><span class="pill p1">P1</span><span class="pill info">Attorney stage: summons issued</span></div>
-          <h3><a href="accounts/ema001-d4-emanuel-matimu-maluleke.html">EMA001-D4: EMANUEL MATIMU MALULEKE</a></h3>
-          <p><strong>R 19,830.84</strong> in 30+ debt · current still due: <strong>R 1,958.08</strong></p>
-          <p>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</p>
-          <p><strong>Stuck:</strong> It is getting stuck in the attorney / legal queue.</p>
-          <p><strong>Next step:</strong> Defaulted AOD: do not recycle reminders. Push the file to judgment now.</p>
-          <p class="small">Owner in notes: BLR</p>
-        </div></div>
+  <div class="grid story-grid" style="margin-top:18px;">
+    <div class="card table-wrap">
+      <h2>Legal pipeline</h2>
+      <p class="muted">Legal process as it appears in the current evidence trail: handover → summons → judgment → warrant / attachment.</p>
+      <table>
+        <thead>
+          <tr><th>Legal step</th><th>Files</th><th>30+ debt</th></tr>
+        </thead>
+        <tbody><tr><td>Summons in progress</td><td>1</td><td>R 19,830.84</td></tr><tr><td>Summons served / affidavit</td><td>1</td><td>R 9,413.03</td></tr><tr><td>Judgment pending</td><td>1</td><td>R 21,912.80</td></tr><tr><td>Warrant / enforcement</td><td>2</td><td>R 96,702.09</td></tr><tr><td>Rent attachment</td><td>1</td><td>R 42,694.62</td></tr></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Meaning of the main failure labels</h2>
+      <div class="list">
+        <div class="list-item"><strong>Broken arrangement</strong><br>Payment promise exists but the arrears are not curing. Cure = enforce once, then escalate.</div>
+        <div class="list-item"><strong>Stale follow-up</strong><br>No meaningful recent movement. Cure = force owner + date + next action.</div>
+        <div class="list-item"><strong>Legal inactivity</strong><br>File is in legal territory but the next milestone is not being driven. Cure = attorney update with date.</div>
+        <div class="list-item"><strong>Query / transfer block</strong><br>The debt is aging behind an unresolved admin/process hold. Cure = one named resolver, one deadline.</div>
+      </div>
+    </div>
   </div>
 
-  <div class="card table-wrap">
-    <h2>Verified major problem accounts</h2>
-    <p class="muted">These are the worsening files where the evidence trail is strong enough to justify a real worklist slot now.</p>
+  <div class="card table-wrap" style="margin-top:18px;">
+    <h2>Action worklist</h2>
+    <p class="muted">This is the part that should drive the week. No clicking needed.</p>
     <table>
       <thead>
         <tr>
-          <th>Priority</th><th>Account</th><th>Stage</th><th>30+ debt</th><th>Current due</th><th>Trend</th><th>Stuck at</th><th>Owner</th><th>Next step</th>
+          <th>Priority</th><th>Account</th><th>30+ debt</th><th>Why it is here</th><th>What is blocking cure</th><th>What must happen next</th><th>Who to chase</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/rud001-d27-rudolph-phillippus-van-zyl.html">RUD001-D27: *Rudolph Phillippus Van Zyl</a><div class="small">WARG</div></td>
-          <td>Attorney stage: warrant granted</td>
+          <td><strong>RUD001-D27: *Rudolph Phillippus Van Zyl</strong><div class="small">Attorney stage: warrant granted</div></td>
           <td>R 81,740.74</td>
-          <td>R 1,716.80</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the attorney / legal queue.</td>
+          <td>Legal-stage money is stuck here: R 81,740.74 already sits 30+ and the file is still rolling forward.</td>
+          <td>Transfer/clearance path is muddy and ownership of the file is unclear.</td>
+          <td>Decide whether transfer is real or dead. If dead, return it to collections today with one owner.</td>
           <td>BLR</td>
-          <td>Get a dated legal progress update and force the next milestone so the file cannot sit idle.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/oum001-d25-ouma-hlenkani-pertunia-nkole-nkole-hespency-nkole.html">OUM001-D25: *Ouma Hlenkani Pertunia Nkole &amp; Nkole Hespency Nkole</a><div class="small">PTP</div></td>
-          <td>Arrangement stage: promise to pay</td>
+          <td><strong>OUM001-D25: *Ouma Hlenkani Pertunia Nkole &amp; Nkole Hespency Nkole</strong><div class="small">Arrangement stage: promise to pay</div></td>
           <td>R 57,903.00</td>
-          <td>R 1,716.80</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in repeated promises / arrangement recycling.</td>
+          <td>The arrangement is not curing arrears. R 57,903.00 is still sitting old while new charges keep landing.</td>
+          <td>Broken arrangement is being allowed to recycle instead of triggering escalation.</td>
+          <td>Chase the promised payment once, then escalate to attorneys immediately if it fails.</td>
           <td>RVD</td>
-          <td>Arrangement failed. Send one reminder only. If unpaid after that reminder, hand the file to attorneys.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/tho001-d14-thokozile-patience-cindi.html">THO001-D14: * Thokozile Patience Cindi</a><div class="small">RATA</div></td>
-          <td>Attorney stage: rent attachment / enforcement</td>
+          <td><strong>THO001-D14: * Thokozile Patience Cindi</strong><div class="small">Attorney stage: rent attachment / enforcement</div></td>
           <td>R 42,694.62</td>
-          <td>R 1,983.04</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the attorney / legal queue.</td>
+          <td>Legal-stage money is stuck here: R 42,694.62 already sits 30+ and the file is still rolling forward.</td>
+          <td>Legal file needs its next dated milestone, not another passive wait.</td>
+          <td>Force the attorney/legal operator to confirm the next step and date in writing.</td>
           <td>BLR, RVD</td>
-          <td>Get a dated legal progress update and force the next milestone so the file cannot sit idle.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/sib003-d36-sibongile-johannah-kubheka.html">SIB003-D36: SIBONGILE JOHANNAH KUBHEKA</a><div class="small">RDJA</div></td>
-          <td>Attorney stage: ready for judgment</td>
+          <td><strong>SIB003-D36: SIBONGILE JOHANNAH KUBHEKA</strong><div class="small">Attorney stage: ready for judgment</div></td>
           <td>R 21,912.80</td>
-          <td>R 1,716.80</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the attorney / legal queue.</td>
+          <td>Legal-stage money is stuck here: R 21,912.80 already sits 30+ and the file is still rolling forward.</td>
+          <td>Legal file needs its next dated milestone, not another passive wait.</td>
+          <td>Force the attorney/legal operator to confirm the next step and date in writing.</td>
           <td>Attorney / legal operator not clearly named in the notes</td>
-          <td>Get a dated legal progress update and force the next milestone so the file cannot sit idle.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/tom002-d41t-tom-jobb-ngwenya.html">TOM002-D41t: Tom Jobb Ngwenya</a><div class="small">QRY</div></td>
-          <td>Query / admin hold</td>
+          <td><strong>TOM002-D41t: Tom Jobb Ngwenya</strong><div class="small">Query / admin hold</div></td>
           <td>R 20,370.75</td>
-          <td>R 697.59</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the early-stage notice lane.</td>
+          <td>Query/admin hold is trapping R 20,370.75 of old debt and the balance is still not curing.</td>
+          <td>Query/dispute hold is blocking normal collections progress.</td>
+          <td>Name one person to close the query and give them a date. Until then this money stays blocked.</td>
           <td>LG, PM, RVD</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/ema001-d4-emanuel-matimu-maluleke.html">EMA001-D4: EMANUEL MATIMU MALULEKE</a><div class="small">SUMS</div></td>
-          <td>Attorney stage: summons issued</td>
+          <td><strong>EMA001-D4: EMANUEL MATIMU MALULEKE</strong><div class="small">Attorney stage: summons issued</div></td>
           <td>R 19,830.84</td>
-          <td>R 1,958.08</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in the attorney / legal queue.</td>
+          <td>AOD/default path is live and R 19,830.84 is still aging. This should already be moving to judgment.</td>
+          <td>Signed AOD has defaulted but the matter has not been pushed into the next legal step.</td>
+          <td>Move to judgment now. Do not send another soft reminder.</td>
           <td>BLR</td>
-          <td>Defaulted AOD: do not recycle reminders. Push the file to judgment now.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/itu001-d12-itumeleng-mokgethi.html">ITU001-D12: Itumeleng Mokgethi</a><div class="small">CLR</div></td>
-          <td>Clearance / transfer stage</td>
+          <td><strong>ITU001-D12: Itumeleng Mokgethi</strong><div class="small">Clearance / transfer stage</div></td>
           <td>R 15,446.74</td>
-          <td>R 1,763.94</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in the attorney / legal queue.</td>
+          <td>AOD/default path is live and R 15,446.74 is still aging. This should already be moving to judgment.</td>
+          <td>No recent meaningful follow-up. The file needs a fresh owner update.</td>
+          <td>Move to judgment now. Do not send another soft reminder.</td>
           <td>LG, RVD</td>
-          <td>Defaulted AOD: do not recycle reminders. Push the file to judgment now.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/rud002-d27t-rudolph-phillippus-van-zyl.html">RUD002-D27t: *Rudolph Phillippus Van Zyl</a><div class="small">WARG</div></td>
-          <td>Attorney stage: warrant granted</td>
+          <td><strong>RUD002-D27t: *Rudolph Phillippus Van Zyl</strong><div class="small">Attorney stage: warrant granted</div></td>
           <td>R 14,961.35</td>
-          <td>R 245.79</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the attorney / legal queue.</td>
+          <td>Legal-stage money is stuck here: R 14,961.35 already sits 30+ and the file is still rolling forward.</td>
+          <td>Legal file needs its next dated milestone, not another passive wait.</td>
+          <td>Force the attorney/legal operator to confirm the next step and date in writing.</td>
           <td>BLR, RVD</td>
-          <td>Get a dated legal progress update and force the next milestone so the file cannot sit idle.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/nok001-d44-nokubonga-purity-nkosi.html">NOK001-D44: Nokubonga Purity Nkosi</a><div class="small">SUMD</div></td>
-          <td>Attorney stage: summons drafted</td>
+          <td><strong>NOK001-D44: Nokubonga Purity Nkosi</strong><div class="small">Attorney stage: summons drafted</div></td>
           <td>R 9,413.03</td>
-          <td>R 1,716.80</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in the attorney / legal queue.</td>
+          <td>AOD/default path is live and R 9,413.03 is still aging. This should already be moving to judgment.</td>
+          <td>Signed AOD has defaulted but the matter has not been pushed into the next legal step.</td>
+          <td>Move to judgment now. Do not send another soft reminder.</td>
           <td>BLR, RVD</td>
-          <td>Defaulted AOD: do not recycle reminders. Push the file to judgment now.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/ban001-d5-banele-goodman-zwane.html">BAN001-D5: Banele Goodman Zwane</a><div class="small">AP</div></td>
-          <td>Arrangement stage: active arrangement</td>
+          <td><strong>BAN001-D5: Banele Goodman Zwane</strong><div class="small">Arrangement stage: active arrangement</div></td>
           <td>R 3,322.52</td>
-          <td>R 1,958.08</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in a defaulted AOD instead of moving to judgment.</td>
+          <td>AOD/default path is live and R 3,322.52 is still aging. This should already be moving to judgment.</td>
+          <td>Signed AOD has defaulted but the matter has not been pushed into the next legal step.</td>
+          <td>Move to judgment now. Do not send another soft reminder.</td>
           <td>LG</td>
-          <td>Defaulted AOD: do not recycle reminders. Push the file to judgment now.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/itu002-d12t-itumeleng-mokgethi.html">ITU002-D12t: Itumeleng Mokgethi</a><div class="small">CLR</div></td>
-          <td>Clearance / transfer stage</td>
+          <td><strong>ITU002-D12t: Itumeleng Mokgethi</strong><div class="small">Clearance / transfer stage</div></td>
           <td>R 2,680.54</td>
-          <td>R 516.87</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in the attorney / legal queue.</td>
+          <td>Legal-stage money is stuck here: R 2,680.54 already sits 30+ and the file is still rolling forward.</td>
+          <td>No recent meaningful follow-up. The file needs a fresh owner update.</td>
+          <td>Chase the promised payment once, then escalate to attorneys immediately if it fails.</td>
           <td>LG, RVD</td>
-          <td>Get a dated legal progress update and force the next milestone so the file cannot sit idle.</td>
         </tr>
         <tr>
           <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/oum002-d25t-ouma-hlenkani-pertunia-nkole.html">OUM002-D25t: Ouma Hlenkani Pertunia Nkole</a><div class="small">PTP</div></td>
-          <td>Arrangement stage: promise to pay</td>
+          <td><strong>OUM002-D25t: Ouma Hlenkani Pertunia Nkole</strong><div class="small">Arrangement stage: promise to pay</div></td>
           <td>R 9,097.97</td>
-          <td>R 562.05</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in repeated promises / arrangement recycling.</td>
+          <td>The arrangement is not curing arrears. R 9,097.97 is still sitting old while new charges keep landing.</td>
+          <td>Broken arrangement is being allowed to recycle instead of triggering escalation.</td>
+          <td>Chase the promised payment once, then escalate to attorneys immediately if it fails.</td>
           <td>RVD</td>
-          <td>Arrangement failed. Send one reminder only. If unpaid after that reminder, hand the file to attorneys.</td>
         </tr></tbody>
     </table>
   </div>
 
-  <div class="card table-wrap">
-    <h2>Watchlist only</h2>
-    <p class="muted">These rows have some 30+ balance, but this snapshot alone does not prove a major worsening problem.</p>
+  <div class="card table-wrap" style="margin-top:18px;">
+    <h2>Watchlist, not today's queue</h2>
+    <p class="muted">Visible for control, but kept out of the main worklist because the evidence is too weak or the carry is too small.</p>
     <table>
       <thead>
-        <tr>
-          <th>Account</th><th>30+ debt</th><th>Current due</th><th>Why it is not in the major list</th>
-        </tr>
+        <tr><th>Account</th><th>30+ debt</th><th>Why it stays out of the main queue</th></tr>
       </thead>
       <tbody>
         <tr>
           <td>MME001-D2: *Mmetja Chris Mokobane</td>
           <td>R 28,821.08</td>
-          <td>R 1,958.08</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>PHE001-D23: *Phethedi Isaac Mokuwe</td>
           <td>R 28,513.19</td>
-          <td>R 1,716.80</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>EMA002-D4t: EMANUEL MATIMU MALULEKE</td>
           <td>R 8,876.85</td>
-          <td>R 652.41</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>PAM001-D13: Pamela Ayanda Dyani</td>
           <td>R 3,874.67</td>
-          <td>R 1,933.11</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>ANG001-D22: ANGEL JEANETT NTOMBIKAYISE MTSWENI</td>
           <td>R 2,874.13</td>
-          <td>R 1,740.36</td>
           <td>Balance is worsening, but the notes do not yet prove a legal, arrangement, query, or clearance problem that justifies a major-file worklist slot.</td>
         </tr>
         <tr>
           <td>SIZ005-D19: SIZWE CEDRICK MTHEMBU</td>
           <td>R 2,492.13</td>
-          <td>R 1,716.80</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>SIB001-D35: Sibusiso Howard Sibiya</td>
           <td>R 1,952.24</td>
-          <td>R 1,716.80</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>SIB004-D36t: SIBONGILE JOHANNAH KUBHEKA</td>
           <td>R 1,941.73</td>
-          <td>R 336.15</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>TOM005-D33t: Tom Jobb Ngwenya</td>
           <td>R 1,846.33</td>
-          <td>R 381.33</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>MAH001-D46: Mahlatse Manyabeane Matau(SOLD)</td>
-          <td>R 1,716.80</td>
           <td>R 1,716.80</td>
           <td>Needs watching, but the evidence trail is not yet strong enough for the verified major list.</td>
         </tr>
         <tr>
           <td>NON001-D37: Nontokozo Marymartin Sibiya</td>
           <td>R 1,602.47</td>
-          <td>R 1,716.80</td>
           <td>Balance is worsening, but the notes do not yet prove a legal, arrangement, query, or clearance problem that justifies a major-file worklist slot.</td>
         </tr>
         <tr>
           <td>MAM002-D16t: Mamokete Nthabiseng Mokoena</td>
           <td>R 1,394.35</td>
-          <td>R 381.33</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>NON002-D37t: Nontokozo Marymartin Sibiya</td>
           <td>R 845.08</td>
-          <td>R 426.51</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>SIB002-D35t: Sibusiso Howard Sibiya</td>
           <td>R 841.68</td>
-          <td>R 426.51</td>
           <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
         </tr>
         <tr>
           <td>AFR015-D40t: AFRIZONE 109 PTY LTD</td>
           <td>R 659.90</td>
-          <td>R 336.15</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
-        </tr>
-        <tr>
-          <td>ANG002-D22t: ANGEL JEANETT NTOMBIKAYISE MTSWENI</td>
-          <td>R 606.59</td>
-          <td>R 471.69</td>
-          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
-        </tr>
-        <tr>
-          <td>AFR010-D3t: AFRIZONE 109 PTY LTD</td>
-          <td>R 578.21</td>
-          <td>R 471.69</td>
-          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
-        </tr>
-        <tr>
-          <td>JIM001-D21: Jimmy Ngoma</td>
-          <td>R 556.95</td>
-          <td>R 1,716.80</td>
-          <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
-        </tr>
-        <tr>
-          <td>THO002-D14t: *Thokozile Patience Cindi</td>
-          <td>R 544.47</td>
-          <td>R 426.51</td>
-          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
-        </tr>
-        <tr>
-          <td>NOK002-D44t: Nokubonga Purity Nkosi</td>
-          <td>R 487.15</td>
-          <td>R 381.33</td>
-          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
-        </tr>
-        <tr>
-          <td>PAM002-D13t: Pamela Ayanda Dyani</td>
-          <td>R 426.51</td>
-          <td>R 426.51</td>
-          <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
-        </tr>
-        <tr>
-          <td>PAT002-D11t: Patricia Nyundu</td>
-          <td>R 405.40</td>
-          <td>R 381.33</td>
-          <td>Recent notes show paid/current language and the aged carry is small, so this is not verified as a major problem from the evidence trail.</td>
-        </tr>
-        <tr>
-          <td>MAS001-D20: MASHUDU MASHATHINI</td>
-          <td>R 394.31</td>
-          <td>R 1,716.80</td>
-          <td>Recent notes show paid/current language and the aged carry is small, so this is not verified as a major problem from the evidence trail.</td>
-        </tr>
-        <tr>
-          <td>PHE002-D23t: *Phethedi Isaac Mokuwe</td>
-          <td>R 382.41</td>
-          <td>R 652.41</td>
-          <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
-        </tr>
-        <tr>
-          <td>AFR011-D9t: AFRIZONE 109 PTY LTD</td>
-          <td>R 339.54</td>
-          <td>R 878.31</td>
-          <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
-        </tr>
-        <tr>
-          <td>AFR016-D45t: AFRIZONE 109 PTY LTD</td>
-          <td>R 301.62</td>
-          <td>R 381.33</td>
-          <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
-        </tr>
-        <tr>
-          <td>AFR012-D34t: AFRIZONE 109 PTY LTD</td>
-          <td>R 274.67</td>
-          <td>R 381.33</td>
-          <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
-        </tr>
-        <tr>
-          <td>ZEL002-D48t: ZELDENE ESTELL LUPKE</td>
-          <td>R 245.85</td>
-          <td>R 516.87</td>
-          <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
-        </tr>
-        <tr>
-          <td>AFR017-D47t: AFRIZONE 109 PTY LTD</td>
-          <td>R 209.52</td>
-          <td>R 336.15</td>
-          <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
-        </tr>
-        <tr>
-          <td>MOV002-D18t: Moven Wayela Mgabi</td>
-          <td>R 158.43</td>
-          <td>R 336.15</td>
-          <td>Recent notes show paid/current language and the aged carry is small, so this is not verified as a major problem from the evidence trail.</td>
-        </tr>
-        <tr>
-          <td>ZEL001-D48: ZELDENE ESTELL LUPKE</td>
-          <td>R 60.00</td>
-          <td>R 1,280.00</td>
-          <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
-        </tr>
-        <tr>
-          <td>MAS002-D20t: MASHUDU MASHATHINI</td>
-          <td>R 43.52</td>
-          <td>R 336.15</td>
-          <td>Recent notes show paid/current language and the aged carry is small, so this is not verified as a major problem from the evidence trail.</td>
-        </tr>
-        <tr>
-          <td>SIZ001-D29: Sizwe Maxwell Sibiya</td>
-          <td>R 39.41</td>
-          <td>R 1,416.80</td>
-          <td>Recent notes show paid/current language and the aged carry is small, so this is not verified as a major problem from the evidence trail.</td>
-        </tr>
-        <tr>
-          <td>MAN002-D6t: Mandlakayise Mathebula</td>
-          <td>R 11.76</td>
-          <td>R 336.15</td>
-          <td>Recent notes show paid/current language and the aged carry is small, so this is not verified as a major problem from the evidence trail.</td>
-        </tr>
-        <tr>
-          <td>CHA002-D28t: Charles Charity Kidness Antonio &amp; Phepahalo Ednah Antonio</td>
-          <td>R 0.34</td>
-          <td>R 562.05</td>
-          <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
         </tr></tbody>
     </table>
   </div>
