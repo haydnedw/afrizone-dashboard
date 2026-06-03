@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Afrizone problem accounts dashboard</title>
+<title>Afrizone major problem accounts dashboard</title>
 <style>
 :root {
   --bg:#07111f; --panel:#0f1b31; --panel2:#162642; --line:#223456; --text:#edf4ff; --muted:#9eb3d5;
@@ -62,26 +62,26 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
 
 <div class="wrap">
   <div class="hero">
-    <h1>Afrizone problem accounts</h1>
-    <p>This dashboard strips out current-only balances and focuses only on files with 30+ day debt. It tells the story first: what is worsening, where files are getting stuck, who owns the blockage, what the next step is, and where the collection process is failing.</p>
+    <h1>Afrizone major problem accounts</h1>
+    <p>This view no longer treats every small 30-day carryover as a problem. It leads with the material files where the balance is not curing and the account is big enough or serious enough to need active collections attention now.</p>
     <p class="small">Community: AFR - Afrizone · Extracted: 2026-06-03T08:22:53.365Z</p>
   </div>
 
   <div class="grid kpis">
-    <div class="card"><div class="kpi-label">Problem accounts only</div><div class="kpi-value">47</div></div>
-    <div class="card"><div class="kpi-label">30+ debt exposure</div><div class="kpi-value">R 393,694.19</div></div>
-    <div class="card"><div class="kpi-label">Invalid arrangements / PTPs</div><div class="kpi-value">21</div></div>
-    <div class="card"><div class="kpi-label">Current month still rolling</div><div class="kpi-value">47</div></div>
+    <div class="card"><div class="kpi-label">Verified major problems</div><div class="kpi-value">19</div></div>
+    <div class="card"><div class="kpi-label">30+ debt in major problems</div><div class="kpi-value">R 303,980.99</div></div>
+    <div class="card"><div class="kpi-label">Invalid arrangements / PTPs</div><div class="kpi-value">11</div></div>
+    <div class="card"><div class="kpi-label">30+ rows parked in watchlist</div><div class="kpi-value">28</div></div>
   </div>
 
   <div class="grid story-grid">
     <div class="card">
       <h2>The story right now</h2>
-      <div class="list"><div class="list-item">47 accounts are real problem accounts because they already carry 30+ day debt.</div><div class="list-item">47 of them are still rolling into the current month, which means the balance is not curing.</div><div class="list-item">21 arrangements / promises look invalid under your rule set.</div><div class="list-item">8 of those invalid arrangement files show AOD language and should move to judgment on default, not back into reminder loops.</div><div class="list-item">The legal queue carries R 219,107.64 of old debt across 14 files, so if legal goes stale the money stalls there fast.</div><div class="list-item">21 problem accounts show stale follow-up, so internal drift is still a major failure point.</div></div>
+      <div class="list"><div class="list-item">This page now focuses on 19 verified major problem accounts, not every row with a small 30-day carryover.</div><div class="list-item">32 rows show current month balances that are not curing against the prior 30-day figure, but only 19 are material enough to treat as major problem files from this snapshot.</div><div class="list-item">11 major files show invalid arrangements / promises under your rule set.</div><div class="list-item">5 of those invalid arrangement files show AOD language and should move to judgment on default, not back into reminder loops.</div><div class="list-item">The legal queue carries R 209,743.64 of old debt across 12 major files, so legal drift is still the biggest money blockage.</div><div class="list-item">8 major files show stale follow-up, so internal drift remains a core failure point.</div></div>
     </div>
     <div class="card">
       <h2>Where we are failing</h2>
-      <div class="list"><div class="list-item"><strong>Arrangement is not curing arrears. The balance is not reducing.</strong><br>21 accounts</div><div class="list-item"><strong>Follow-up is stale. The file has gone quiet.</strong><br>21 accounts</div><div class="list-item"><strong>Main issue is aged debt still sitting 30+ days without cure.</strong><br>12 accounts</div><div class="list-item"><strong>AOD default has not been converted into judgment action fast enough.</strong><br>8 accounts</div><div class="list-item"><strong>Legal file is not visibly advancing.</strong><br>5 accounts</div></div>
+      <div class="list"><div class="list-item"><strong>Arrangement is not curing arrears. The balance is not reducing.</strong><br>11 accounts</div><div class="list-item"><strong>Follow-up is stale. The file has gone quiet.</strong><br>8 accounts</div><div class="list-item"><strong>Main issue is aged debt still sitting 30+ days without cure.</strong><br>5 accounts</div><div class="list-item"><strong>AOD default has not been converted into judgment action fast enough.</strong><br>5 accounts</div><div class="list-item"><strong>Legal file is not visibly advancing.</strong><br>5 accounts</div></div>
     </div>
   </div>
 
@@ -89,29 +89,29 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
         <div class="priority-card p1">
           <h3>P1</h3>
           <div class="small">Immediate control</div>
-          <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">20</p>
-          <p>R 359,979.91 in 30+ debt</p>
-          <div><span class="pill bad">12 invalid arrangements</span><span class="pill bad">5 stale files</span></div>
+          <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">15</p>
+          <p>R 291,339.91 in 30+ debt</p>
+          <div><span class="pill bad">8 invalid arrangements</span><span class="pill bad">5 stale files</span></div>
         </div>
         <div class="priority-card p2">
           <h3>P2</h3>
           <div class="small">Active recovery</div>
-          <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">17</p>
-          <p>R 19,574.88 in 30+ debt</p>
-          <div><span class="pill bad">9 invalid arrangements</span><span class="pill bad">16 stale files</span></div>
+          <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">4</p>
+          <p>R 12,641.08 in 30+ debt</p>
+          <div><span class="pill bad">3 invalid arrangements</span><span class="pill bad">3 stale files</span></div>
         </div>
         <div class="priority-card p3">
           <h3>P3</h3>
           <div class="small">Watch and close</div>
-          <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">10</p>
-          <p>R 14,139.40 in 30+ debt</p>
+          <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">0</p>
+          <p>R 0.00 in 30+ debt</p>
           <div><span class="pill bad">0 invalid arrangements</span><span class="pill bad">0 stale files</span></div>
         </div></div>
 
   <div class="card" style="margin-top:18px;">
     <h2>Where the money is getting stuck</h2>
-    <div class="list"><div class="list-item"><strong>legal-active</strong><br>R 219,107.64<div class="bar"><span style="width:55.7%"></span></div></div><div class="list-item"><strong>arrangement / promise cycle</strong><br>R 102,053.98<div class="bar"><span style="width:25.9%"></span></div></div><div class="list-item"><strong>early-stage notice</strong><br>R 35,297.63<div class="bar"><span style="width:9.0%"></span></div></div><div class="list-item"><strong>clearance/transfer</strong><br>R 28,821.08<div class="bar"><span style="width:7.3%"></span></div></div><div class="list-item"><strong>current / low-balance follow-up</strong><br>R 8,413.86<div class="bar"><span style="width:2.1%"></span></div></div></div>
-    <p class="small">This is the operational bottleneck view, not just an ageing view.</p>
+    <div class="list"><div class="list-item"><strong>legal-active</strong><br>R 209,743.64<div class="bar"><span style="width:69.0%"></span></div></div><div class="list-item"><strong>arrangement / promise cycle</strong><br>R 70,992.47<div class="bar"><span style="width:23.4%"></span></div></div><div class="list-item"><strong>early-stage notice</strong><br>R 20,370.75<div class="bar"><span style="width:6.7%"></span></div></div><div class="list-item"><strong>current / low-balance follow-up</strong><br>R 2,874.13<div class="bar"><span style="width:0.9%"></span></div></div></div>
+    <p class="small">This is the bottleneck view for the verified major problem files only.</p>
   </div>
 
   <div class="card" style="margin-top:18px;">
@@ -146,24 +146,6 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
           <p class="small">Owner in notes: BLR, RVD</p>
         </div>
         <div class="account-card">
-          <div><span class="pill p1">P1</span><span class="pill info">Pending / unresolved hold</span></div>
-          <h3><a href="accounts/mme001-d2-mmetja-chris-mokobane.html">MME001-D2: *Mmetja Chris Mokobane</a></h3>
-          <p><strong>R 28,821.08</strong> in 30+ debt · current still due: <strong>R 1,958.08</strong></p>
-          <p>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</p>
-          <p><strong>Stuck:</strong> It is getting stuck between transfer / clearance and collections.</p>
-          <p><strong>Next step:</strong> Decide immediately whether transfer is still live. If not, hand it back into normal collections with one owner.</p>
-          <p class="small">Owner in notes: BLR, RVD</p>
-        </div>
-        <div class="account-card">
-          <div><span class="pill p1">P1</span><span class="pill info">Arrangement stage: arrangement not paid</span></div>
-          <h3><a href="accounts/phe001-d23-phethedi-isaac-mokuwe.html">PHE001-D23: *Phethedi Isaac Mokuwe</a></h3>
-          <p><strong>R 28,513.19</strong> in 30+ debt · current still due: <strong>R 1,716.80</strong></p>
-          <p>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</p>
-          <p><strong>Stuck:</strong> It is getting stuck in repeated promises / arrangement recycling.</p>
-          <p><strong>Next step:</strong> Arrangement failed. Send one reminder only. If unpaid after that reminder, hand the file to attorneys.</p>
-          <p class="small">Owner in notes: LG, RVD</p>
-        </div>
-        <div class="account-card">
           <div><span class="pill p1">P1</span><span class="pill info">Attorney stage: ready for judgment</span></div>
           <h3><a href="accounts/sib003-d36-sibongile-johannah-kubheka.html">SIB003-D36: SIBONGILE JOHANNAH KUBHEKA</a></h3>
           <p><strong>R 21,912.80</strong> in 30+ debt · current still due: <strong>R 1,716.80</strong></p>
@@ -171,12 +153,30 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
           <p><strong>Stuck:</strong> It is getting stuck in the attorney / legal queue.</p>
           <p><strong>Next step:</strong> Get a dated legal progress update and force the next milestone so the file cannot sit idle.</p>
           <p class="small">Owner in notes: Attorney / legal operator not clearly named in the notes</p>
+        </div>
+        <div class="account-card">
+          <div><span class="pill p1">P1</span><span class="pill info">Query / admin hold</span></div>
+          <h3><a href="accounts/tom002-d41t-tom-jobb-ngwenya.html">TOM002-D41t: Tom Jobb Ngwenya</a></h3>
+          <p><strong>R 20,370.75</strong> in 30+ debt · current still due: <strong>R 697.59</strong></p>
+          <p>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</p>
+          <p><strong>Stuck:</strong> It is getting stuck in the early-stage notice lane.</p>
+          <p><strong>Next step:</strong> Push the account up a level now. It is carrying old debt and still rolling forward.</p>
+          <p class="small">Owner in notes: LG, PM, RVD</p>
+        </div>
+        <div class="account-card">
+          <div><span class="pill p1">P1</span><span class="pill info">Attorney stage: summons issued</span></div>
+          <h3><a href="accounts/ema001-d4-emanuel-matimu-maluleke.html">EMA001-D4: EMANUEL MATIMU MALULEKE</a></h3>
+          <p><strong>R 19,830.84</strong> in 30+ debt · current still due: <strong>R 1,958.08</strong></p>
+          <p>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</p>
+          <p><strong>Stuck:</strong> It is getting stuck in the attorney / legal queue.</p>
+          <p><strong>Next step:</strong> Defaulted AOD: do not recycle reminders. Push the file to judgment now.</p>
+          <p class="small">Owner in notes: BLR</p>
         </div></div>
   </div>
 
   <div class="card table-wrap">
-    <h2>All problem accounts</h2>
-    <p class="muted">Every line below already has 30+ day debt. Current-only balances have been removed.</p>
+    <h2>Verified major problem accounts</h2>
+    <p class="muted">These are the files where the current month is not curing against the 30-day figure and the file is material enough to act on now.</p>
     <table>
       <thead>
         <tr>
@@ -216,28 +216,6 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
           <td>It is getting stuck in the attorney / legal queue.</td>
           <td>BLR, RVD</td>
           <td>Get a dated legal progress update and force the next milestone so the file cannot sit idle.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/mme001-d2-mmetja-chris-mokobane.html">MME001-D2: *Mmetja Chris Mokobane</a><div class="small">PEND</div></td>
-          <td>Pending / unresolved hold</td>
-          <td>R 28,821.08</td>
-          <td>R 1,958.08</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck between transfer / clearance and collections.</td>
-          <td>BLR, RVD</td>
-          <td>Decide immediately whether transfer is still live. If not, hand it back into normal collections with one owner.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/phe001-d23-phethedi-isaac-mokuwe.html">PHE001-D23: *Phethedi Isaac Mokuwe</a><div class="small">NP</div></td>
-          <td>Arrangement stage: arrangement not paid</td>
-          <td>R 28,513.19</td>
-          <td>R 1,716.80</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in repeated promises / arrangement recycling.</td>
-          <td>LG, RVD</td>
-          <td>Arrangement failed. Send one reminder only. If unpaid after that reminder, hand the file to attorneys.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
@@ -307,17 +285,6 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/ema002-d4t-emanuel-matimu-maluleke.html">EMA002-D4t: EMANUEL MATIMU MALULEKE</a><div class="small">PEND</div></td>
-          <td>Pending / unresolved hold</td>
-          <td>R 8,876.85</td>
-          <td>R 652.41</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in the attorney / legal queue.</td>
-          <td>RVD</td>
-          <td>Defaulted AOD: do not recycle reminders. Push the file to judgment now.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p1">P1</span></td>
           <td><a href="accounts/ban001-d5-banele-goodman-zwane.html">BAN001-D5: Banele Goodman Zwane</a><div class="small">AP</div></td>
           <td>Arrangement stage: active arrangement</td>
           <td>R 3,322.52</td>
@@ -337,28 +304,6 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
           <td>It is getting stuck in the attorney / legal queue.</td>
           <td>LG, RVD</td>
           <td>Get a dated legal progress update and force the next milestone so the file cannot sit idle.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/sib004-d36t-sibongile-johannah-kubheka.html">SIB004-D36t: SIBONGILE JOHANNAH KUBHEKA</a><div class="small">NP</div></td>
-          <td>Arrangement stage: arrangement not paid</td>
-          <td>R 1,941.73</td>
-          <td>R 336.15</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in a defaulted AOD instead of moving to judgment.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Defaulted AOD: do not recycle reminders. Push the file to judgment now.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p1">P1</span></td>
-          <td><a href="accounts/nok002-d44t-nokubonga-purity-nkosi.html">NOK002-D44t: Nokubonga Purity Nkosi</a><div class="small">No status code</div></td>
-          <td>Arrangement stage: AOD signed</td>
-          <td>R 487.15</td>
-          <td>R 381.33</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in the attorney / legal queue.</td>
-          <td>LG, RVD</td>
-          <td>Defaulted AOD: do not recycle reminders. Push the file to judgment now.</td>
         </tr>
         <tr>
           <td><span class="pill p1">P1</span></td>
@@ -428,72 +373,6 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
         </tr>
         <tr>
           <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/siz005-d19-sizwe-cedrick-mthembu.html">SIZ005-D19: SIZWE CEDRICK MTHEMBU</a><div class="small">No status code</div></td>
-          <td>Current  /  Low-Balance Follow-Up</td>
-          <td>R 2,492.13</td>
-          <td>R 1,716.80</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/mah001-d46-mahlatse-manyabeane-matau-sold.html">MAH001-D46: Mahlatse Manyabeane Matau(SOLD)</a><div class="small">No status code</div></td>
-          <td>Current  /  Low-Balance Follow-Up</td>
-          <td>R 1,716.80</td>
-          <td>R 1,716.80</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/ang002-d22t-angel-jeanett-ntombikayise-mtsweni.html">ANG002-D22t: ANGEL JEANETT NTOMBIKAYISE MTSWENI</a><div class="small">No status code</div></td>
-          <td>Arrangement  /  Promise Cycle</td>
-          <td>R 606.59</td>
-          <td>R 471.69</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in repeated promises / arrangement recycling.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Arrangement failed. Send one reminder only. If unpaid after that reminder, hand the file to attorneys.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/jim001-d21-jimmy-ngoma.html">JIM001-D21: Jimmy Ngoma</a><div class="small">No status code</div></td>
-          <td>Early-Stage Notice</td>
-          <td>R 556.95</td>
-          <td>R 1,716.80</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/pam002-d13t-pamela-ayanda-dyani.html">PAM002-D13t: Pamela Ayanda Dyani</a><div class="small">No status code</div></td>
-          <td>Current  /  Low-Balance Follow-Up</td>
-          <td>R 426.51</td>
-          <td>R 426.51</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>LG, RVD</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/pat002-d11t-patricia-nyundu.html">PAT002-D11t: Patricia Nyundu</a><div class="small">No status code</div></td>
-          <td>Current  /  Low-Balance Follow-Up</td>
-          <td>R 405.40</td>
-          <td>R 381.33</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>LG</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p2">P2</span></td>
           <td><a href="accounts/mas001-d20-mashudu-mashathini.html">MAS001-D20: MASHUDU MASHATHINI</a><div class="small">No status code</div></td>
           <td>Arrangement  /  Promise Cycle</td>
           <td>R 394.31</td>
@@ -513,193 +392,187 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
           <td>It is getting stuck in repeated promises / arrangement recycling.</td>
           <td>LG</td>
           <td>Arrangement failed. Send one reminder only. If unpaid after that reminder, hand the file to attorneys.</td>
+        </tr></tbody>
+    </table>
+  </div>
+
+  <div class="card table-wrap">
+    <h2>Watchlist only</h2>
+    <p class="muted">These rows have some 30+ balance, but this snapshot alone does not prove a major worsening problem.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Account</th><th>30+ debt</th><th>Current due</th><th>Why it is not in the major list</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MME001-D2: *Mmetja Chris Mokobane</td>
+          <td>R 28,821.08</td>
+          <td>R 1,958.08</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/zel002-d48t-zeldene-estell-lupke.html">ZEL002-D48t: ZELDENE ESTELL LUPKE</a><div class="small">No status code</div></td>
-          <td>Current  /  Low-Balance Follow-Up</td>
-          <td>R 245.85</td>
-          <td>R 516.87</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>PHE001-D23: *Phethedi Isaac Mokuwe</td>
+          <td>R 28,513.19</td>
+          <td>R 1,716.80</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/afr017-d47t-afrizone-109-pty-ltd.html">AFR017-D47t: AFRIZONE 109 PTY LTD</a><div class="small">No status code</div></td>
-          <td>Current  /  Low-Balance Follow-Up</td>
-          <td>R 209.52</td>
-          <td>R 336.15</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>EMA002-D4t: EMANUEL MATIMU MALULEKE</td>
+          <td>R 8,876.85</td>
+          <td>R 652.41</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/mov002-d18t-moven-wayela-mgabi.html">MOV002-D18t: Moven Wayela Mgabi</a><div class="small">No status code</div></td>
-          <td>Early-Stage Notice</td>
-          <td>R 158.43</td>
-          <td>R 336.15</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>RVD</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/zel001-d48-zeldene-estell-lupke.html">ZEL001-D48: ZELDENE ESTELL LUPKE</a><div class="small">No status code</div></td>
-          <td>Early-Stage Notice</td>
-          <td>R 60.00</td>
-          <td>R 1,280.00</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/mas002-d20t-mashudu-mashathini.html">MAS002-D20t: MASHUDU MASHATHINI</a><div class="small">No status code</div></td>
-          <td>Current  /  Low-Balance Follow-Up</td>
-          <td>R 43.52</td>
-          <td>R 336.15</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/man002-d6t-mandlakayise-mathebula.html">MAN002-D6t: Mandlakayise Mathebula</a><div class="small">No status code</div></td>
-          <td>Early-Stage Notice</td>
-          <td>R 11.76</td>
-          <td>R 336.15</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>LG, RVD</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p2">P2</span></td>
-          <td><a href="accounts/cha002-d28t-charles-charity-kidness-antonio-phepahalo-ednah-antonio.html">CHA002-D28t: Charles Charity Kidness Antonio &amp; Phepahalo Ednah Antonio</a><div class="small">No status code</div></td>
-          <td>Early-Stage Notice</td>
-          <td>R 0.34</td>
-          <td>R 562.05</td>
-          <td>Balance is still increasing. New month charges are landing while old arrears remain unpaid.</td>
-          <td>It is getting stuck in internal follow-up with no visible push.</td>
-          <td>HE, LG, RVD</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
-        </tr>
-        <tr>
-          <td><span class="pill p3">P3</span></td>
-          <td><a href="accounts/pam001-d13-pamela-ayanda-dyani.html">PAM001-D13: Pamela Ayanda Dyani</a><div class="small">P1</div></td>
-          <td>Pre-handover: 30 day notice</td>
+          <td>PAM001-D13: Pamela Ayanda Dyani</td>
           <td>R 3,874.67</td>
           <td>R 1,933.11</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the early-stage notice lane.</td>
-          <td>LG, RVD</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
-          <td><span class="pill p3">P3</span></td>
-          <td><a href="accounts/sib001-d35-sibusiso-howard-sibiya.html">SIB001-D35: Sibusiso Howard Sibiya</a><div class="small">P1</div></td>
-          <td>Pre-handover: 30 day notice</td>
+          <td>SIZ005-D19: SIZWE CEDRICK MTHEMBU</td>
+          <td>R 2,492.13</td>
+          <td>R 1,716.80</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
+        </tr>
+        <tr>
+          <td>SIB001-D35: Sibusiso Howard Sibiya</td>
           <td>R 1,952.24</td>
           <td>R 1,716.80</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the early-stage notice lane.</td>
-          <td>LG</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
-          <td><span class="pill p3">P3</span></td>
-          <td><a href="accounts/tom005-d33t-tom-jobb-ngwenya.html">TOM005-D33t: Tom Jobb Ngwenya</a><div class="small">P1</div></td>
-          <td>Pre-handover: 30 day notice</td>
+          <td>SIB004-D36t: SIBONGILE JOHANNAH KUBHEKA</td>
+          <td>R 1,941.73</td>
+          <td>R 336.15</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
+        </tr>
+        <tr>
+          <td>TOM005-D33t: Tom Jobb Ngwenya</td>
           <td>R 1,846.33</td>
           <td>R 381.33</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the early-stage notice lane.</td>
-          <td>LG, RVD</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
-          <td><span class="pill p3">P3</span></td>
-          <td><a href="accounts/non001-d37-nontokozo-marymartin-sibiya.html">NON001-D37: Nontokozo Marymartin Sibiya</a><div class="small">P1</div></td>
-          <td>Pre-handover: 30 day notice</td>
+          <td>MAH001-D46: Mahlatse Manyabeane Matau(SOLD)</td>
+          <td>R 1,716.80</td>
+          <td>R 1,716.80</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
+        </tr>
+        <tr>
+          <td>NON001-D37: Nontokozo Marymartin Sibiya</td>
           <td>R 1,602.47</td>
           <td>R 1,716.80</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the early-stage notice lane.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
         </tr>
         <tr>
-          <td><span class="pill p3">P3</span></td>
-          <td><a href="accounts/mam002-d16t-mamokete-nthabiseng-mokoena.html">MAM002-D16t: Mamokete Nthabiseng Mokoena</a><div class="small">No status code</div></td>
-          <td>Early-Stage Notice</td>
+          <td>MAM002-D16t: Mamokete Nthabiseng Mokoena</td>
           <td>R 1,394.35</td>
           <td>R 381.33</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the early-stage notice lane.</td>
-          <td>LG, RVD</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
-          <td><span class="pill p3">P3</span></td>
-          <td><a href="accounts/non002-d37t-nontokozo-marymartin-sibiya.html">NON002-D37t: Nontokozo Marymartin Sibiya</a><div class="small">P1</div></td>
-          <td>Pre-handover: 30 day notice</td>
+          <td>NON002-D37t: Nontokozo Marymartin Sibiya</td>
           <td>R 845.08</td>
           <td>R 426.51</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the early-stage notice lane.</td>
-          <td>LG</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
-          <td><span class="pill p3">P3</span></td>
-          <td><a href="accounts/sib002-d35t-sibusiso-howard-sibiya.html">SIB002-D35t: Sibusiso Howard Sibiya</a><div class="small">P1</div></td>
-          <td>Pre-handover: 30 day notice</td>
+          <td>SIB002-D35t: Sibusiso Howard Sibiya</td>
           <td>R 841.68</td>
           <td>R 426.51</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the early-stage notice lane.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
         </tr>
         <tr>
-          <td><span class="pill p3">P3</span></td>
-          <td><a href="accounts/afr015-d40t-afrizone-109-pty-ltd.html">AFR015-D40t: AFRIZONE 109 PTY LTD</a><div class="small">P1</div></td>
-          <td>Pre-handover: 30 day notice</td>
+          <td>AFR015-D40t: AFRIZONE 109 PTY LTD</td>
           <td>R 659.90</td>
           <td>R 336.15</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the early-stage notice lane.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
-          <td><span class="pill p3">P3</span></td>
-          <td><a href="accounts/afr010-d3t-afrizone-109-pty-ltd.html">AFR010-D3t: AFRIZONE 109 PTY LTD</a><div class="small">No status code</div></td>
-          <td>Early-Stage Notice</td>
+          <td>ANG002-D22t: ANGEL JEANETT NTOMBIKAYISE MTSWENI</td>
+          <td>R 606.59</td>
+          <td>R 471.69</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
+        </tr>
+        <tr>
+          <td>AFR010-D3t: AFRIZONE 109 PTY LTD</td>
           <td>R 578.21</td>
           <td>R 471.69</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the early-stage notice lane.</td>
-          <td>No clear owner visible in the notes</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
-          <td><span class="pill p3">P3</span></td>
-          <td><a href="accounts/tho002-d14t-thokozile-patience-cindi.html">THO002-D14t: *Thokozile Patience Cindi</a><div class="small">No status code</div></td>
-          <td>Early-Stage Notice</td>
+          <td>JIM001-D21: Jimmy Ngoma</td>
+          <td>R 556.95</td>
+          <td>R 1,716.80</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
+        </tr>
+        <tr>
+          <td>THO002-D14t: *Thokozile Patience Cindi</td>
           <td>R 544.47</td>
           <td>R 426.51</td>
-          <td>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</td>
-          <td>It is getting stuck in the early-stage notice lane.</td>
-          <td>LG</td>
-          <td>Push the account up a level now. It is carrying old debt and still rolling forward.</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
+        </tr>
+        <tr>
+          <td>NOK002-D44t: Nokubonga Purity Nkosi</td>
+          <td>R 487.15</td>
+          <td>R 381.33</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
+        </tr>
+        <tr>
+          <td>PAM002-D13t: Pamela Ayanda Dyani</td>
+          <td>R 426.51</td>
+          <td>R 426.51</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
+        </tr>
+        <tr>
+          <td>PAT002-D11t: Patricia Nyundu</td>
+          <td>R 405.40</td>
+          <td>R 381.33</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
+        </tr>
+        <tr>
+          <td>ZEL002-D48t: ZELDENE ESTELL LUPKE</td>
+          <td>R 245.85</td>
+          <td>R 516.87</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
+        </tr>
+        <tr>
+          <td>AFR017-D47t: AFRIZONE 109 PTY LTD</td>
+          <td>R 209.52</td>
+          <td>R 336.15</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
+        </tr>
+        <tr>
+          <td>MOV002-D18t: Moven Wayela Mgabi</td>
+          <td>R 158.43</td>
+          <td>R 336.15</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
+        </tr>
+        <tr>
+          <td>ZEL001-D48: ZELDENE ESTELL LUPKE</td>
+          <td>R 60.00</td>
+          <td>R 1,280.00</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
+        </tr>
+        <tr>
+          <td>MAS002-D20t: MASHUDU MASHATHINI</td>
+          <td>R 43.52</td>
+          <td>R 336.15</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
+        </tr>
+        <tr>
+          <td>MAN002-D6t: Mandlakayise Mathebula</td>
+          <td>R 11.76</td>
+          <td>R 336.15</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
+        </tr>
+        <tr>
+          <td>CHA002-D28t: Charles Charity Kidness Antonio &amp; Phepahalo Ednah Antonio</td>
+          <td>R 0.34</td>
+          <td>R 562.05</td>
+          <td>Small or borderline carryover. Keep under watch, but do not treat it as a major problem file yet.</td>
         </tr></tbody>
     </table>
   </div>
