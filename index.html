@@ -3,27 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Afrizone collections driver</title>
+<title>Afrizone debt control dashboard</title>
 <style>
 :root {
-  --bg:#07111f; --panel:#0f1b31; --panel2:#162642; --line:#223456; --text:#edf4ff; --muted:#9eb3d5;
-  --blue:#7cb8ff; --red:#ff7b7b; --amber:#ffd479; --green:#86e6a8; --purple:#c1a8ff;
+  --bg:#07111f; --panel:#0f1b31; --panel2:#142444; --panel3:#1a2d52; --line:#24385d; --text:#edf4ff; --muted:#9fb3d6;
+  --blue:#7cb8ff; --red:#ff7b7b; --amber:#ffd479; --green:#86e6a8; --purple:#c1a8ff; --ink:#08111f;
 }
 * { box-sizing:border-box; }
-body { margin:0; font:15px/1.5 Inter, system-ui, sans-serif; background:linear-gradient(180deg,#06101d,#091426 180px,#07111f); color:var(--text); }
-a { color:#bdddff; text-decoration:none; }
+html { scroll-behavior:smooth; }
+body { margin:0; font:15px/1.55 Inter, system-ui, sans-serif; background:linear-gradient(180deg,#06101d,#091426 220px,#07111f); color:var(--text); }
+a { color:#cde4ff; text-decoration:none; }
 a:hover { text-decoration:underline; }
-.wrap { max-width:1440px; margin:0 auto; padding:24px; }
-.hero { padding:28px; border:1px solid var(--line); border-radius:22px; background:radial-gradient(circle at top left,rgba(124,184,255,.18),transparent 35%), linear-gradient(180deg,#11213d,#0e1930); box-shadow:0 20px 60px rgba(0,0,0,.25); }
-.hero h1 { margin:0 0 8px; font-size:34px; line-height:1.1; }
-.hero p { margin:8px 0 0; color:var(--muted); max-width:980px; }
+.wrap { max-width:1460px; margin:0 auto; padding:24px; }
+.hero { padding:30px; border:1px solid var(--line); border-radius:24px; background:radial-gradient(circle at top left,rgba(124,184,255,.2),transparent 36%), linear-gradient(180deg,#11213d,#0e1930); box-shadow:0 20px 60px rgba(0,0,0,.28); }
+.hero h1 { margin:0; font-size:38px; line-height:1.04; }
+.hero p { margin:10px 0 0; color:var(--muted); max-width:980px; }
+.small { font-size:13px; color:var(--muted); }
 .grid { display:grid; gap:16px; }
-.kpis { grid-template-columns:repeat(4,minmax(180px,1fr)); margin-top:18px; }
-.card { background:rgba(14,25,48,.95); border:1px solid var(--line); border-radius:18px; padding:18px; box-shadow:0 12px 36px rgba(0,0,0,.18); }
+.card { background:rgba(14,25,48,.96); border:1px solid var(--line); border-radius:18px; padding:18px; box-shadow:0 12px 36px rgba(0,0,0,.18); }
 .card h2, .card h3 { margin:0 0 10px; }
-.kpi-label { color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:.08em; }
-.kpi-value { font-size:32px; font-weight:800; margin-top:8px; }
-.story-grid { grid-template-columns:1.15fr .85fr; margin-top:18px; }
+.anchor-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.anchor-links a { display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; background:#17305a; border:1px solid var(--line); font-weight:700; }
+.kpis { grid-template-columns:repeat(4,minmax(180px,1fr)); margin-top:18px; }
+.kpi-label { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.09em; }
+.kpi-value { font-size:34px; font-weight:800; margin-top:8px; }
+.kpi-sub { margin-top:8px; color:var(--muted); font-size:13px; }
+.two-up { grid-template-columns:1.1fr .9fr; margin-top:18px; }
+.three-up { grid-template-columns:repeat(3,minmax(240px,1fr)); margin-top:18px; }
+.story-grid { grid-template-columns:1fr 1fr; margin-top:18px; }
+.list { display:grid; gap:10px; }
+.list-item { padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:#132241; }
 .pill { display:inline-block; padding:5px 10px; border-radius:999px; background:#1d3158; color:#e5efff; margin:2px 6px 2px 0; font-size:12px; font-weight:700; }
 .p1 { background:rgba(255,123,123,.2); color:#ffdede; }
 .p2 { background:rgba(255,212,121,.18); color:#fff0c7; }
@@ -31,99 +40,146 @@ a:hover { text-decoration:underline; }
 .bad { background:rgba(255,123,123,.14); color:#ffdede; }
 .good { background:rgba(134,230,168,.14); color:#defbe8; }
 .info { background:rgba(124,184,255,.14); color:#dbeaff; }
-.muted { color:var(--muted); }
-.list { display:grid; gap:10px; }
-.list-item { padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:#132241; }
-.priority-grid { grid-template-columns:repeat(3,minmax(220px,1fr)); margin-top:18px; }
-.priority-card { border-radius:18px; padding:18px; border:1px solid var(--line); }
-.priority-card.p1 { background:linear-gradient(180deg,rgba(255,123,123,.18),rgba(255,123,123,.08)); }
-.priority-card.p2 { background:linear-gradient(180deg,rgba(255,212,121,.18),rgba(255,212,121,.08)); }
-.priority-card.p3 { background:linear-gradient(180deg,rgba(134,230,168,.18),rgba(134,230,168,.08)); }
-.priority-card h3 { margin:0 0 8px; font-size:24px; }
-.table-wrap { overflow:auto; margin-top:18px; }
-table { width:100%; border-collapse:collapse; min-width:1100px; }
+.warning { background:rgba(255,212,121,.15); color:#fff0c7; }
+.trend-bars { display:grid; gap:12px; margin-top:12px; }
+.trend-row { display:grid; grid-template-columns:130px 1fr 120px; gap:12px; align-items:center; }
+.trend-label { color:#dce9ff; font-weight:700; }
+.trend-track { height:14px; border-radius:999px; background:#16284a; overflow:hidden; border:1px solid rgba(255,255,255,.04); }
+.trend-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#7cb8ff,#c1a8ff); }
+.trend-fill.red { background:linear-gradient(90deg,#ff9a7b,#ff5d73); }
+.trend-fill.amber { background:linear-gradient(90deg,#ffd479,#ffb44f); }
+.trend-fill.green { background:linear-gradient(90deg,#7adca3,#53c17c); }
+.split-meter { display:grid; gap:12px; margin-top:10px; }
+.meter-row { display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; }
+.meter-track { height:12px; border-radius:999px; background:#16284a; overflow:hidden; }
+.meter-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#7cb8ff,#c1a8ff); }
+.meter-fill.red { background:linear-gradient(90deg,#ff9a7b,#ff5d73); }
+.lane-grid { grid-template-columns:repeat(3,minmax(220px,1fr)); margin-top:18px; }
+.lane-card { display:block; padding:18px; border-radius:18px; border:1px solid var(--line); background:linear-gradient(180deg,#132241,#102039); color:var(--text); }
+.lane-card:hover { text-decoration:none; border-color:#4d73b6; transform:translateY(-1px); }
+.lane-card .amount { font-size:28px; font-weight:800; margin-top:10px; }
+.section-header { display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom:10px; }
+.filter-bar { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.filter-btn { background:#14284d; color:var(--text); border:1px solid var(--line); border-radius:999px; padding:9px 14px; font-weight:700; cursor:pointer; }
+.filter-btn.active { background:#274a88; border-color:#5e89d1; }
+.table-wrap { overflow:auto; margin-top:14px; }
+table { width:100%; border-collapse:collapse; min-width:1180px; }
 th, td { text-align:left; padding:12px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
 th { color:#c8d8fb; font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
 tr:hover { background:rgba(255,255,255,.03); }
-.bar { height:10px; border-radius:999px; background:#16284a; overflow:hidden; margin-top:8px; }
-.bar > span { display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,#7cb8ff,#c1a8ff); }
-.account-grid { grid-template-columns:repeat(2,minmax(280px,1fr)); margin-top:18px; }
-.account-card { background:#11203b; border:1px solid var(--line); border-radius:18px; padding:18px; }
-.account-card h3 { margin:0 0 8px; font-size:20px; }
-.account-card p { margin:8px 0; }
-.small { font-size:13px; color:var(--muted); }
-.detail-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:16px; margin-top:18px; }
+.account-chip-grid { grid-template-columns:repeat(3,minmax(260px,1fr)); margin-top:18px; }
+.account-chip { display:block; background:#11203b; border:1px solid var(--line); border-radius:18px; padding:18px; color:var(--text); }
+.account-chip:hover { text-decoration:none; border-color:#4d73b6; transform:translateY(-1px); }
+.account-chip h3 { margin:0 0 8px; font-size:18px; line-height:1.25; }
+.account-chip p { margin:8px 0 0; }
+.account-chip .amount { font-size:26px; font-weight:800; margin-top:10px; }
 .note { background:#12203a; border:1px solid var(--line); border-radius:14px; padding:14px; margin-top:12px; }
 ul.tight { margin:8px 0 0 18px; padding:0; }
-@media (max-width: 1100px) { .kpis, .story-grid, .priority-grid, .account-grid, .detail-grid { grid-template-columns:1fr; } table { min-width:860px; } .hero h1 { font-size:28px; } }
+.hidden-row { display:none; }
+.footer-note { margin-top:18px; color:var(--muted); font-size:13px; }
+@media (max-width: 1180px) {
+  .kpis, .two-up, .three-up, .story-grid, .lane-grid, .account-chip-grid { grid-template-columns:1fr; }
+  table { min-width:900px; }
+  .hero h1 { font-size:30px; }
+  .trend-row { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
 
 <div class="wrap">
   <div class="hero">
-    <h1>Afrizone collections driver</h1>
-    <p>This is not a mirror of WCU. It is the manager view: where money is stuck, why it is stuck, and what has to be forced next.</p>
+    <h1>Afrizone debt control dashboard</h1>
+    <p>Overview first. Drill down only when you need it. This is the management view: how much debt, how it is aging over the months, where control is working, where it is failing, and what must move faster next.</p>
     <p class="small">Community: AFR - Afrizone · Extracted: 2026-06-03T08:22:53.365Z</p>
+    <div class="anchor-links">
+      <a href="#trend">Debt trend</a>
+      <a href="#wins-losses">Where we’re winning / not</a>
+      <a href="#lanes">Drill into lanes</a>
+      <a href="#worklist">Action queue</a>
+    </div>
   </div>
 
   <div class="grid kpis">
-    <div class="card"><div class="kpi-label">Verified action files</div><div class="kpi-value">12</div></div>
-    <div class="card"><div class="kpi-label">30+ debt to drive</div><div class="kpi-value">R 299,374.90</div></div>
-    <div class="card"><div class="kpi-label">Legal-stage exposure</div><div class="kpi-value">R 208,680.66</div></div>
-    <div class="card"><div class="kpi-label">Broken arrangements</div><div class="kpi-value">7</div></div>
-  </div>
-
-  <div class="grid story-grid">
     <div class="card">
-      <h2>The story</h2>
-      <div class="list"><div class="list-item">8 legal-stage files hold R 208,680.66 of the verified problem book. This is the main place progress has to be forced.</div><div class="list-item">7 files are sitting in broken arrangements or failed promise cycles. These need consequence, not more soft reminders.</div><div class="list-item">1 file(s) are blocked by query/admin ambiguity. That is trapped money, not harmless admin noise.</div><div class="list-item">2 file(s) show stale follow-up. The issue is not just debt; it is lack of accountable movement.</div></div>
+      <div class="kpi-label">Total debt book</div>
+      <div class="kpi-value">R 467,942.12</div>
+      <div class="kpi-sub">All positive-balance Afrizone rows in this extract</div>
     </div>
     <div class="card">
-      <h2>What you do with this</h2>
+      <div class="kpi-label">Old debt to control</div>
+      <div class="kpi-value">R 318,759.00</div>
+      <div class="kpi-sub">90 + 120+ concentration already hardened</div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">Verified action queue</div>
+      <div class="kpi-value">12</div>
+      <div class="kpi-sub">Files that need active intervention now</div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">Legal-stage exposure</div>
+      <div class="kpi-value">R 208,680.66</div>
+      <div class="kpi-sub">Main place momentum has to be forced</div>
+    </div>
+  </div>
+
+  <div class="grid two-up" id="trend">
+    <div class="card">
+      <div class="section-header"><h2>Debt trend over the months</h2></div>
+      <p class="small">This is the ageing shape of the book right now: newer debt on the left, hardened debt on the right.</p>
+      <div class="trend-bars"><div class="trend-row"><div class="trend-label">Current</div><div class="trend-track"><div class="trend-fill green" style="width:25.13%"></div></div><div>R 74,247.93</div></div><div class="trend-row"><div class="trend-label">30</div><div class="trend-track"><div class="trend-fill green" style="width:15.81%"></div></div><div>R 46,720.37</div></div><div class="trend-row"><div class="trend-label">60</div><div class="trend-track"><div class="trend-fill amber" style="width:9.55%"></div></div><div>R 28,214.82</div></div><div class="trend-row"><div class="trend-label">90</div><div class="trend-track"><div class="trend-fill amber" style="width:7.89%"></div></div><div>R 23,316.17</div></div><div class="trend-row"><div class="trend-label">120+</div><div class="trend-track"><div class="trend-fill red" style="width:100.00%"></div></div><div>R 295,442.83</div></div></div>
+      <div class="footer-note">Read it simply: the more weight sitting in 60 / 90 / 120+, the slower collections is moving.</div>
+    </div>
+    <div class="card">
+      <h2>What the trend says</h2>
       <div class="list">
-        <div class="list-item"><strong>1.</strong> Push every legal file to a dated next milestone.</div>
-        <div class="list-item"><strong>2.</strong> Stop recycling failed arrangements. One reminder, then consequences.</div>
-        <div class="list-item"><strong>3.</strong> Kill blocked query/transfer files by naming one owner and one due date.</div>
-        <div class="list-item"><strong>4.</strong> Treat stale files as process failure, not just debtor failure.</div>
+        <div class="list-item"><strong>R 120,968.30</strong><br>current + 30-day debt still winnable before it hardens further.</div>
+        <div class="list-item"><strong>R 346,973.82</strong><br>60+ day debt already hardened. This is the part of the curve doing the damage.</div>
+        <div class="list-item"><strong>R 295,442.83</strong><br>already sitting in 120+, which means the oldest bucket still dominates the book.</div>
       </div>
     </div>
   </div>
 
-  <div class="grid priority-grid">
-        <div class="priority-card p1">
-          <h3>P1</h3>
-          <div class="small">Immediate chase / escalation</div>
-          <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">11</p>
-          <p>R 290,276.93 in 30+ debt</p>
-        </div>
-        <div class="priority-card p2">
-          <h3>P2</h3>
-          <div class="small">Active recovery this cycle</div>
-          <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">1</p>
-          <p>R 9,097.97 in 30+ debt</p>
-        </div>
-        <div class="priority-card p3">
-          <h3>P3</h3>
-          <div class="small">Short-dated follow-up only</div>
-          <p style="font-size:28px;font-weight:800;margin:10px 0 4px;">0</p>
-          <p>R 0.00 in 30+ debt</p>
-        </div></div>
-
-  <div class="card table-wrap" style="margin-top:18px;">
-    <h2>Management orders this cycle</h2>
-    <table>
-      <thead>
-        <tr><th>Drive</th><th>Files</th><th>Exposure</th><th>Instruction</th></tr>
-      </thead>
-      <tbody><tr><td><strong>Force legal movement</strong></td><td>8 files</td><td>R 208,680.66 trapped</td><td>Get the next dated attorney milestone on every legal file. No passive waiting.</td></tr><tr><td><strong>Kill broken arrangements fast</strong></td><td>7 files</td><td>R 117,694.64</td><td>One failed reminder, then attorneys. Do not recycle PTP language.</td></tr><tr><td><strong>Unblock query / transfer holds</strong></td><td>1 query hold(s)</td><td>R 20,370.75</td><td>Name one resolver and one due date, otherwise the debt just keeps aging.</td></tr><tr><td><strong>Fix stale follow-up</strong></td><td>2 stale file(s)</td><td>R 18,127.28</td><td>Every stale file needs a fresh owner and a next dated action.</td></tr></tbody>
-    </table>
+  <div class="grid story-grid" id="wins-losses">
+    <div class="card">
+      <h2>Where we’re winning</h2>
+      <div class="list"><div class="list-item">R 120,968.30 is still sitting in the current + 30-day part of the book. That is the portion you can still contain before it hardens.</div><div class="list-item">25 early-stage files and 21 low-balance files mean there is still a live prevention queue, not just legal clean-up.</div><div class="list-item">26 accounts show fresh movement in the current extract. Movement exists; the issue is where it is being spent.</div></div>
+    </div>
+    <div class="card">
+      <h2>Where we’re not</h2>
+      <div class="list"><div class="list-item">R 346,973.82 already sits 60+ days old. That is the part of the book where Afrizone is losing time.</div><div class="list-item">Legal-stage files alone carry R 208,680.66 of the verified action queue.</div><div class="list-item">7 files are still cycling through arrangements / promises instead of curing.</div><div class="list-item">2 verified files are quiet enough to be management failures, not just debtor failures.</div></div>
+    </div>
   </div>
 
-  <div class="grid story-grid" style="margin-top:18px;">
+  <div class="grid three-up" style="margin-top:18px;">
+    
+        <div class="card">
+          <div><span class="pill p1">P1</span></div>
+          <div class="kpi-value">11</div>
+          <div class="kpi-sub">Immediate chase / escalation</div>
+          <div class="kpi-sub">R 290,276.93 in 30+ debt</div>
+        </div>
+        <div class="card">
+          <div><span class="pill p2">P2</span></div>
+          <div class="kpi-value">1</div>
+          <div class="kpi-sub">Active recovery this cycle</div>
+          <div class="kpi-sub">R 9,097.97 in 30+ debt</div>
+        </div>
+        <div class="card">
+          <div><span class="pill p3">P3</span></div>
+          <div class="kpi-value">0</div>
+          <div class="kpi-sub">Short-dated follow-up only</div>
+          <div class="kpi-sub">R 0.00 in 30+ debt</div>
+        </div>
+  </div>
+
+  <div class="grid two-up" style="margin-top:18px;">
+    <div class="card">
+      <h2>Recommendations to move faster</h2>
+      <div class="list"><div class="list-item"><strong>1.</strong> Force every legal file to a dated next milestone. No passive waiting on attorneys.</div><div class="list-item"><strong>2.</strong> Stop recycling failed arrangements. One reminder, then consequence.</div><div class="list-item"><strong>3.</strong> Kill transfer/query drift by naming one owner and one due date.</div><div class="list-item"><strong>4.</strong> Run the week from the P1 queue first, then only touch P2 if P1 is moving.</div></div>
+    </div>
     <div class="card table-wrap">
-      <h2>Legal pipeline</h2>
-      <p class="muted">Legal process as it appears in the current evidence trail: handover → summons → judgment → warrant / attachment.</p>
+      <h2>Legal pipeline drill-down</h2>
       <table>
         <thead>
           <tr><th>Legal step</th><th>Files</th><th>30+ debt</th></tr>
@@ -131,223 +187,387 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
         <tbody><tr><td>Summons in progress</td><td>1</td><td>R 19,830.84</td></tr><tr><td>Summons served / affidavit</td><td>1</td><td>R 9,413.03</td></tr><tr><td>Judgment pending</td><td>1</td><td>R 21,912.80</td></tr><tr><td>Warrant / enforcement</td><td>2</td><td>R 96,702.09</td></tr><tr><td>Rent attachment</td><td>1</td><td>R 42,694.62</td></tr></tbody>
       </table>
     </div>
-    <div class="card">
-      <h2>Meaning of the main failure labels</h2>
-      <div class="list">
-        <div class="list-item"><strong>Broken arrangement</strong><br>Payment promise exists but the arrears are not curing. Cure = enforce once, then escalate.</div>
-        <div class="list-item"><strong>Stale follow-up</strong><br>No meaningful recent movement. Cure = force owner + date + next action.</div>
-        <div class="list-item"><strong>Legal inactivity</strong><br>File is in legal territory but the next milestone is not being driven. Cure = attorney update with date.</div>
-        <div class="list-item"><strong>Query / transfer block</strong><br>The debt is aging behind an unresolved admin/process hold. Cure = one named resolver, one deadline.</div>
-      </div>
-    </div>
   </div>
 
-  <div class="card table-wrap" style="margin-top:18px;">
-    <h2>Action worklist</h2>
-    <p class="muted">This is the part that should drive the week. No clicking needed.</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Priority</th><th>Account</th><th>30+ debt</th><th>Why it is here</th><th>What is blocking cure</th><th>What must happen next</th><th>Who to chase</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
+  <div class="card" id="lanes" style="margin-top:18px;">
+    <div class="section-header">
+      <h2>Drill into the queue by lane</h2>
+      <div class="small">Click a lane card to jump the worklist to that slice.</div>
+    </div>
+    <div class="grid lane-grid">
+        <a class="lane-card" href="#worklist" data-lane-jump="legal-active">
+          <div class="small">Legal</div>
+          <div class="amount">R 208,680.66</div>
+          <p>8 verified file(s) in the action queue</p>
+        </a>
+        <a class="lane-card" href="#worklist" data-lane-jump="arrangement-promise-cycle">
+          <div class="small">Arrangements</div>
+          <div class="amount">R 70,323.49</div>
+          <p>3 verified file(s) in the action queue</p>
+        </a>
+        <a class="lane-card" href="#worklist" data-lane-jump="early-stage-notice">
+          <div class="small">Early-stage</div>
+          <div class="amount">R 20,370.75</div>
+          <p>1 verified file(s) in the action queue</p>
+        </a></div>
+  </div>
+
+  <div class="card" style="margin-top:18px;">
+    <div class="section-header">
+      <h2>Biggest files to inspect first</h2>
+      <div class="small">Each card opens the full account evidence page.</div>
+    </div>
+    <div class="grid account-chip-grid">
+        <a class="account-chip" href="accounts/rud001-d27-rudolph-phillippus-van-zyl.html">
+          <div><span class="pill p1">P1</span><span class="pill info">Legal</span></div>
+          <h3>RUD001-D27: *Rudolph Phillippus Van Zyl</h3>
+          <div class="amount">R 81,740.74</div>
+          <p>Transfer/clearance path is muddy and ownership of the file is unclear.</p>
+          <p class="small">Next: Decide whether transfer is real or dead. If dead, return it to collections today with one owner.</p>
+        </a>
+        <a class="account-chip" href="accounts/oum001-d25-ouma-hlenkani-pertunia-nkole-nkole-hespency-nkole.html">
+          <div><span class="pill p1">P1</span><span class="pill info">Arrangements</span></div>
+          <h3>OUM001-D25: *Ouma Hlenkani Pertunia Nkole &amp; Nkole Hespency Nkole</h3>
+          <div class="amount">R 57,903.00</div>
+          <p>Broken arrangement is being allowed to recycle instead of triggering escalation.</p>
+          <p class="small">Next: Chase the promised payment once, then escalate to attorneys immediately if it fails.</p>
+        </a>
+        <a class="account-chip" href="accounts/tho001-d14-thokozile-patience-cindi.html">
+          <div><span class="pill p1">P1</span><span class="pill info">Legal</span></div>
+          <h3>THO001-D14: * Thokozile Patience Cindi</h3>
+          <div class="amount">R 42,694.62</div>
+          <p>Legal file needs its next dated milestone, not another passive wait.</p>
+          <p class="small">Next: Force the attorney/legal operator to confirm the next step and date in writing.</p>
+        </a>
+        <a class="account-chip" href="accounts/sib003-d36-sibongile-johannah-kubheka.html">
+          <div><span class="pill p1">P1</span><span class="pill info">Legal</span></div>
+          <h3>SIB003-D36: SIBONGILE JOHANNAH KUBHEKA</h3>
+          <div class="amount">R 21,912.80</div>
+          <p>Legal file needs its next dated milestone, not another passive wait.</p>
+          <p class="small">Next: Force the attorney/legal operator to confirm the next step and date in writing.</p>
+        </a>
+        <a class="account-chip" href="accounts/tom002-d41t-tom-jobb-ngwenya.html">
+          <div><span class="pill p1">P1</span><span class="pill info">Early-stage</span></div>
+          <h3>TOM002-D41t: Tom Jobb Ngwenya</h3>
+          <div class="amount">R 20,370.75</div>
+          <p>Query/dispute hold is blocking normal collections progress.</p>
+          <p class="small">Next: Name one person to close the query and give them a date. Until then this money stays blocked.</p>
+        </a>
+        <a class="account-chip" href="accounts/ema001-d4-emanuel-matimu-maluleke.html">
+          <div><span class="pill p1">P1</span><span class="pill info">Legal</span></div>
+          <h3>EMA001-D4: EMANUEL MATIMU MALULEKE</h3>
+          <div class="amount">R 19,830.84</div>
+          <p>Signed AOD has defaulted but the matter has not been pushed into the next legal step.</p>
+          <p class="small">Next: Move to judgment now. Do not send another soft reminder.</p>
+        </a></div>
+  </div>
+
+  <div class="card" id="worklist" style="margin-top:18px;">
+    <div class="section-header">
+      <h2>Action queue</h2>
+      <div class="small">Filter by priority or lane. Account names open detail pages.</div>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-priority-filter="all">All priorities</button>
+      <button class="filter-btn" data-priority-filter="P1">P1</button>
+      <button class="filter-btn" data-priority-filter="P2">P2</button>
+      <button class="filter-btn" data-priority-filter="P3">P3</button>
+    </div>
+    <div class="filter-bar" style="margin-top:8px;">
+      <button class="filter-btn active" data-lane-filter="all">All lanes</button>
+      <button class="filter-btn" data-lane-filter="legal-active">Legal</button><button class="filter-btn" data-lane-filter="arrangement-promise-cycle">Arrangements</button><button class="filter-btn" data-lane-filter="early-stage-notice">Early-stage</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Priority</th><th>Account</th><th>Lane</th><th>30+ debt</th><th>Why it is here</th><th>What is blocking cure</th><th>What must happen next</th><th>Who to chase</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr class="work-row" data-priority="P1" data-lane="legal-active">
           <td><span class="pill p1">P1</span></td>
-          <td><strong>RUD001-D27: *Rudolph Phillippus Van Zyl</strong><div class="small">Attorney stage: warrant granted</div></td>
+          <td><a href="accounts/rud001-d27-rudolph-phillippus-van-zyl.html"><strong>RUD001-D27: *Rudolph Phillippus Van Zyl</strong></a><div class="small">Attorney stage: warrant granted</div></td>
+          <td>Legal</td>
           <td>R 81,740.74</td>
           <td>Legal-stage money is stuck here: R 81,740.74 already sits 30+ and the file is still rolling forward.</td>
           <td>Transfer/clearance path is muddy and ownership of the file is unclear.</td>
           <td>Decide whether transfer is real or dead. If dead, return it to collections today with one owner.</td>
           <td>BLR</td>
         </tr>
-        <tr>
+        <tr class="work-row" data-priority="P1" data-lane="arrangement-promise-cycle">
           <td><span class="pill p1">P1</span></td>
-          <td><strong>OUM001-D25: *Ouma Hlenkani Pertunia Nkole &amp; Nkole Hespency Nkole</strong><div class="small">Arrangement stage: promise to pay</div></td>
+          <td><a href="accounts/oum001-d25-ouma-hlenkani-pertunia-nkole-nkole-hespency-nkole.html"><strong>OUM001-D25: *Ouma Hlenkani Pertunia Nkole &amp; Nkole Hespency Nkole</strong></a><div class="small">Arrangement stage: promise to pay</div></td>
+          <td>Arrangements</td>
           <td>R 57,903.00</td>
           <td>The arrangement is not curing arrears. R 57,903.00 is still sitting old while new charges keep landing.</td>
           <td>Broken arrangement is being allowed to recycle instead of triggering escalation.</td>
           <td>Chase the promised payment once, then escalate to attorneys immediately if it fails.</td>
           <td>RVD</td>
         </tr>
-        <tr>
+        <tr class="work-row" data-priority="P1" data-lane="legal-active">
           <td><span class="pill p1">P1</span></td>
-          <td><strong>THO001-D14: * Thokozile Patience Cindi</strong><div class="small">Attorney stage: rent attachment / enforcement</div></td>
+          <td><a href="accounts/tho001-d14-thokozile-patience-cindi.html"><strong>THO001-D14: * Thokozile Patience Cindi</strong></a><div class="small">Attorney stage: rent attachment / enforcement</div></td>
+          <td>Legal</td>
           <td>R 42,694.62</td>
           <td>Legal-stage money is stuck here: R 42,694.62 already sits 30+ and the file is still rolling forward.</td>
           <td>Legal file needs its next dated milestone, not another passive wait.</td>
           <td>Force the attorney/legal operator to confirm the next step and date in writing.</td>
           <td>BLR, RVD</td>
         </tr>
-        <tr>
+        <tr class="work-row" data-priority="P1" data-lane="legal-active">
           <td><span class="pill p1">P1</span></td>
-          <td><strong>SIB003-D36: SIBONGILE JOHANNAH KUBHEKA</strong><div class="small">Attorney stage: ready for judgment</div></td>
+          <td><a href="accounts/sib003-d36-sibongile-johannah-kubheka.html"><strong>SIB003-D36: SIBONGILE JOHANNAH KUBHEKA</strong></a><div class="small">Attorney stage: ready for judgment</div></td>
+          <td>Legal</td>
           <td>R 21,912.80</td>
           <td>Legal-stage money is stuck here: R 21,912.80 already sits 30+ and the file is still rolling forward.</td>
           <td>Legal file needs its next dated milestone, not another passive wait.</td>
           <td>Force the attorney/legal operator to confirm the next step and date in writing.</td>
           <td>Attorney / legal operator not clearly named in the notes</td>
         </tr>
-        <tr>
+        <tr class="work-row" data-priority="P1" data-lane="early-stage-notice">
           <td><span class="pill p1">P1</span></td>
-          <td><strong>TOM002-D41t: Tom Jobb Ngwenya</strong><div class="small">Query / admin hold</div></td>
+          <td><a href="accounts/tom002-d41t-tom-jobb-ngwenya.html"><strong>TOM002-D41t: Tom Jobb Ngwenya</strong></a><div class="small">Query / admin hold</div></td>
+          <td>Early-stage</td>
           <td>R 20,370.75</td>
           <td>Query/admin hold is trapping R 20,370.75 of old debt and the balance is still not curing.</td>
           <td>Query/dispute hold is blocking normal collections progress.</td>
           <td>Name one person to close the query and give them a date. Until then this money stays blocked.</td>
           <td>LG, PM, RVD</td>
         </tr>
-        <tr>
+        <tr class="work-row" data-priority="P1" data-lane="legal-active">
           <td><span class="pill p1">P1</span></td>
-          <td><strong>EMA001-D4: EMANUEL MATIMU MALULEKE</strong><div class="small">Attorney stage: summons issued</div></td>
+          <td><a href="accounts/ema001-d4-emanuel-matimu-maluleke.html"><strong>EMA001-D4: EMANUEL MATIMU MALULEKE</strong></a><div class="small">Attorney stage: summons issued</div></td>
+          <td>Legal</td>
           <td>R 19,830.84</td>
           <td>AOD/default path is live and R 19,830.84 is still aging. This should already be moving to judgment.</td>
           <td>Signed AOD has defaulted but the matter has not been pushed into the next legal step.</td>
           <td>Move to judgment now. Do not send another soft reminder.</td>
           <td>BLR</td>
         </tr>
-        <tr>
+        <tr class="work-row" data-priority="P1" data-lane="legal-active">
           <td><span class="pill p1">P1</span></td>
-          <td><strong>ITU001-D12: Itumeleng Mokgethi</strong><div class="small">Clearance / transfer stage</div></td>
+          <td><a href="accounts/itu001-d12-itumeleng-mokgethi.html"><strong>ITU001-D12: Itumeleng Mokgethi</strong></a><div class="small">Clearance / transfer stage</div></td>
+          <td>Legal</td>
           <td>R 15,446.74</td>
           <td>AOD/default path is live and R 15,446.74 is still aging. This should already be moving to judgment.</td>
           <td>No recent meaningful follow-up. The file needs a fresh owner update.</td>
           <td>Move to judgment now. Do not send another soft reminder.</td>
           <td>LG, RVD</td>
         </tr>
-        <tr>
+        <tr class="work-row" data-priority="P1" data-lane="legal-active">
           <td><span class="pill p1">P1</span></td>
-          <td><strong>RUD002-D27t: *Rudolph Phillippus Van Zyl</strong><div class="small">Attorney stage: warrant granted</div></td>
+          <td><a href="accounts/rud002-d27t-rudolph-phillippus-van-zyl.html"><strong>RUD002-D27t: *Rudolph Phillippus Van Zyl</strong></a><div class="small">Attorney stage: warrant granted</div></td>
+          <td>Legal</td>
           <td>R 14,961.35</td>
           <td>Legal-stage money is stuck here: R 14,961.35 already sits 30+ and the file is still rolling forward.</td>
           <td>Legal file needs its next dated milestone, not another passive wait.</td>
           <td>Force the attorney/legal operator to confirm the next step and date in writing.</td>
           <td>BLR, RVD</td>
         </tr>
-        <tr>
+        <tr class="work-row" data-priority="P1" data-lane="legal-active">
           <td><span class="pill p1">P1</span></td>
-          <td><strong>NOK001-D44: Nokubonga Purity Nkosi</strong><div class="small">Attorney stage: summons drafted</div></td>
+          <td><a href="accounts/nok001-d44-nokubonga-purity-nkosi.html"><strong>NOK001-D44: Nokubonga Purity Nkosi</strong></a><div class="small">Attorney stage: summons drafted</div></td>
+          <td>Legal</td>
           <td>R 9,413.03</td>
           <td>AOD/default path is live and R 9,413.03 is still aging. This should already be moving to judgment.</td>
           <td>Signed AOD has defaulted but the matter has not been pushed into the next legal step.</td>
           <td>Move to judgment now. Do not send another soft reminder.</td>
           <td>BLR, RVD</td>
         </tr>
-        <tr>
+        <tr class="work-row" data-priority="P1" data-lane="arrangement-promise-cycle">
           <td><span class="pill p1">P1</span></td>
-          <td><strong>BAN001-D5: Banele Goodman Zwane</strong><div class="small">Arrangement stage: active arrangement</div></td>
+          <td><a href="accounts/ban001-d5-banele-goodman-zwane.html"><strong>BAN001-D5: Banele Goodman Zwane</strong></a><div class="small">Arrangement stage: active arrangement</div></td>
+          <td>Arrangements</td>
           <td>R 3,322.52</td>
           <td>AOD/default path is live and R 3,322.52 is still aging. This should already be moving to judgment.</td>
           <td>Signed AOD has defaulted but the matter has not been pushed into the next legal step.</td>
           <td>Move to judgment now. Do not send another soft reminder.</td>
           <td>LG</td>
         </tr>
-        <tr>
+        <tr class="work-row" data-priority="P1" data-lane="legal-active">
           <td><span class="pill p1">P1</span></td>
-          <td><strong>ITU002-D12t: Itumeleng Mokgethi</strong><div class="small">Clearance / transfer stage</div></td>
+          <td><a href="accounts/itu002-d12t-itumeleng-mokgethi.html"><strong>ITU002-D12t: Itumeleng Mokgethi</strong></a><div class="small">Clearance / transfer stage</div></td>
+          <td>Legal</td>
           <td>R 2,680.54</td>
           <td>Legal-stage money is stuck here: R 2,680.54 already sits 30+ and the file is still rolling forward.</td>
           <td>No recent meaningful follow-up. The file needs a fresh owner update.</td>
           <td>Chase the promised payment once, then escalate to attorneys immediately if it fails.</td>
           <td>LG, RVD</td>
         </tr>
-        <tr>
+        <tr class="work-row" data-priority="P2" data-lane="arrangement-promise-cycle">
           <td><span class="pill p2">P2</span></td>
-          <td><strong>OUM002-D25t: Ouma Hlenkani Pertunia Nkole</strong><div class="small">Arrangement stage: promise to pay</div></td>
+          <td><a href="accounts/oum002-d25t-ouma-hlenkani-pertunia-nkole.html"><strong>OUM002-D25t: Ouma Hlenkani Pertunia Nkole</strong></a><div class="small">Arrangement stage: promise to pay</div></td>
+          <td>Arrangements</td>
           <td>R 9,097.97</td>
           <td>The arrangement is not curing arrears. R 9,097.97 is still sitting old while new charges keep landing.</td>
           <td>Broken arrangement is being allowed to recycle instead of triggering escalation.</td>
           <td>Chase the promised payment once, then escalate to attorneys immediately if it fails.</td>
           <td>RVD</td>
         </tr></tbody>
-    </table>
+      </table>
+    </div>
   </div>
 
   <div class="card table-wrap" style="margin-top:18px;">
-    <h2>Watchlist, not today's queue</h2>
-    <p class="muted">Visible for control, but kept out of the main worklist because the evidence is too weak or the carry is too small.</p>
+    <h2>Watchlist, not the main queue</h2>
+    <p class="small">Visible for control, but kept out of the main action queue because the evidence is weaker or the carry is too small.</p>
     <table>
       <thead>
-        <tr><th>Account</th><th>30+ debt</th><th>Why it stays out of the main queue</th></tr>
+        <tr><th>Account</th><th>Lane</th><th>30+ debt</th><th>Why it stays out</th></tr>
       </thead>
       <tbody>
         <tr>
           <td>MME001-D2: *Mmetja Chris Mokobane</td>
+          <td>Transfer / clearance</td>
           <td>R 28,821.08</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>PHE001-D23: *Phethedi Isaac Mokuwe</td>
+          <td>Arrangements</td>
           <td>R 28,513.19</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>EMA002-D4t: EMANUEL MATIMU MALULEKE</td>
+          <td>Legal</td>
           <td>R 8,876.85</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>PAM001-D13: Pamela Ayanda Dyani</td>
+          <td>Early-stage</td>
           <td>R 3,874.67</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>ANG001-D22: ANGEL JEANETT NTOMBIKAYISE MTSWENI</td>
+          <td>Current / low-balance</td>
           <td>R 2,874.13</td>
           <td>Balance is worsening, but the notes do not yet prove a legal, arrangement, query, or clearance problem that justifies a major-file worklist slot.</td>
         </tr>
         <tr>
           <td>SIZ005-D19: SIZWE CEDRICK MTHEMBU</td>
+          <td>Current / low-balance</td>
           <td>R 2,492.13</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>SIB001-D35: Sibusiso Howard Sibiya</td>
+          <td>Early-stage</td>
           <td>R 1,952.24</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>SIB004-D36t: SIBONGILE JOHANNAH KUBHEKA</td>
+          <td>Arrangements</td>
           <td>R 1,941.73</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>TOM005-D33t: Tom Jobb Ngwenya</td>
+          <td>Early-stage</td>
           <td>R 1,846.33</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>MAH001-D46: Mahlatse Manyabeane Matau(SOLD)</td>
+          <td>Current / low-balance</td>
           <td>R 1,716.80</td>
           <td>Needs watching, but the evidence trail is not yet strong enough for the verified major list.</td>
         </tr>
         <tr>
           <td>NON001-D37: Nontokozo Marymartin Sibiya</td>
+          <td>Early-stage</td>
           <td>R 1,602.47</td>
           <td>Balance is worsening, but the notes do not yet prove a legal, arrangement, query, or clearance problem that justifies a major-file worklist slot.</td>
         </tr>
         <tr>
           <td>MAM002-D16t: Mamokete Nthabiseng Mokoena</td>
+          <td>Early-stage</td>
           <td>R 1,394.35</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>NON002-D37t: Nontokozo Marymartin Sibiya</td>
+          <td>Early-stage</td>
           <td>R 845.08</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
         </tr>
         <tr>
           <td>SIB002-D35t: Sibusiso Howard Sibiya</td>
+          <td>Early-stage</td>
           <td>R 841.68</td>
           <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
         </tr>
         <tr>
           <td>AFR015-D40t: AFRIZONE 109 PTY LTD</td>
+          <td>Early-stage</td>
           <td>R 659.90</td>
           <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
+        </tr>
+        <tr>
+          <td>ANG002-D22t: ANGEL JEANETT NTOMBIKAYISE MTSWENI</td>
+          <td>Arrangements</td>
+          <td>R 606.59</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
+        </tr>
+        <tr>
+          <td>AFR010-D3t: AFRIZONE 109 PTY LTD</td>
+          <td>Early-stage</td>
+          <td>R 578.21</td>
+          <td>30-day balance exists but the current month is smaller, so it is not clearly worsening from this snapshot alone.</td>
+        </tr>
+        <tr>
+          <td>JIM001-D21: Jimmy Ngoma</td>
+          <td>Early-stage</td>
+          <td>R 556.95</td>
+          <td>Aged carry exists but it is too small to treat as a major collections file without stronger evidence.</td>
         </tr></tbody>
     </table>
   </div>
 </div>
+<script>
+
+const state = { priority: 'all', lane: 'all' };
+const priorityButtons = [...document.querySelectorAll('[data-priority-filter]')];
+const laneButtons = [...document.querySelectorAll('[data-lane-filter]')];
+const rows = [...document.querySelectorAll('.work-row')];
+
+function setActive(buttons, attr, value) {
+  buttons.forEach(btn => btn.classList.toggle('active', btn.getAttribute(attr) === value));
+}
+
+function applyFilters() {
+  rows.forEach(row => {
+    const matchesPriority = state.priority === 'all' || row.dataset.priority === state.priority;
+    const matchesLane = state.lane === 'all' || row.dataset.lane === state.lane;
+    row.classList.toggle('hidden-row', !(matchesPriority && matchesLane));
+  });
+  setActive(priorityButtons, 'data-priority-filter', state.priority);
+  setActive(laneButtons, 'data-lane-filter', state.lane);
+}
+
+priorityButtons.forEach(btn => btn.addEventListener('click', () => {
+  state.priority = btn.getAttribute('data-priority-filter');
+  applyFilters();
+}));
+
+laneButtons.forEach(btn => btn.addEventListener('click', () => {
+  state.lane = btn.getAttribute('data-lane-filter');
+  applyFilters();
+}));
+
+[...document.querySelectorAll('[data-lane-jump]')].forEach(link => {
+  link.addEventListener('click', () => {
+    state.lane = link.getAttribute('data-lane-jump');
+    applyFilters();
+  });
+});
+
+applyFilters();
+
+</script>
 </body>
 </html>

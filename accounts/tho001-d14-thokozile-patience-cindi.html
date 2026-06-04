@@ -6,24 +6,33 @@
 <title>THO001-D14: * Thokozile Patience Cindi - Afrizone problem account</title>
 <style>
 :root {
-  --bg:#07111f; --panel:#0f1b31; --panel2:#162642; --line:#223456; --text:#edf4ff; --muted:#9eb3d5;
-  --blue:#7cb8ff; --red:#ff7b7b; --amber:#ffd479; --green:#86e6a8; --purple:#c1a8ff;
+  --bg:#07111f; --panel:#0f1b31; --panel2:#142444; --panel3:#1a2d52; --line:#24385d; --text:#edf4ff; --muted:#9fb3d6;
+  --blue:#7cb8ff; --red:#ff7b7b; --amber:#ffd479; --green:#86e6a8; --purple:#c1a8ff; --ink:#08111f;
 }
 * { box-sizing:border-box; }
-body { margin:0; font:15px/1.5 Inter, system-ui, sans-serif; background:linear-gradient(180deg,#06101d,#091426 180px,#07111f); color:var(--text); }
-a { color:#bdddff; text-decoration:none; }
+html { scroll-behavior:smooth; }
+body { margin:0; font:15px/1.55 Inter, system-ui, sans-serif; background:linear-gradient(180deg,#06101d,#091426 220px,#07111f); color:var(--text); }
+a { color:#cde4ff; text-decoration:none; }
 a:hover { text-decoration:underline; }
-.wrap { max-width:1440px; margin:0 auto; padding:24px; }
-.hero { padding:28px; border:1px solid var(--line); border-radius:22px; background:radial-gradient(circle at top left,rgba(124,184,255,.18),transparent 35%), linear-gradient(180deg,#11213d,#0e1930); box-shadow:0 20px 60px rgba(0,0,0,.25); }
-.hero h1 { margin:0 0 8px; font-size:34px; line-height:1.1; }
-.hero p { margin:8px 0 0; color:var(--muted); max-width:980px; }
+.wrap { max-width:1460px; margin:0 auto; padding:24px; }
+.hero { padding:30px; border:1px solid var(--line); border-radius:24px; background:radial-gradient(circle at top left,rgba(124,184,255,.2),transparent 36%), linear-gradient(180deg,#11213d,#0e1930); box-shadow:0 20px 60px rgba(0,0,0,.28); }
+.hero h1 { margin:0; font-size:38px; line-height:1.04; }
+.hero p { margin:10px 0 0; color:var(--muted); max-width:980px; }
+.small { font-size:13px; color:var(--muted); }
 .grid { display:grid; gap:16px; }
-.kpis { grid-template-columns:repeat(4,minmax(180px,1fr)); margin-top:18px; }
-.card { background:rgba(14,25,48,.95); border:1px solid var(--line); border-radius:18px; padding:18px; box-shadow:0 12px 36px rgba(0,0,0,.18); }
+.card { background:rgba(14,25,48,.96); border:1px solid var(--line); border-radius:18px; padding:18px; box-shadow:0 12px 36px rgba(0,0,0,.18); }
 .card h2, .card h3 { margin:0 0 10px; }
-.kpi-label { color:var(--muted); font-size:13px; text-transform:uppercase; letter-spacing:.08em; }
-.kpi-value { font-size:32px; font-weight:800; margin-top:8px; }
-.story-grid { grid-template-columns:1.15fr .85fr; margin-top:18px; }
+.anchor-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.anchor-links a { display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:999px; background:#17305a; border:1px solid var(--line); font-weight:700; }
+.kpis { grid-template-columns:repeat(4,minmax(180px,1fr)); margin-top:18px; }
+.kpi-label { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.09em; }
+.kpi-value { font-size:34px; font-weight:800; margin-top:8px; }
+.kpi-sub { margin-top:8px; color:var(--muted); font-size:13px; }
+.two-up { grid-template-columns:1.1fr .9fr; margin-top:18px; }
+.three-up { grid-template-columns:repeat(3,minmax(240px,1fr)); margin-top:18px; }
+.story-grid { grid-template-columns:1fr 1fr; margin-top:18px; }
+.list { display:grid; gap:10px; }
+.list-item { padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:#132241; }
 .pill { display:inline-block; padding:5px 10px; border-radius:999px; background:#1d3158; color:#e5efff; margin:2px 6px 2px 0; font-size:12px; font-weight:700; }
 .p1 { background:rgba(255,123,123,.2); color:#ffdede; }
 .p2 { background:rgba(255,212,121,.18); color:#fff0c7; }
@@ -31,31 +40,49 @@ a:hover { text-decoration:underline; }
 .bad { background:rgba(255,123,123,.14); color:#ffdede; }
 .good { background:rgba(134,230,168,.14); color:#defbe8; }
 .info { background:rgba(124,184,255,.14); color:#dbeaff; }
-.muted { color:var(--muted); }
-.list { display:grid; gap:10px; }
-.list-item { padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:#132241; }
-.priority-grid { grid-template-columns:repeat(3,minmax(220px,1fr)); margin-top:18px; }
-.priority-card { border-radius:18px; padding:18px; border:1px solid var(--line); }
-.priority-card.p1 { background:linear-gradient(180deg,rgba(255,123,123,.18),rgba(255,123,123,.08)); }
-.priority-card.p2 { background:linear-gradient(180deg,rgba(255,212,121,.18),rgba(255,212,121,.08)); }
-.priority-card.p3 { background:linear-gradient(180deg,rgba(134,230,168,.18),rgba(134,230,168,.08)); }
-.priority-card h3 { margin:0 0 8px; font-size:24px; }
-.table-wrap { overflow:auto; margin-top:18px; }
-table { width:100%; border-collapse:collapse; min-width:1100px; }
+.warning { background:rgba(255,212,121,.15); color:#fff0c7; }
+.trend-bars { display:grid; gap:12px; margin-top:12px; }
+.trend-row { display:grid; grid-template-columns:130px 1fr 120px; gap:12px; align-items:center; }
+.trend-label { color:#dce9ff; font-weight:700; }
+.trend-track { height:14px; border-radius:999px; background:#16284a; overflow:hidden; border:1px solid rgba(255,255,255,.04); }
+.trend-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#7cb8ff,#c1a8ff); }
+.trend-fill.red { background:linear-gradient(90deg,#ff9a7b,#ff5d73); }
+.trend-fill.amber { background:linear-gradient(90deg,#ffd479,#ffb44f); }
+.trend-fill.green { background:linear-gradient(90deg,#7adca3,#53c17c); }
+.split-meter { display:grid; gap:12px; margin-top:10px; }
+.meter-row { display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; }
+.meter-track { height:12px; border-radius:999px; background:#16284a; overflow:hidden; }
+.meter-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#7cb8ff,#c1a8ff); }
+.meter-fill.red { background:linear-gradient(90deg,#ff9a7b,#ff5d73); }
+.lane-grid { grid-template-columns:repeat(3,minmax(220px,1fr)); margin-top:18px; }
+.lane-card { display:block; padding:18px; border-radius:18px; border:1px solid var(--line); background:linear-gradient(180deg,#132241,#102039); color:var(--text); }
+.lane-card:hover { text-decoration:none; border-color:#4d73b6; transform:translateY(-1px); }
+.lane-card .amount { font-size:28px; font-weight:800; margin-top:10px; }
+.section-header { display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom:10px; }
+.filter-bar { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.filter-btn { background:#14284d; color:var(--text); border:1px solid var(--line); border-radius:999px; padding:9px 14px; font-weight:700; cursor:pointer; }
+.filter-btn.active { background:#274a88; border-color:#5e89d1; }
+.table-wrap { overflow:auto; margin-top:14px; }
+table { width:100%; border-collapse:collapse; min-width:1180px; }
 th, td { text-align:left; padding:12px 10px; border-bottom:1px solid var(--line); vertical-align:top; }
 th { color:#c8d8fb; font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
 tr:hover { background:rgba(255,255,255,.03); }
-.bar { height:10px; border-radius:999px; background:#16284a; overflow:hidden; margin-top:8px; }
-.bar > span { display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,#7cb8ff,#c1a8ff); }
-.account-grid { grid-template-columns:repeat(2,minmax(280px,1fr)); margin-top:18px; }
-.account-card { background:#11203b; border:1px solid var(--line); border-radius:18px; padding:18px; }
-.account-card h3 { margin:0 0 8px; font-size:20px; }
-.account-card p { margin:8px 0; }
-.small { font-size:13px; color:var(--muted); }
-.detail-grid { display:grid; grid-template-columns:1.05fr .95fr; gap:16px; margin-top:18px; }
+.account-chip-grid { grid-template-columns:repeat(3,minmax(260px,1fr)); margin-top:18px; }
+.account-chip { display:block; background:#11203b; border:1px solid var(--line); border-radius:18px; padding:18px; color:var(--text); }
+.account-chip:hover { text-decoration:none; border-color:#4d73b6; transform:translateY(-1px); }
+.account-chip h3 { margin:0 0 8px; font-size:18px; line-height:1.25; }
+.account-chip p { margin:8px 0 0; }
+.account-chip .amount { font-size:26px; font-weight:800; margin-top:10px; }
 .note { background:#12203a; border:1px solid var(--line); border-radius:14px; padding:14px; margin-top:12px; }
 ul.tight { margin:8px 0 0 18px; padding:0; }
-@media (max-width: 1100px) { .kpis, .story-grid, .priority-grid, .account-grid, .detail-grid { grid-template-columns:1fr; } table { min-width:860px; } .hero h1 { font-size:28px; } }
+.hidden-row { display:none; }
+.footer-note { margin-top:18px; color:var(--muted); font-size:13px; }
+@media (max-width: 1180px) {
+  .kpis, .two-up, .three-up, .story-grid, .lane-grid, .account-chip-grid { grid-template-columns:1fr; }
+  table { min-width:900px; }
+  .hero h1 { font-size:30px; }
+  .trend-row { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
@@ -65,47 +92,48 @@ ul.tight { margin:8px 0 0 18px; padding:0; }
     <div class="small"><a href="../index.html">← Back to dashboard</a></div>
     <h1>THO001-D14: * Thokozile Patience Cindi</h1>
     <p>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</p>
-    <div style="margin-top:12px"><span class="pill p1">P1</span><span class="pill info">Attorney stage: rent attachment / enforcement</span><span class="pill info">legal-active</span><span class="pill bad">very high</span></div>
+    <div style="margin-top:12px"><span class="pill p1">P1</span><span class="pill info">Attorney stage: rent attachment / enforcement</span><span class="pill info">Legal</span><span class="pill bad">very high</span></div>
   </div>
 
   <div class="grid kpis">
     <div class="card"><div class="kpi-label">Total balance</div><div class="kpi-value">R 44,677.66</div></div>
-    <div class="card"><div class="kpi-label">30+ problem balance</div><div class="kpi-value">R 42,694.62</div></div>
-    <div class="card"><div class="kpi-label">Current month still outstanding</div><div class="kpi-value">R 1,983.04</div></div>
+    <div class="card"><div class="kpi-label">30+ debt</div><div class="kpi-value">R 42,694.62</div></div>
+    <div class="card"><div class="kpi-label">Current unpaid</div><div class="kpi-value">R 1,983.04</div></div>
     <div class="card"><div class="kpi-label">Latest note</div><div class="kpi-value" style="font-size:22px">2026-05-12</div></div>
   </div>
 
-  <div class="detail-grid">
+  <div class="grid two-up">
     <div class="card">
-      <h2>Story</h2>
+      <h2>What this file is saying</h2>
       <div class="list">
-        <div class="list-item"><strong>Balance trend</strong><br>Balance is not reducing. The file still carries old debt and has rolled into the current cycle again.</div>
-        <div class="list-item"><strong>Stage</strong><br>Attorney stage: rent attachment / enforcement</div>
+        <div class="list-item"><strong>Why it matters</strong><br>Legal-stage money is stuck here: R 42,694.62 already sits 30+ and the file is still rolling forward.</div>
+        <div class="list-item"><strong>What is blocking cure</strong><br>Legal file needs its next dated milestone, not another passive wait.</div>
         <div class="list-item"><strong>Where it is getting stuck</strong><br>It is getting stuck in the attorney / legal queue.</div>
-        <div class="list-item"><strong>Who it is getting stuck with</strong><br>BLR, RVD</div>
-        <div class="list-item"><strong>Suggested next step</strong><br>Get a dated legal progress update and force the next milestone so the file cannot sit idle.</div>
-        <div class="list-item"><strong>Where we are failing</strong><ul class="tight"><li>Main issue is aged debt still sitting 30+ days without cure.</li></ul></div>
+        <div class="list-item"><strong>What must happen next</strong><br>Force the attorney/legal operator to confirm the next step and date in writing.</div>
+        <div class="list-item"><strong>Who to chase</strong><br>BLR, RVD</div>
       </div>
     </div>
     <div class="card">
-      <h2>Account position</h2>
-      <div class="list">
-        <div class="list-item"><strong>120+</strong><br>R 35,807.07</div>
-        <div class="list-item"><strong>90</strong><br>R 1,983.04</div>
-        <div class="list-item"><strong>60</strong><br>R 2,921.47</div>
-        <div class="list-item"><strong>30</strong><br>R 1,983.04</div>
-        <div class="list-item"><strong>Current</strong><br>R 1,983.04</div>
-        <div class="list-item"><strong>Status code</strong><br>RATA</div>
-        <div class="list-item"><strong>Process flags</strong><br><span class="pill info">No explicit process flags</span></div>
-      </div>
+      <h2>Debt trend by month-age</h2>
+      <p class="small">This is the ageing shape of the file right now: current → 30 → 60 → 90 → 120+.</p>
+      <div class="trend-bars"><div class="trend-row"><div class="trend-label">Current</div><div class="trend-track"><div class="trend-fill green" style="width:5.54%"></div></div><div>R 1,983.04</div></div><div class="trend-row"><div class="trend-label">30</div><div class="trend-track"><div class="trend-fill green" style="width:5.54%"></div></div><div>R 1,983.04</div></div><div class="trend-row"><div class="trend-label">60</div><div class="trend-track"><div class="trend-fill amber" style="width:8.16%"></div></div><div>R 2,921.47</div></div><div class="trend-row"><div class="trend-label">90</div><div class="trend-track"><div class="trend-fill amber" style="width:5.54%"></div></div><div>R 1,983.04</div></div><div class="trend-row"><div class="trend-label">120+</div><div class="trend-track"><div class="trend-fill red" style="width:100.00%"></div></div><div>R 35,807.07</div></div></div>
+      <div class="footer-note">Status code: RATA · Flags: <span class="pill info">No explicit process flags</span></div>
     </div>
   </div>
 
   <div class="card" style="margin-top:18px;">
+    <h2>Where we are failing</h2>
+    <ul class="tight"><li>Main issue is aged debt still sitting 30+ days without cure.</li></ul>
+  </div>
+
+  <div class="card" style="margin-top:18px;">
     <h2>Recent notes</h2>
-    <p class="muted">Most recent items first. This is the evidence trail behind the summary above.</p>
+    <p class="small">Most recent items first. This is the evidence trail behind the summary above.</p>
     <div class="note">2019-09-30 Letter of Demand @ R 4409.93</div><div class="note">2020-01-31 Letter of Demand @ R 5798.23</div><div class="note">2020-03-01 Letter of Demand @ R 5901.90</div><div class="note">2020-05-31 Letter of Demand @ R 5207.52</div><div class="note">2022-01-31 1st Notice @ R 2732.77</div><div class="note">2022-03-31 1st Notice @ R 2661.71</div><div class="note">2022-05-31 1st Notice @ R 2590.65</div><div class="note">2022-07-31 1st Notice @ R 2419.59</div><div class="note">2022-09-30 2nd Notice @ R 3805.12</div><div class="note">2023-01-31 2nd Notice @ R 3266.56</div><div class="note">2023-05-31 Letter of Demand @ R 4828.00</div><div class="note">2023-11-28 @ R 13389.66</div>
   </div>
 </div>
+<script>
+
+</script>
 </body>
 </html>
