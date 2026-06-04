@@ -15,7 +15,7 @@
   --yellow:#f1c84b;
   --orange:#ff9b4a;
   --red:#ef5f71;
-  --black:#c7d2e5;
+  --purple:#b48cff;
   --green:#64d58e;
   --blue:#79b6ff;
 }
@@ -41,7 +41,7 @@ a:hover{text-decoration:underline}
 .severity-card.yellow{background:linear-gradient(180deg,rgba(241,200,75,.14),rgba(15,27,45,.96))}
 .severity-card.orange{background:linear-gradient(180deg,rgba(255,155,74,.15),rgba(15,27,45,.96))}
 .severity-card.red{background:linear-gradient(180deg,rgba(239,95,113,.14),rgba(15,27,45,.96))}
-.severity-card.black{background:linear-gradient(180deg,rgba(199,210,229,.14),rgba(15,27,45,.96))}
+.severity-card.purple{background:linear-gradient(180deg,rgba(180,140,255,.18),rgba(15,27,45,.96))}
 .severity-title{font-size:28px;font-weight:800}
 .severity-count{font-size:44px;font-weight:900;margin-top:12px}
 .severity-amount{font-size:18px;margin-top:4px}
@@ -51,13 +51,22 @@ a:hover{text-decoration:underline}
 .chip.yellow{background:rgba(241,200,75,.18);color:#fff0be}
 .chip.orange{background:rgba(255,155,74,.18);color:#ffe0bf}
 .chip.red{background:rgba(239,95,113,.18);color:#ffd9df}
-.chip.black{background:rgba(199,210,229,.18);color:#eef5ff}
+.chip.purple{background:rgba(180,140,255,.18);color:#f1e7ff}
 .chip.good{background:rgba(100,213,142,.16);color:#dcffe7}
 .chip.info{background:rgba(121,182,255,.16);color:#deebff}
 .chip.warning{background:rgba(255,155,74,.16);color:#ffe0bf}
 .chip.danger{background:rgba(239,95,113,.16);color:#ffd9df}
 .section-title{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:26px 0 10px}
 .section-title h2{margin:0;font-size:24px}
+.split{display:grid;grid-template-columns:1.3fr .9fr;gap:16px;margin-top:22px}
+.chart-card{padding:18px;border-radius:18px;background:rgba(15,27,45,.96);border:1px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.2)}
+.bucket-bars{display:grid;gap:12px;margin-top:14px}
+.bucket-row{display:grid;grid-template-columns:86px 1fr auto;gap:12px;align-items:center}
+.bucket-track{height:12px;border-radius:999px;background:#10203a;overflow:hidden;border:1px solid var(--line)}
+.bucket-fill{height:100%}
+.attention-list{display:grid;gap:10px;margin-top:14px}
+.attention-item{padding:12px 14px;border-radius:14px;background:#10203a;border:1px solid var(--line)}
+.tiny{font-size:12px;color:var(--muted)}
 .unit-list{grid-template-columns:repeat(2,minmax(300px,1fr))}
 .unit-card{display:block;padding:18px;border-radius:20px}
 .unit-card:hover{text-decoration:none;transform:translateY(-1px)}
@@ -82,7 +91,7 @@ details.note summary::-webkit-details-marker{display:none}
 hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 .back-link{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:#dce9ff}
 .footer{margin-top:30px;color:var(--muted);font-size:13px}
-@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list{grid-template-columns:1fr}.hero h1{font-size:34px}}
+@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list,.split{grid-template-columns:1fr}.hero h1{font-size:34px}}
 </style>
 </head>
 <body>
@@ -94,7 +103,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
     <p>Pressure building. Needs active control now before it hardens into a legal or broken-cycle file.</p>
     <div class="chips">
       <span class="chip orange">12 unit(s)</span>
-      <span class="chip info">R 18,025.59 old debt</span>
+      <span class="chip info">R 22,547.67 old debt</span>
     </div>
   </div>
   <div class="section-title"><h2>Units in this bucket</h2><div class="subtle">Open a unit to see the account story and note trail.</div></div>
@@ -102,17 +111,27 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 <a class="unit-card" href="../units/unit-13.html">
   <div><span class="chip orange">Orange</span></div>
   <h3>Unit 13</h3>
-  <p>This is not quiet arrears anymore. R 3,874.67 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
+  <p>R 4,301.18 is old enough to matter and the unit is already showing a attorney / handover pattern. It is still recoverable, but not passive.</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 4,301.18</strong></div>
     <div class="mini"><span class="subtle">Total balance</span><strong>R 6,660.80</strong></div>
     <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2019-09-30</strong></div>
   </div>
 </a>
+<a class="unit-card" href="../units/unit-05.html">
+  <div><span class="chip orange">Orange</span></div>
+  <h3>Unit 5</h3>
+  <p>R 3,322.52 is old enough to matter and the unit is already showing a attorney / handover pattern. It is still recoverable, but not passive.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 3,322.52</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 5,978.19</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2025-03-18</strong></div>
+  </div>
+</a>
 <a class="unit-card" href="../units/unit-35.html">
   <div><span class="chip orange">Orange</span></div>
   <h3>Unit 35</h3>
-  <p>This is not quiet arrears anymore. R 1,952.24 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
+  <p>R 2,793.92 is old enough to matter and the unit is already showing a early-stage notice pattern. It is still recoverable, but not passive.</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 2,793.92</strong></div>
     <div class="mini"><span class="subtle">Total balance</span><strong>R 4,937.23</strong></div>
@@ -122,7 +141,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 <a class="unit-card" href="../units/unit-19.html">
   <div><span class="chip orange">Orange</span></div>
   <h3>Unit 19</h3>
-  <p>This is not quiet arrears anymore. R 2,492.13 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
+  <p>R 2,492.13 is old enough to matter and the unit is already showing a current  /  low-balance follow-up pattern. It is still recoverable, but not passive.</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 2,492.13</strong></div>
     <div class="mini"><span class="subtle">Total balance</span><strong>R 4,499.90</strong></div>
@@ -132,7 +151,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 <a class="unit-card" href="../units/unit-37.html">
   <div><span class="chip orange">Orange</span></div>
   <h3>Unit 37</h3>
-  <p>This is not quiet arrears anymore. R 1,602.47 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
+  <p>R 2,447.55 is old enough to matter and the unit is already showing a early-stage notice pattern. It is still recoverable, but not passive.</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 2,447.55</strong></div>
     <div class="mini"><span class="subtle">Total balance</span><strong>R 4,590.86</strong></div>
@@ -142,7 +161,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 <a class="unit-card" href="../units/unit-33.html">
   <div><span class="chip orange">Orange</span></div>
   <h3>Unit 33</h3>
-  <p>This is not quiet arrears anymore. R 1,846.33 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
+  <p>R 1,846.33 is old enough to matter and the unit is already showing a attorney / handover pattern. It is still recoverable, but not passive.</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 1,846.33</strong></div>
     <div class="mini"><span class="subtle">Total balance</span><strong>R 2,227.66</strong></div>
@@ -152,7 +171,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 <a class="unit-card" href="../units/unit-46.html">
   <div><span class="chip orange">Orange</span></div>
   <h3>Unit 46</h3>
-  <p>This is not quiet arrears anymore. R 1,716.80 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
+  <p>R 1,716.80 is old enough to matter and the unit is already showing a arrangement / promise cycle pattern. It is still recoverable, but not passive.</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 1,716.80</strong></div>
     <div class="mini"><span class="subtle">Total balance</span><strong>R 3,950.47</strong></div>
@@ -162,61 +181,51 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 <a class="unit-card" href="../units/unit-16.html">
   <div><span class="chip orange">Orange</span></div>
   <h3>Unit 16</h3>
-  <p>This is not quiet arrears anymore. R 0.00 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
+  <p>R 1,394.35 is old enough to matter and the unit is already showing a attorney / handover pattern. It is still recoverable, but not passive.</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 1,394.35</strong></div>
     <div class="mini"><span class="subtle">Total balance</span><strong>R 3,444.78</strong></div>
     <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-09-30</strong></div>
   </div>
 </a>
+<a class="unit-card" href="../units/unit-40.html">
+  <div><span class="chip orange">Orange</span></div>
+  <h3>Unit 40</h3>
+  <p>R 659.90 is old enough to matter and the unit is already showing a attorney / handover pattern. It is still recoverable, but not passive.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 659.90</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 996.05</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2019-09-30</strong></div>
+  </div>
+</a>
+<a class="unit-card" href="../units/unit-03.html">
+  <div><span class="chip orange">Orange</span></div>
+  <h3>Unit 3</h3>
+  <p>R 578.21 is old enough to matter and the unit is already showing a attorney / handover pattern. It is still recoverable, but not passive.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 578.21</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 1,049.90</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-09-30</strong></div>
+  </div>
+</a>
 <a class="unit-card" href="../units/unit-21.html">
   <div><span class="chip orange">Orange</span></div>
   <h3>Unit 21</h3>
-  <p>This is not quiet arrears anymore. R 556.95 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
+  <p>R 556.95 is old enough to matter and the unit is already showing a early-stage notice pattern. It is still recoverable, but not passive.</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 556.95</strong></div>
     <div class="mini"><span class="subtle">Total balance</span><strong>R 2,532.20</strong></div>
     <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2022-12-20</strong></div>
   </div>
 </a>
-<a class="unit-card" href="../units/unit-48.html">
+<a class="unit-card" href="../units/unit-20.html">
   <div><span class="chip orange">Orange</span></div>
-  <h3>Unit 48</h3>
-  <p>This is not quiet arrears anymore. R 60.00 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
+  <h3>Unit 20</h3>
+  <p>R 437.83 is old enough to matter and the unit is already showing a arrangement / promise cycle pattern. It is still recoverable, but not passive.</p>
   <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 305.85</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 2,102.72</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2025-09-05</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="../units/unit-18.html">
-  <div><span class="chip orange">Orange</span></div>
-  <h3>Unit 18</h3>
-  <p>This is not quiet arrears anymore. R 158.43 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 158.43</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 494.58</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-01-23</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="../units/unit-06.html">
-  <div><span class="chip orange">Orange</span></div>
-  <h3>Unit 6</h3>
-  <p>This is not quiet arrears anymore. R 11.76 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 11.76</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 2,354.52</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-04-21</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="../units/unit-28.html">
-  <div><span class="chip orange">Orange</span></div>
-  <h3>Unit 28</h3>
-  <p>This is not quiet arrears anymore. R 0.34 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 0.34</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 562.39</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-09-30</strong></div>
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 437.83</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 2,490.78</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2024-10-07</strong></div>
   </div>
 </a></div>
 </div></body>

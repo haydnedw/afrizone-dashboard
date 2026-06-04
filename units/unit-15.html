@@ -15,7 +15,7 @@
   --yellow:#f1c84b;
   --orange:#ff9b4a;
   --red:#ef5f71;
-  --black:#c7d2e5;
+  --purple:#b48cff;
   --green:#64d58e;
   --blue:#79b6ff;
 }
@@ -41,7 +41,7 @@ a:hover{text-decoration:underline}
 .severity-card.yellow{background:linear-gradient(180deg,rgba(241,200,75,.14),rgba(15,27,45,.96))}
 .severity-card.orange{background:linear-gradient(180deg,rgba(255,155,74,.15),rgba(15,27,45,.96))}
 .severity-card.red{background:linear-gradient(180deg,rgba(239,95,113,.14),rgba(15,27,45,.96))}
-.severity-card.black{background:linear-gradient(180deg,rgba(199,210,229,.14),rgba(15,27,45,.96))}
+.severity-card.purple{background:linear-gradient(180deg,rgba(180,140,255,.18),rgba(15,27,45,.96))}
 .severity-title{font-size:28px;font-weight:800}
 .severity-count{font-size:44px;font-weight:900;margin-top:12px}
 .severity-amount{font-size:18px;margin-top:4px}
@@ -51,13 +51,22 @@ a:hover{text-decoration:underline}
 .chip.yellow{background:rgba(241,200,75,.18);color:#fff0be}
 .chip.orange{background:rgba(255,155,74,.18);color:#ffe0bf}
 .chip.red{background:rgba(239,95,113,.18);color:#ffd9df}
-.chip.black{background:rgba(199,210,229,.18);color:#eef5ff}
+.chip.purple{background:rgba(180,140,255,.18);color:#f1e7ff}
 .chip.good{background:rgba(100,213,142,.16);color:#dcffe7}
 .chip.info{background:rgba(121,182,255,.16);color:#deebff}
 .chip.warning{background:rgba(255,155,74,.16);color:#ffe0bf}
 .chip.danger{background:rgba(239,95,113,.16);color:#ffd9df}
 .section-title{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:26px 0 10px}
 .section-title h2{margin:0;font-size:24px}
+.split{display:grid;grid-template-columns:1.3fr .9fr;gap:16px;margin-top:22px}
+.chart-card{padding:18px;border-radius:18px;background:rgba(15,27,45,.96);border:1px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.2)}
+.bucket-bars{display:grid;gap:12px;margin-top:14px}
+.bucket-row{display:grid;grid-template-columns:86px 1fr auto;gap:12px;align-items:center}
+.bucket-track{height:12px;border-radius:999px;background:#10203a;overflow:hidden;border:1px solid var(--line)}
+.bucket-fill{height:100%}
+.attention-list{display:grid;gap:10px;margin-top:14px}
+.attention-item{padding:12px 14px;border-radius:14px;background:#10203a;border:1px solid var(--line)}
+.tiny{font-size:12px;color:var(--muted)}
 .unit-list{grid-template-columns:repeat(2,minmax(300px,1fr))}
 .unit-card{display:block;padding:18px;border-radius:20px}
 .unit-card:hover{text-decoration:none;transform:translateY(-1px)}
@@ -82,20 +91,20 @@ details.note summary::-webkit-details-marker{display:none}
 hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 .back-link{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:#dce9ff}
 .footer{margin-top:30px;color:var(--muted);font-size:13px}
-@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list{grid-template-columns:1fr}.hero h1{font-size:34px}}
+@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list,.split{grid-template-columns:1fr}.hero h1{font-size:34px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <a class="back-link" href="../severity/orange.html">← Back to Orange bucket</a>
+  <a class="back-link" href="../severity/yellow.html">← Back to Yellow bucket</a>
   <div class="hero">
     <div class="unit-header">
       <div>
         <div class="subtle">AFR - Afrizone</div>
         <h1>Unit 15</h1>
-        <p>This is not quiet arrears anymore. R 0.00 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</p>
+        <p>R 0.00 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</p>
       </div>
-      <div class="chips"><span class="chip orange">Orange</span><span class="chip info">LG</span></div>
+      <div class="chips"><span class="chip yellow">Yellow</span><span class="chip info">LG</span></div>
     </div>
   </div>
 
@@ -108,11 +117,11 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 
   <div class="grid two-up">
     <div class="card">
-      <h2 style="margin-top:0">Manager story</h2>
+      <h2 style="margin-top:0">Unit story</h2>
       <div class="list">
-        <div class="list-item"><strong>What this unit says</strong><br>This is not quiet arrears anymore. R 0.00 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</div>
-        <div class="list-item"><strong>My interpretation</strong><br>The account story is simple: old debt exists, and the notes need to prove forward motion rather than repeated contact.</div>
-        <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+        <div class="list-item"><strong>Current position</strong><br>R 0.00 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</div>
+        <div class="list-item"><strong>What that means</strong><br>The visible trail looks stale. Whatever happened in attorney / handover did not convert into a clean resolution on the notes we can see.</div>
+        <div class="list-item"><strong>Next move</strong><br>Test whether the legal / admitted-debt path actually advanced. If not, force a dated escalation point now.</div>
       </div>
     </div>
     <div class="card"><h2 style="margin-top:0">Legal / collections terms on this unit</h2><div class="list"><div class="list-item"><strong>Letter Of Demand</strong><br>A formal written demand telling the debtor to pay. If the debtor does not respond or pay within the stated period, the matter usually moves toward summons.<br><span class="subtle">Timing: Use the deadline written in the demand itself. The note trail does not prove one universal waiting period, so the dashboard should not invent one. · Source: BLV Law debt collections overview</span></div></div></div>
@@ -132,23 +141,33 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </div>
   <div class="grid two-up" style="margin-top:16px">
     <div class="list">
-      <div class="list-item"><strong>My read</strong><br>The account story is simple: old debt exists, and the notes need to prove forward motion rather than repeated contact.</div>
-      <div class="list-item"><strong>Next best move</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>Current position</strong><br>This is not quiet arrears anymore. R 0.00 is old enough, and the note trail shows a pattern that can still be corrected before legal hardening dominates.</div>
+      <div class="list-item"><strong>What that means</strong><br>The account story is simple: old debt exists, and the notes need to prove forward motion rather than repeated contact.</div>
+      <div class="list-item"><strong>Next move</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
     <div class="list">
-      <div class="list-item"><strong>Status codes</strong><br>None</div>
-      <div class="list-item"><strong>Process flags</strong><br>stale-follow-up</div>
+      <div class="list-item"><strong>Latest visible note date</strong><br>2024-12-11</div>
+      <div class="list-item"><strong>Owner / operator</strong><br>LG</div>
+      <details class="note">
+        <summary><strong>System detail</strong></summary>
+        <div class="note-body">
+          <div class="list">
+            <div class="list-item"><strong>Status codes</strong><br>None</div>
+            <div class="list-item"><strong>Process flags</strong><br>stale-follow-up</div>
+          </div>
+        </div>
+      </details>
     </div>
   </div>
   <hr class="sep">
-  <h4 style="margin:0 0 8px">Notes</h4>
-  <div class="subtle">Newest note on top. Open only the ones you need.</div>
+  <h4 style="margin:0 0 8px">Timeline</h4>
+  <div class="subtle">Newest note on top. Open only what you need.</div>
   
 <details class="note" open>
   <summary>
     <div class="note-heading">
       <div>
-        <strong>2020-08-31 1st Notice @ R 2323.83</strong>
+        <strong>1st Notice @ R 2323.83</strong>
         <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
       </div>
       <div><span class="chip warning">Pre-legal pressure</span></div>
@@ -156,9 +175,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </summary>
   <div class="note-body">
     <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2020-08-31 1st Notice @ R 2323.83</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>File note</strong><br>2020-08-31 1st Notice @ R 2323.83</div>
+      <div class="list-item"><strong>What it means</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
   </div>
 </details>
@@ -166,7 +185,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <summary>
     <div class="note-heading">
       <div>
-        <strong>2021-07-31 Letter of Demand @ R 4566.85</strong>
+        <strong>Letter of Demand @ R 4566.85</strong>
         <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
       </div>
       <div><span class="chip warning">Pre-legal pressure</span></div>
@@ -174,9 +193,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </summary>
   <div class="note-body">
     <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2021-07-31 Letter of Demand @ R 4566.85</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>File note</strong><br>2021-07-31 Letter of Demand @ R 4566.85</div>
+      <div class="list-item"><strong>What it means</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
   </div>
 </details>
@@ -184,7 +203,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <summary>
     <div class="note-heading">
       <div>
-        <strong>2021-09-30 1st Notice @ R 2298.22</strong>
+        <strong>1st Notice @ R 2298.22</strong>
         <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
       </div>
       <div><span class="chip warning">Pre-legal pressure</span></div>
@@ -192,9 +211,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </summary>
   <div class="note-body">
     <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2021-09-30 1st Notice @ R 2298.22</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>File note</strong><br>2021-09-30 1st Notice @ R 2298.22</div>
+      <div class="list-item"><strong>What it means</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
   </div>
 </details>
@@ -202,7 +221,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <summary>
     <div class="note-heading">
       <div>
-        <strong>2021-11-30 Letter of Demand @ R 3727.47</strong>
+        <strong>Letter of Demand @ R 3727.47</strong>
         <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
       </div>
       <div><span class="chip warning">Pre-legal pressure</span></div>
@@ -210,9 +229,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </summary>
   <div class="note-body">
     <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2021-11-30 Letter of Demand @ R 3727.47</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>File note</strong><br>2021-11-30 Letter of Demand @ R 3727.47</div>
+      <div class="list-item"><strong>What it means</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
   </div>
 </details>
@@ -220,7 +239,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <summary>
     <div class="note-heading">
       <div>
-        <strong>2022-05-31 1st Notice @ R 2449.60</strong>
+        <strong>1st Notice @ R 2449.60</strong>
         <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
       </div>
       <div><span class="chip warning">Pre-legal pressure</span></div>
@@ -228,9 +247,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </summary>
   <div class="note-body">
     <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2022-05-31 1st Notice @ R 2449.60</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>File note</strong><br>2022-05-31 1st Notice @ R 2449.60</div>
+      <div class="list-item"><strong>What it means</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
   </div>
 </details>
@@ -238,7 +257,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <summary>
     <div class="note-heading">
       <div>
-        <strong>2022-07-31 2nd Notice @ R 2472.40</strong>
+        <strong>2nd Notice @ R 2472.40</strong>
         <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
       </div>
       <div><span class="chip warning">Pre-legal pressure</span></div>
@@ -246,9 +265,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </summary>
   <div class="note-body">
     <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2022-07-31 2nd Notice @ R 2472.40</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>File note</strong><br>2022-07-31 2nd Notice @ R 2472.40</div>
+      <div class="list-item"><strong>What it means</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
   </div>
 </details>
@@ -256,7 +275,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <summary>
     <div class="note-heading">
       <div>
-        <strong>2022-09-30 2nd Notice @ R 3400.01</strong>
+        <strong>2nd Notice @ R 3400.01</strong>
         <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
       </div>
       <div><span class="chip warning">Pre-legal pressure</span></div>
@@ -264,9 +283,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </summary>
   <div class="note-body">
     <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2022-09-30 2nd Notice @ R 3400.01</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>File note</strong><br>2022-09-30 2nd Notice @ R 3400.01</div>
+      <div class="list-item"><strong>What it means</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
   </div>
 </details>
@@ -274,25 +293,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <summary>
     <div class="note-heading">
       <div>
-        <strong>2023-05-22 10:09:00 Balance Paid</strong>
-        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
-      </div>
-      <div><span class="chip positive">Payment / cure signal</span></div>
-    </div>
-  </summary>
-  <div class="note-body">
-    <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2023-05-22 10:09:00 Balance Paid</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
-    </div>
-  </div>
-</details>
-<details class="note" >
-  <summary>
-    <div class="note-heading">
-      <div>
-        <strong>2023-06-21 15:53:00 Balance Paid</strong>
+        <strong>Balance Paid</strong>
         <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
       </div>
       <div><span class="chip positive">Payment / cure signal</span></div>
@@ -300,9 +301,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </summary>
   <div class="note-body">
     <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2023-06-21 15:53:00 Balance Paid</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>File note</strong><br>2023-05-22 10:09:00 Balance Paid</div>
+      <div class="list-item"><strong>What it means</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
   </div>
 </details>
@@ -310,7 +311,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <summary>
     <div class="note-heading">
       <div>
-        <strong>2023-07-21 09:16:00 Balance Paid</strong>
+        <strong>Balance Paid</strong>
         <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
       </div>
       <div><span class="chip positive">Payment / cure signal</span></div>
@@ -318,9 +319,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </summary>
   <div class="note-body">
     <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2023-07-21 09:16:00 Balance Paid</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>File note</strong><br>2023-06-21 15:53:00 Balance Paid</div>
+      <div class="list-item"><strong>What it means</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
   </div>
 </details>
@@ -328,7 +329,25 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <summary>
     <div class="note-heading">
       <div>
-        <strong>2023-08-01 10:41:00 Balance Paid</strong>
+        <strong>Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>File note</strong><br>2023-07-21 09:16:00 Balance Paid</div>
+      <div class="list-item"><strong>What it means</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>Balance Paid</strong>
         <div class="note-preview">This is a genuine cure signal. The control task is to confirm it held in the next cycle.</div>
       </div>
       <div><span class="chip positive">Payment / cure signal</span></div>
@@ -336,9 +355,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </summary>
   <div class="note-body">
     <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2023-08-01 10:41:00 Balance Paid</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This is a genuine cure signal. The control task is to confirm it held in the next cycle.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>File note</strong><br>2023-08-01 10:41:00 Balance Paid</div>
+      <div class="list-item"><strong>What it means</strong><br>This is a genuine cure signal. The control task is to confirm it held in the next cycle.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
   </div>
 </details>
@@ -346,7 +365,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <summary>
     <div class="note-heading">
       <div>
-        <strong>2023-09-14 09:46:00 Balance Paid - removed debt status</strong>
+        <strong>Balance Paid - removed debt status</strong>
         <div class="note-preview">This is a genuine cure signal. The control task is to confirm it held in the next cycle.</div>
       </div>
       <div><span class="chip positive">Payment / cure signal</span></div>
@@ -354,9 +373,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   </summary>
   <div class="note-body">
     <div class="list">
-      <div class="list-item"><strong>Raw note</strong><br>2023-09-14 09:46:00 Balance Paid - removed debt status</div>
-      <div class="list-item"><strong>Interpretation</strong><br>This is a genuine cure signal. The control task is to confirm it held in the next cycle.</div>
-      <div class="list-item"><strong>Recommended next step</strong><br>Name the person resolving the query and put a due date against it.</div>
+      <div class="list-item"><strong>File note</strong><br>2023-09-14 09:46:00 Balance Paid - removed debt status</div>
+      <div class="list-item"><strong>What it means</strong><br>This is a genuine cure signal. The control task is to confirm it held in the next cycle.</div>
+      <div class="list-item"><strong>What should happen next</strong><br>Name the person resolving the query and put a due date against it.</div>
     </div>
   </div>
 </details>

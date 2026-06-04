@@ -15,7 +15,7 @@
   --yellow:#f1c84b;
   --orange:#ff9b4a;
   --red:#ef5f71;
-  --black:#c7d2e5;
+  --purple:#b48cff;
   --green:#64d58e;
   --blue:#79b6ff;
 }
@@ -41,7 +41,7 @@ a:hover{text-decoration:underline}
 .severity-card.yellow{background:linear-gradient(180deg,rgba(241,200,75,.14),rgba(15,27,45,.96))}
 .severity-card.orange{background:linear-gradient(180deg,rgba(255,155,74,.15),rgba(15,27,45,.96))}
 .severity-card.red{background:linear-gradient(180deg,rgba(239,95,113,.14),rgba(15,27,45,.96))}
-.severity-card.black{background:linear-gradient(180deg,rgba(199,210,229,.14),rgba(15,27,45,.96))}
+.severity-card.purple{background:linear-gradient(180deg,rgba(180,140,255,.18),rgba(15,27,45,.96))}
 .severity-title{font-size:28px;font-weight:800}
 .severity-count{font-size:44px;font-weight:900;margin-top:12px}
 .severity-amount{font-size:18px;margin-top:4px}
@@ -51,13 +51,22 @@ a:hover{text-decoration:underline}
 .chip.yellow{background:rgba(241,200,75,.18);color:#fff0be}
 .chip.orange{background:rgba(255,155,74,.18);color:#ffe0bf}
 .chip.red{background:rgba(239,95,113,.18);color:#ffd9df}
-.chip.black{background:rgba(199,210,229,.18);color:#eef5ff}
+.chip.purple{background:rgba(180,140,255,.18);color:#f1e7ff}
 .chip.good{background:rgba(100,213,142,.16);color:#dcffe7}
 .chip.info{background:rgba(121,182,255,.16);color:#deebff}
 .chip.warning{background:rgba(255,155,74,.16);color:#ffe0bf}
 .chip.danger{background:rgba(239,95,113,.16);color:#ffd9df}
 .section-title{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:26px 0 10px}
 .section-title h2{margin:0;font-size:24px}
+.split{display:grid;grid-template-columns:1.3fr .9fr;gap:16px;margin-top:22px}
+.chart-card{padding:18px;border-radius:18px;background:rgba(15,27,45,.96);border:1px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.2)}
+.bucket-bars{display:grid;gap:12px;margin-top:14px}
+.bucket-row{display:grid;grid-template-columns:86px 1fr auto;gap:12px;align-items:center}
+.bucket-track{height:12px;border-radius:999px;background:#10203a;overflow:hidden;border:1px solid var(--line)}
+.bucket-fill{height:100%}
+.attention-list{display:grid;gap:10px;margin-top:14px}
+.attention-item{padding:12px 14px;border-radius:14px;background:#10203a;border:1px solid var(--line)}
+.tiny{font-size:12px;color:var(--muted)}
 .unit-list{grid-template-columns:repeat(2,minmax(300px,1fr))}
 .unit-card{display:block;padding:18px;border-radius:20px}
 .unit-card:hover{text-decoration:none;transform:translateY(-1px)}
@@ -82,7 +91,7 @@ details.note summary::-webkit-details-marker{display:none}
 hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 .back-link{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:#dce9ff}
 .footer{margin-top:30px;color:var(--muted);font-size:13px}
-@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list{grid-template-columns:1fr}.hero h1{font-size:34px}}
+@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list,.split{grid-template-columns:1fr}.hero h1{font-size:34px}}
 </style>
 </head>
 <body>
@@ -90,46 +99,64 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <div class="hero">
     <div class="subtle">AFR - Afrizone · Extracted 2026-06-03T08:22:53.365Z</div>
     <h1>AFRIZONE</h1>
-    <p>This front page is just the snapshot. Start with the colour buckets, then drill into a unit, then open the account story and notes only if you need the detail.</p>
+    <p>Snapshot first. Problem units, age profile, and what to open next.</p>
     <div class="chips">
-      <span class="chip good">Overview first</span>
-      <span class="chip info">Click a colour to drill down</span>
-      <span class="chip info">Click a unit to read the story</span>
+      <span class="chip good">48 units in scheme</span>
+      <span class="chip warning">33 units in arrears</span>
+      <span class="chip info">Details on click</span>
     </div>
   </div>
 
   <div class="grid kpis">
-    <div class="card"><div class="kpi-label">Total units</div><div class="kpi-value">48</div><div class="kpi-sub">User-stated complex size</div></div>
-    <div class="card"><div class="kpi-label">Units with balance</div><div class="kpi-value">44</div><div class="kpi-sub">11 are current-only; 33 carry 30+ debt</div></div>
-    <div class="card"><div class="kpi-label">Problem units</div><div class="kpi-value">33</div><div class="kpi-sub">Only units carrying real 30+ debt appear in the colour buckets below</div></div>
-    <div class="card"><div class="kpi-label">Not in debt extract</div><div class="kpi-value">4</div><div class="kpi-sub">48 total minus units visible here</div></div>
+    <div class="card"><div class="kpi-label">Total units</div><div class="kpi-value">48</div><div class="kpi-sub">Verified against unit numbering in the extract</div></div>
+    <div class="card"><div class="kpi-label">Units in arrears</div><div class="kpi-value">33</div><div class="kpi-sub">Real 30+ debt only</div></div>
+    <div class="card"><div class="kpi-label">Current-only units</div><div class="kpi-value">11</div><div class="kpi-sub">Visible balances, but no aged debt yet</div></div>
+    <div class="card"><div class="kpi-label">Missing from extract</div><div class="kpi-value">4</div><div class="kpi-sub">Units 7, 32, 39, 43</div></div>
+  </div>
+
+  <div class="split">
+    <div class="chart-card">
+      <div class="section-title" style="margin-top:0"><h2>Age profile</h2><div class="tiny">This extract is a snapshot, not a month trend series.</div></div>
+      <div class="bucket-bars">
+        <div class="bucket-row"><strong>Current</strong><div class="bucket-track"><div class="bucket-fill" style="width:25.13%;background:#79b6ff"></div></div><span>R 74,247.93</span></div><div class="bucket-row"><strong>30</strong><div class="bucket-track"><div class="bucket-fill" style="width:15.81%;background:#f1c84b"></div></div><span>R 46,720.37</span></div><div class="bucket-row"><strong>60</strong><div class="bucket-track"><div class="bucket-fill" style="width:9.55%;background:#ff9b4a"></div></div><span>R 28,214.82</span></div><div class="bucket-row"><strong>90</strong><div class="bucket-track"><div class="bucket-fill" style="width:7.89%;background:#ef5f71"></div></div><span>R 23,316.17</span></div><div class="bucket-row"><strong>120+</strong><div class="bucket-track"><div class="bucket-fill" style="width:100.00%;background:#b48cff"></div></div><span>R 295,442.83</span></div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="section-title" style="margin-top:0"><h2>Book shape</h2><div class="tiny">What the extract is actually showing</div></div>
+      <div class="attention-list">
+        <div class="attention-item"><strong>Total balance:</strong> R 467,942.12</div>
+        <div class="attention-item"><strong>Aged debt:</strong> R 393,694.19</div>
+        <div class="attention-item"><strong>Account rows:</strong> 74 rows across 44 visible units</div>
+        <div class="attention-item"><strong>Split-unit stories:</strong> 30 units carry more than one row</div>
+      </div>
+    </div>
   </div>
 
   <div class="grid severity-grid">
     
 <a class="severity-card yellow" href="severity/yellow.html">
   <div class="severity-title">Yellow</div>
-  <div class="severity-count">4</div>
-  <div class="severity-amount">R 1,853.03 old debt</div>
-  <div class="severity-copy">Manageable. Visible arrears, but not yet the kind of file that should eat the team.</div>
+  <div class="severity-count">10</div>
+  <div class="severity-amount">R 2,046.54</div>
+  <div class="severity-copy">Open bucket</div>
 </a>
 <a class="severity-card orange" href="severity/orange.html">
   <div class="severity-title">Orange</div>
   <div class="severity-count">12</div>
-  <div class="severity-amount">R 18,025.59 old debt</div>
-  <div class="severity-copy">Pressure building. Needs active control now before it hardens into a legal or broken-cycle file.</div>
+  <div class="severity-amount">R 22,547.67</div>
+  <div class="severity-copy">Open bucket</div>
 </a>
 <a class="severity-card red" href="severity/red.html">
   <div class="severity-title">Red</div>
-  <div class="severity-count">7</div>
-  <div class="severity-amount">R 8,196.31 old debt</div>
-  <div class="severity-copy">Serious problem. Already hardened, repeated, broken, or clearly escalating.</div>
+  <div class="severity-count">3</div>
+  <div class="severity-amount">R 31,508.18</div>
+  <div class="severity-copy">Open bucket</div>
 </a>
-<a class="severity-card black" href="severity/black.html">
-  <div class="severity-title">Black</div>
-  <div class="severity-count">10</div>
-  <div class="severity-amount">R 365,619.26 old debt</div>
-  <div class="severity-copy">Worst files. Deep legal / enforcement / high-age exposure where delay is expensive.</div>
+<a class="severity-card purple" href="severity/purple.html">
+  <div class="severity-title">Purple</div>
+  <div class="severity-count">8</div>
+  <div class="severity-amount">R 337,591.80</div>
+  <div class="severity-copy">Open bucket</div>
 </a>
   </div>
 
@@ -137,108 +164,46 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
   <div class="grid unit-list">
     
 <a class="unit-card" href="units/unit-27.html">
-  <div><span class="chip black">Black</span></div>
+  <div><span class="chip purple">Purple</span></div>
   <h3>Unit 27</h3>
-  <p>R 81,740.74 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
+  <p>Warrant granted · owner BLR</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 96,702.09</strong></div>
-    <div class="mini"><span class="subtle">Accounts</span><strong>2</strong></div>
-    <div class="mini"><span class="subtle">Owner to chase</span><strong style="font-size:14px">BLR</strong></div>
+    <div class="mini"><span class="subtle">Balance</span><strong>R 98,664.68</strong></div>
+    <div class="mini"><span class="subtle">Rows</span><strong>2</strong></div>
   </div>
 </a>
 <a class="unit-card" href="units/unit-25.html">
-  <div><span class="chip black">Black</span></div>
+  <div><span class="chip purple">Purple</span></div>
   <h3>Unit 25</h3>
-  <p>R 57,903.00 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
+  <p>Attorney / handover · owner RVD</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 67,000.97</strong></div>
-    <div class="mini"><span class="subtle">Accounts</span><strong>2</strong></div>
-    <div class="mini"><span class="subtle">Owner to chase</span><strong style="font-size:14px">RVD</strong></div>
+    <div class="mini"><span class="subtle">Balance</span><strong>R 69,279.82</strong></div>
+    <div class="mini"><span class="subtle">Rows</span><strong>2</strong></div>
   </div>
 </a>
 <a class="unit-card" href="units/unit-14.html">
-  <div><span class="chip black">Black</span></div>
+  <div><span class="chip purple">Purple</span></div>
   <h3>Unit 14</h3>
-  <p>R 42,694.62 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
+  <p>Attachment / rental enforcement · owner BLR, RVD</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 43,239.09</strong></div>
-    <div class="mini"><span class="subtle">Accounts</span><strong>2</strong></div>
-    <div class="mini"><span class="subtle">Owner to chase</span><strong style="font-size:14px">BLR, RVD</strong></div>
+    <div class="mini"><span class="subtle">Balance</span><strong>R 45,648.64</strong></div>
+    <div class="mini"><span class="subtle">Rows</span><strong>2</strong></div>
   </div>
 </a>
 <a class="unit-card" href="units/unit-23.html">
-  <div><span class="chip black">Black</span></div>
+  <div><span class="chip purple">Purple</span></div>
   <h3>Unit 23</h3>
-  <p>R 28,513.19 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
+  <p>Attorney / handover · owner LG, RVD</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 28,895.60</strong></div>
-    <div class="mini"><span class="subtle">Accounts</span><strong>2</strong></div>
-    <div class="mini"><span class="subtle">Owner to chase</span><strong style="font-size:14px">LG, RVD</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="units/unit-02.html">
-  <div><span class="chip black">Black</span></div>
-  <h3>Unit 2</h3>
-  <p>R 28,821.08 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 28,821.08</strong></div>
-    <div class="mini"><span class="subtle">Accounts</span><strong>2</strong></div>
-    <div class="mini"><span class="subtle">Owner to chase</span><strong style="font-size:14px">BLR, RVD</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="units/unit-04.html">
-  <div><span class="chip black">Black</span></div>
-  <h3>Unit 4</h3>
-  <p>R 19,830.84 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 28,707.69</strong></div>
-    <div class="mini"><span class="subtle">Accounts</span><strong>2</strong></div>
-    <div class="mini"><span class="subtle">Owner to chase</span><strong style="font-size:14px">BLR</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="units/unit-36.html">
-  <div><span class="chip black">Black</span></div>
-  <h3>Unit 36</h3>
-  <p>R 21,912.80 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 23,854.53</strong></div>
-    <div class="mini"><span class="subtle">Accounts</span><strong>2</strong></div>
-    <div class="mini"><span class="subtle">Owner to chase</span><strong style="font-size:14px">Attorney / legal operator not clearly named</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="units/unit-41.html">
-  <div><span class="chip black">Black</span></div>
-  <h3>Unit 41</h3>
-  <p>R 20,370.75 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 20,370.75</strong></div>
-    <div class="mini"><span class="subtle">Accounts</span><strong>2</strong></div>
-    <div class="mini"><span class="subtle">Owner to chase</span><strong style="font-size:14px">LG, PM, RVD</strong></div>
+    <div class="mini"><span class="subtle">Balance</span><strong>R 31,264.81</strong></div>
+    <div class="mini"><span class="subtle">Rows</span><strong>2</strong></div>
   </div>
 </a>
   </div>
-
-  <div class="grid two-up">
-    <div class="card">
-      <h2 style="margin-top:0">How to read this</h2>
-      <div class="list">
-        <div class="list-item"><strong>Yellow</strong><br>Visible arrears, but still manageable if the next cycle is watched properly.</div>
-        <div class="list-item"><strong>Orange</strong><br>Worsening pattern. Still recoverable before it becomes a legal / broken-arrangement machine.</div>
-        <div class="list-item"><strong>Red</strong><br>Already hardened or repeated. Needs active intervention, not routine follow-up.</div>
-        <div class="list-item"><strong>Black</strong><br>Late-stage money. Delay here is expensive because the file is already deep in legal / enforcement territory.</div>
-      </div>
-    </div>
-    <div class="card">
-      <h2 style="margin-top:0">What changed from the old page</h2>
-      <div class="list">
-        <div class="list-item">The home page is now just the dashboard snapshot, not the whole report dumped on one page.</div>
-        <div class="list-item">Each colour opens its own page.</div>
-        <div class="list-item">Each unit opens its own story page.</div>
-        <div class="list-item">Raw notes stay collapsed until you choose to open them.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">Built from the Afrizone arrears extract. Unit count uses the user-provided principal of 48 units; the live data file only contains the units currently appearing in the positive-balance extract.</div>
+  <div class="footer">Built from the Afrizone arrears extract. This page stays summary-only; the row-level stories and notes live behind the drilldown pages.</div>
 </div></body>
 </html>

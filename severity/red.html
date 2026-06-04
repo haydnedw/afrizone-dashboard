@@ -15,7 +15,7 @@
   --yellow:#f1c84b;
   --orange:#ff9b4a;
   --red:#ef5f71;
-  --black:#c7d2e5;
+  --purple:#b48cff;
   --green:#64d58e;
   --blue:#79b6ff;
 }
@@ -41,7 +41,7 @@ a:hover{text-decoration:underline}
 .severity-card.yellow{background:linear-gradient(180deg,rgba(241,200,75,.14),rgba(15,27,45,.96))}
 .severity-card.orange{background:linear-gradient(180deg,rgba(255,155,74,.15),rgba(15,27,45,.96))}
 .severity-card.red{background:linear-gradient(180deg,rgba(239,95,113,.14),rgba(15,27,45,.96))}
-.severity-card.black{background:linear-gradient(180deg,rgba(199,210,229,.14),rgba(15,27,45,.96))}
+.severity-card.purple{background:linear-gradient(180deg,rgba(180,140,255,.18),rgba(15,27,45,.96))}
 .severity-title{font-size:28px;font-weight:800}
 .severity-count{font-size:44px;font-weight:900;margin-top:12px}
 .severity-amount{font-size:18px;margin-top:4px}
@@ -51,13 +51,22 @@ a:hover{text-decoration:underline}
 .chip.yellow{background:rgba(241,200,75,.18);color:#fff0be}
 .chip.orange{background:rgba(255,155,74,.18);color:#ffe0bf}
 .chip.red{background:rgba(239,95,113,.18);color:#ffd9df}
-.chip.black{background:rgba(199,210,229,.18);color:#eef5ff}
+.chip.purple{background:rgba(180,140,255,.18);color:#f1e7ff}
 .chip.good{background:rgba(100,213,142,.16);color:#dcffe7}
 .chip.info{background:rgba(121,182,255,.16);color:#deebff}
 .chip.warning{background:rgba(255,155,74,.16);color:#ffe0bf}
 .chip.danger{background:rgba(239,95,113,.16);color:#ffd9df}
 .section-title{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:26px 0 10px}
 .section-title h2{margin:0;font-size:24px}
+.split{display:grid;grid-template-columns:1.3fr .9fr;gap:16px;margin-top:22px}
+.chart-card{padding:18px;border-radius:18px;background:rgba(15,27,45,.96);border:1px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.2)}
+.bucket-bars{display:grid;gap:12px;margin-top:14px}
+.bucket-row{display:grid;grid-template-columns:86px 1fr auto;gap:12px;align-items:center}
+.bucket-track{height:12px;border-radius:999px;background:#10203a;overflow:hidden;border:1px solid var(--line)}
+.bucket-fill{height:100%}
+.attention-list{display:grid;gap:10px;margin-top:14px}
+.attention-item{padding:12px 14px;border-radius:14px;background:#10203a;border:1px solid var(--line)}
+.tiny{font-size:12px;color:var(--muted)}
 .unit-list{grid-template-columns:repeat(2,minmax(300px,1fr))}
 .unit-card{display:block;padding:18px;border-radius:20px}
 .unit-card:hover{text-decoration:none;transform:translateY(-1px)}
@@ -82,7 +91,7 @@ details.note summary::-webkit-details-marker{display:none}
 hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 .back-link{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:#dce9ff}
 .footer{margin-top:30px;color:var(--muted);font-size:13px}
-@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list{grid-template-columns:1fr}.hero h1{font-size:34px}}
+@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list,.split{grid-template-columns:1fr}.hero h1{font-size:34px}}
 </style>
 </head>
 <body>
@@ -93,80 +102,40 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
     <h1>Red units</h1>
     <p>Serious problem. Already hardened, repeated, broken, or clearly escalating.</p>
     <div class="chips">
-      <span class="chip red">7 unit(s)</span>
-      <span class="chip info">R 8,196.31 old debt</span>
+      <span class="chip red">3 unit(s)</span>
+      <span class="chip info">R 31,508.18 old debt</span>
     </div>
   </div>
   <div class="section-title"><h2>Units in this bucket</h2><div class="subtle">Open a unit to see the account story and note trail.</div></div>
   <div class="grid unit-list">
+<a class="unit-card" href="../units/unit-12.html">
+  <div><span class="chip red">Red</span></div>
+  <h3>Unit 12</h3>
+  <p>R 18,127.28 is already hardened and the unit has moved into aod / admitted debt path. This needs active control now.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 18,127.28</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 20,408.09</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-05-31</strong></div>
+  </div>
+</a>
+<a class="unit-card" href="../units/unit-44.html">
+  <div><span class="chip red">Red</span></div>
+  <h3>Unit 44</h3>
+  <p>R 9,900.18 is already hardened and the unit has moved into summons stage. This needs active control now.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 9,900.18</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 11,998.31</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2025-05-21</strong></div>
+  </div>
+</a>
 <a class="unit-card" href="../units/unit-22.html">
   <div><span class="chip red">Red</span></div>
   <h3>Unit 22</h3>
-  <p>R 606.59 is already hardened and the file shows a repeated or escalated collections pattern in arrangement / promise cycle.</p>
+  <p>R 3,480.72 is already hardened and the unit has moved into current  /  low-balance follow-up. This needs active control now.</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 3,480.72</strong></div>
     <div class="mini"><span class="subtle">Total balance</span><strong>R 5,692.77</strong></div>
     <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2025-10-20</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="../units/unit-05.html">
-  <div><span class="chip red">Red</span></div>
-  <h3>Unit 5</h3>
-  <p>R 3,322.52 is already hardened and the file shows a repeated or escalated collections pattern in arrangement / promise cycle.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 3,322.52</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 5,978.19</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2025-03-18</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="../units/unit-20.html">
-  <div><span class="chip red">Red</span></div>
-  <h3>Unit 20</h3>
-  <p>R 394.31 is already hardened and the file shows a repeated or escalated collections pattern in arrangement / promise cycle.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 437.83</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 2,490.78</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2024-10-07</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="../units/unit-09.html">
-  <div><span class="chip red">Red</span></div>
-  <h3>Unit 9</h3>
-  <p>R 339.54 is already hardened and the file shows a repeated or escalated collections pattern in legal-active.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 339.54</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 1,217.85</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-09-30</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="../units/unit-45.html">
-  <div><span class="chip red">Red</span></div>
-  <h3>Unit 45</h3>
-  <p>R 301.62 is already hardened and the file shows a repeated or escalated collections pattern in legal-active.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 301.62</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 682.95</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2019-11-30</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="../units/unit-34.html">
-  <div><span class="chip red">Red</span></div>
-  <h3>Unit 34</h3>
-  <p>R 274.67 is already hardened and the file shows a repeated or escalated collections pattern in arrangement / promise cycle.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 274.67</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 656.00</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-09-30</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="../units/unit-29.html">
-  <div><span class="chip red">Red</span></div>
-  <h3>Unit 29</h3>
-  <p>R 39.41 is already hardened and the file shows a repeated or escalated collections pattern in legal-active.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 39.41</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 1,501.39</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2024-09-01</strong></div>
   </div>
 </a></div>
 </div></body>

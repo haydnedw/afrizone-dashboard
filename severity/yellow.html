@@ -15,7 +15,7 @@
   --yellow:#f1c84b;
   --orange:#ff9b4a;
   --red:#ef5f71;
-  --black:#c7d2e5;
+  --purple:#b48cff;
   --green:#64d58e;
   --blue:#79b6ff;
 }
@@ -41,7 +41,7 @@ a:hover{text-decoration:underline}
 .severity-card.yellow{background:linear-gradient(180deg,rgba(241,200,75,.14),rgba(15,27,45,.96))}
 .severity-card.orange{background:linear-gradient(180deg,rgba(255,155,74,.15),rgba(15,27,45,.96))}
 .severity-card.red{background:linear-gradient(180deg,rgba(239,95,113,.14),rgba(15,27,45,.96))}
-.severity-card.black{background:linear-gradient(180deg,rgba(199,210,229,.14),rgba(15,27,45,.96))}
+.severity-card.purple{background:linear-gradient(180deg,rgba(180,140,255,.18),rgba(15,27,45,.96))}
 .severity-title{font-size:28px;font-weight:800}
 .severity-count{font-size:44px;font-weight:900;margin-top:12px}
 .severity-amount{font-size:18px;margin-top:4px}
@@ -51,13 +51,22 @@ a:hover{text-decoration:underline}
 .chip.yellow{background:rgba(241,200,75,.18);color:#fff0be}
 .chip.orange{background:rgba(255,155,74,.18);color:#ffe0bf}
 .chip.red{background:rgba(239,95,113,.18);color:#ffd9df}
-.chip.black{background:rgba(199,210,229,.18);color:#eef5ff}
+.chip.purple{background:rgba(180,140,255,.18);color:#f1e7ff}
 .chip.good{background:rgba(100,213,142,.16);color:#dcffe7}
 .chip.info{background:rgba(121,182,255,.16);color:#deebff}
 .chip.warning{background:rgba(255,155,74,.16);color:#ffe0bf}
 .chip.danger{background:rgba(239,95,113,.16);color:#ffd9df}
 .section-title{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:26px 0 10px}
 .section-title h2{margin:0;font-size:24px}
+.split{display:grid;grid-template-columns:1.3fr .9fr;gap:16px;margin-top:22px}
+.chart-card{padding:18px;border-radius:18px;background:rgba(15,27,45,.96);border:1px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.2)}
+.bucket-bars{display:grid;gap:12px;margin-top:14px}
+.bucket-row{display:grid;grid-template-columns:86px 1fr auto;gap:12px;align-items:center}
+.bucket-track{height:12px;border-radius:999px;background:#10203a;overflow:hidden;border:1px solid var(--line)}
+.bucket-fill{height:100%}
+.attention-list{display:grid;gap:10px;margin-top:14px}
+.attention-item{padding:12px 14px;border-radius:14px;background:#10203a;border:1px solid var(--line)}
+.tiny{font-size:12px;color:var(--muted)}
 .unit-list{grid-template-columns:repeat(2,minmax(300px,1fr))}
 .unit-card{display:block;padding:18px;border-radius:20px}
 .unit-card:hover{text-decoration:none;transform:translateY(-1px)}
@@ -82,7 +91,7 @@ details.note summary::-webkit-details-marker{display:none}
 hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
 .back-link{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:#dce9ff}
 .footer{margin-top:30px;color:var(--muted);font-size:13px}
-@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list{grid-template-columns:1fr}.hero h1{font-size:34px}}
+@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list,.split{grid-template-columns:1fr}.hero h1{font-size:34px}}
 </style>
 </head>
 <body>
@@ -93,50 +102,110 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
     <h1>Yellow units</h1>
     <p>Manageable. Visible arrears, but not yet the kind of file that should eat the team.</p>
     <div class="chips">
-      <span class="chip yellow">4 unit(s)</span>
-      <span class="chip info">R 1,853.03 old debt</span>
+      <span class="chip yellow">10 unit(s)</span>
+      <span class="chip info">R 2,046.54 old debt</span>
     </div>
   </div>
   <div class="section-title"><h2>Units in this bucket</h2><div class="subtle">Open a unit to see the account story and note trail.</div></div>
   <div class="grid unit-list">
-<a class="unit-card" href="../units/unit-40.html">
-  <div><span class="chip yellow">Yellow</span></div>
-  <h3>Unit 40</h3>
-  <p>The balance is slipping through the current cycle into old debt, but it is still manageable if the next action actually lands.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 659.90</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 996.05</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2019-09-30</strong></div>
-  </div>
-</a>
-<a class="unit-card" href="../units/unit-03.html">
-  <div><span class="chip yellow">Yellow</span></div>
-  <h3>Unit 3</h3>
-  <p>The balance is slipping through the current cycle into old debt, but it is still manageable if the next action actually lands.</p>
-  <div class="unit-meta">
-    <div class="mini"><span class="subtle">30+ debt</span><strong>R 578.21</strong></div>
-    <div class="mini"><span class="subtle">Total balance</span><strong>R 1,049.90</strong></div>
-    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-09-30</strong></div>
-  </div>
-</a>
 <a class="unit-card" href="../units/unit-11.html">
   <div><span class="chip yellow">Yellow</span></div>
   <h3>Unit 11</h3>
-  <p>The balance is slipping through the current cycle into old debt, but it is still manageable if the next action actually lands.</p>
+  <p>R 405.40 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 405.40</strong></div>
     <div class="mini"><span class="subtle">Total balance</span><strong>R 786.73</strong></div>
     <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2022-06-21</strong></div>
   </div>
 </a>
+<a class="unit-card" href="../units/unit-09.html">
+  <div><span class="chip yellow">Yellow</span></div>
+  <h3>Unit 9</h3>
+  <p>R 339.54 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 339.54</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 1,217.85</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-09-30</strong></div>
+  </div>
+</a>
+<a class="unit-card" href="../units/unit-48.html">
+  <div><span class="chip yellow">Yellow</span></div>
+  <h3>Unit 48</h3>
+  <p>R 305.85 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 305.85</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 2,102.72</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2025-09-05</strong></div>
+  </div>
+</a>
+<a class="unit-card" href="../units/unit-45.html">
+  <div><span class="chip yellow">Yellow</span></div>
+  <h3>Unit 45</h3>
+  <p>R 301.62 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 301.62</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 682.95</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2019-11-30</strong></div>
+  </div>
+</a>
+<a class="unit-card" href="../units/unit-34.html">
+  <div><span class="chip yellow">Yellow</span></div>
+  <h3>Unit 34</h3>
+  <p>R 274.67 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 274.67</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 656.00</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-09-30</strong></div>
+  </div>
+</a>
 <a class="unit-card" href="../units/unit-47.html">
   <div><span class="chip yellow">Yellow</span></div>
   <h3>Unit 47</h3>
-  <p>The balance is slipping through the current cycle into old debt, but it is still manageable if the next action actually lands.</p>
+  <p>R 209.52 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</p>
   <div class="unit-meta">
     <div class="mini"><span class="subtle">30+ debt</span><strong>R 209.52</strong></div>
     <div class="mini"><span class="subtle">Total balance</span><strong>R 545.67</strong></div>
     <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2019-11-30</strong></div>
+  </div>
+</a>
+<a class="unit-card" href="../units/unit-18.html">
+  <div><span class="chip yellow">Yellow</span></div>
+  <h3>Unit 18</h3>
+  <p>R 158.43 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 158.43</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 494.58</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-01-23</strong></div>
+  </div>
+</a>
+<a class="unit-card" href="../units/unit-29.html">
+  <div><span class="chip yellow">Yellow</span></div>
+  <h3>Unit 29</h3>
+  <p>R 39.41 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 39.41</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 1,501.39</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2024-09-01</strong></div>
+  </div>
+</a>
+<a class="unit-card" href="../units/unit-06.html">
+  <div><span class="chip yellow">Yellow</span></div>
+  <h3>Unit 6</h3>
+  <p>R 11.76 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 11.76</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 2,354.52</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-04-21</strong></div>
+  </div>
+</a>
+<a class="unit-card" href="../units/unit-28.html">
+  <div><span class="chip yellow">Yellow</span></div>
+  <h3>Unit 28</h3>
+  <p>R 0.34 sits in the early warning range. Keep it moving before it grows into a red legal-style file.</p>
+  <div class="unit-meta">
+    <div class="mini"><span class="subtle">30+ debt</span><strong>R 0.34</strong></div>
+    <div class="mini"><span class="subtle">Total balance</span><strong>R 562.39</strong></div>
+    <div class="mini"><span class="subtle">Latest note</span><strong style="font-size:14px">2023-09-30</strong></div>
   </div>
 </a></div>
 </div></body>
