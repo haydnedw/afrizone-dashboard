@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 36 - AFRIZONE</title>
+<style>
+:root {
+  --bg:#08111d;
+  --panel:#0f1b2d;
+  --panel-2:#12233c;
+  --line:#223858;
+  --text:#eef5ff;
+  --muted:#9eb6d4;
+  --yellow:#f1c84b;
+  --orange:#ff9b4a;
+  --red:#ef5f71;
+  --black:#c7d2e5;
+  --green:#64d58e;
+  --blue:#79b6ff;
+}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 Inter,system-ui,sans-serif;background:linear-gradient(180deg,#07101b,#091425 220px,#08111d);color:var(--text)}
+a{color:#d9e9ff;text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1280px;margin:0 auto;padding:24px}
+.hero,.card,.unit-card,.severity-card,details.note{background:rgba(15,27,45,.96);border:1px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.2)}
+.hero{padding:28px;border-radius:24px;background:radial-gradient(circle at top left,rgba(121,182,255,.18),transparent 32%),linear-gradient(180deg,#12233c,#0f1b2d)}
+.hero h1{margin:0;font-size:42px;line-height:1.02;letter-spacing:.02em}
+.hero p{margin:10px 0 0;color:var(--muted);max-width:920px}
+.subtle{color:var(--muted);font-size:13px}
+.grid{display:grid;gap:16px}
+.kpis{grid-template-columns:repeat(4,minmax(150px,1fr));margin-top:18px}
+.card{padding:18px;border-radius:18px}
+.kpi-label{text-transform:uppercase;font-size:11px;letter-spacing:.12em;color:var(--muted)}
+.kpi-value{font-size:32px;font-weight:800;margin-top:8px}
+.kpi-sub{color:var(--muted);font-size:13px;margin-top:6px}
+.severity-grid{grid-template-columns:repeat(4,minmax(220px,1fr));margin-top:22px}
+.severity-card{display:block;padding:20px;border-radius:22px;position:relative;overflow:hidden}
+.severity-card:hover{text-decoration:none;transform:translateY(-1px)}
+.severity-card.yellow{background:linear-gradient(180deg,rgba(241,200,75,.14),rgba(15,27,45,.96))}
+.severity-card.orange{background:linear-gradient(180deg,rgba(255,155,74,.15),rgba(15,27,45,.96))}
+.severity-card.red{background:linear-gradient(180deg,rgba(239,95,113,.14),rgba(15,27,45,.96))}
+.severity-card.black{background:linear-gradient(180deg,rgba(199,210,229,.14),rgba(15,27,45,.96))}
+.severity-title{font-size:28px;font-weight:800}
+.severity-count{font-size:44px;font-weight:900;margin-top:12px}
+.severity-amount{font-size:18px;margin-top:4px}
+.severity-copy{color:var(--muted);margin-top:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#173055;border:1px solid var(--line);font-size:12px;font-weight:700}
+.chip.yellow{background:rgba(241,200,75,.18);color:#fff0be}
+.chip.orange{background:rgba(255,155,74,.18);color:#ffe0bf}
+.chip.red{background:rgba(239,95,113,.18);color:#ffd9df}
+.chip.black{background:rgba(199,210,229,.18);color:#eef5ff}
+.chip.good{background:rgba(100,213,142,.16);color:#dcffe7}
+.chip.info{background:rgba(121,182,255,.16);color:#deebff}
+.chip.warning{background:rgba(255,155,74,.16);color:#ffe0bf}
+.chip.danger{background:rgba(239,95,113,.16);color:#ffd9df}
+.section-title{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:26px 0 10px}
+.section-title h2{margin:0;font-size:24px}
+.unit-list{grid-template-columns:repeat(2,minmax(300px,1fr))}
+.unit-card{display:block;padding:18px;border-radius:20px}
+.unit-card:hover{text-decoration:none;transform:translateY(-1px)}
+.unit-card h3{margin:10px 0 0;font-size:24px}
+.unit-card p{margin:10px 0 0;color:var(--muted)}
+.unit-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.unit-meta .mini{padding:10px 12px;border-radius:14px;background:#10203a;border:1px solid var(--line)}
+.unit-meta .mini strong{display:block;font-size:18px}
+.unit-header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.two-up{grid-template-columns:1fr 1fr}
+.account-block{padding:18px;border-radius:18px;background:#0f1d33;border:1px solid var(--line)}
+.account-block h3{margin:10px 0 0;font-size:22px;line-height:1.2}
+.account-grid{grid-template-columns:repeat(2,minmax(320px,1fr));margin-top:18px}
+.list{display:grid;gap:10px}
+.list-item{padding:12px 14px;border-radius:14px;background:#10203a;border:1px solid var(--line)}
+details.note{border-radius:16px;padding:0;overflow:hidden;margin-top:12px}
+details.note summary{cursor:pointer;list-style:none;padding:14px 16px;background:#10203a}
+details.note summary::-webkit-details-marker{display:none}
+.note-body{padding:14px 16px;border-top:1px solid var(--line)}
+.note-heading{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.note-preview{color:var(--muted);margin-top:8px}
+hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
+.back-link{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:#dce9ff}
+.footer{margin-top:30px;color:var(--muted);font-size:13px}
+@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list{grid-template-columns:1fr}.hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back-link" href="../severity/black.html">← Back to Black bucket</a>
+  <div class="hero">
+    <div class="unit-header">
+      <div>
+        <div class="subtle">AFR - Afrizone</div>
+        <h1>Unit 36</h1>
+        <p>R 21,912.80 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
+      </div>
+      <div class="chips"><span class="chip black">Black</span><span class="chip info">Attorney / legal operator not clearly named</span></div>
+    </div>
+  </div>
+
+  <div class="grid kpis">
+    <div class="card"><div class="kpi-label">Unit balance</div><div class="kpi-value">R 25,907.48</div><div class="kpi-sub">All visible account rows on this unit</div></div>
+    <div class="card"><div class="kpi-label">30+ debt</div><div class="kpi-value">R 23,854.53</div><div class="kpi-sub">Old debt carried by this unit</div></div>
+    <div class="card"><div class="kpi-label">Account rows</div><div class="kpi-value">2</div><div class="kpi-sub">Primary and secondary rows shown separately</div></div>
+    <div class="card"><div class="kpi-label">Freshest note</div><div class="kpi-value" style="font-size:24px">2025-08-20</div><div class="kpi-sub">Most recent visible note date across rows</div></div>
+  </div>
+
+  <div class="grid two-up">
+    <div class="card">
+      <h2 style="margin-top:0">Manager story</h2>
+      <div class="list">
+        <div class="list-item"><strong>What this unit says</strong><br>R 21,912.80 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</div>
+        <div class="list-item"><strong>My interpretation</strong><br>The account story is simple: old debt exists, and the notes need to prove forward motion rather than repeated contact.</div>
+        <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+      </div>
+    </div>
+    <div class="card"><h2 style="margin-top:0">Legal / collections terms on this unit</h2><div class="list"><div class="list-item"><strong>Summons</strong><br>A formal court document issued and served by the sheriff. It starts the court case properly.<br><span class="subtle">Timing: The debtor usually has 10 working days after service to file a notice of intention to defend. Court issuing itself can take days or weeks depending on the court. · Source: Van Deventers debt collection procedure summary</span></div><div class="list-item"><strong>AOD</strong><br>An acknowledgement of debt: the debtor admits liability and offers a payment arrangement in writing.<br><span class="subtle">Timing: If the AOD is broken, section 57 mechanics may allow judgment to be sought on the admitted debt path. The key management question is whether default triggered a real legal move. · Source: Magistrates’ Courts Act section 57 summary</span></div></div></div>
+  </div>
+
+  <div class="section-title"><h2>Account rows on this unit</h2><div class="subtle">If the unit has two rows, treat them as one debtor story with two balances.</div></div>
+  <div class="grid account-grid">
+<div class="account-block">
+  <div><span class="chip black">Black</span><span class="chip info">Judgment stage</span><span class="chip info">Primary row</span></div>
+  <h3>SIB003-D36: SIBONGILE JOHANNAH KUBHEKA</h3>
+  <p>R 21,912.80 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
+  <div class="grid kpis" style="grid-template-columns:repeat(4,minmax(120px,1fr));margin-top:16px">
+    <div class="card"><div class="kpi-label">Total balance</div><div class="kpi-value" style="font-size:24px">R 23,629.60</div></div>
+    <div class="card"><div class="kpi-label">30+ debt</div><div class="kpi-value" style="font-size:24px">R 21,912.80</div></div>
+    <div class="card"><div class="kpi-label">Owner</div><div class="kpi-value" style="font-size:16px">Attorney / legal operator not clearly named</div></div>
+    <div class="card"><div class="kpi-label">Latest note</div><div class="kpi-value" style="font-size:16px">2026-05-18</div></div>
+  </div>
+  <div class="grid two-up" style="margin-top:16px">
+    <div class="list">
+      <div class="list-item"><strong>My read</strong><br>The account story is simple: old debt exists, and the notes need to prove forward motion rather than repeated contact.</div>
+      <div class="list-item"><strong>Next best move</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+    <div class="list">
+      <div class="list-item"><strong>Status codes</strong><br>RDJA</div>
+      <div class="list-item"><strong>Process flags</strong><br>None</div>
+    </div>
+  </div>
+  <hr class="sep">
+  <h4 style="margin:0 0 8px">Notes</h4>
+  <div class="subtle">Newest note on top. Open only the ones you need.</div>
+  
+<details class="note" open>
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-08-20 11:09:00 Debt Status [P1] 30 DAY&#x27;S NOTICE</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-08-20 11:09:00 Debt Status [P1] 30 DAY&#x27;S NOTICE</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-09-05 10:38:00 Debt Status [P2] 60 DAY&#x27;S NOTICE</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-09-05 10:38:00 Debt Status [P2] 60 DAY&#x27;S NOTICE</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-10-20 12:08:00 Debt Status [P2] 60 DAY&#x27;S NOTICE</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-10-20 12:08:00 Debt Status [P2] 60 DAY&#x27;S NOTICE</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-11-19 09:00:00 Debt Status [P3] PRE-HANDOVER - LOD</strong>
+        <div class="note-preview">This is a real escalation step. It makes sense only if a newer dated legal step follows it later.</div>
+      </div>
+      <div><span class="chip danger">Legal step</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-11-19 09:00:00 Debt Status [P3] PRE-HANDOVER - LOD</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is a real escalation step. It makes sense only if a newer dated legal step follows it later.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-11-20 @ R 10001.60</strong>
+        <div class="note-preview">Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      </div>
+      <div><span class="chip info">Activity note</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-11-20 @ R 10001.60</div>
+      <div class="list-item"><strong>Interpretation</strong><br>Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-11-20 13:14:00 Handed Over</strong>
+        <div class="note-preview">Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      </div>
+      <div><span class="chip info">Activity note</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-11-20 13:14:00 Handed Over</div>
+      <div class="list-item"><strong>Interpretation</strong><br>Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-11-20 13:14:00 Debt Status [BLRA] BLR ATTORNEYS</strong>
+        <div class="note-preview">This is a real escalation step. It makes sense only if a newer dated legal step follows it later.</div>
+      </div>
+      <div><span class="chip danger">Legal step</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-11-20 13:14:00 Debt Status [BLRA] BLR ATTORNEYS</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is a real escalation step. It makes sense only if a newer dated legal step follows it later.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-11-26 12:36:00 Debt Status [BLRA] BLR ATTORNEYS: New handover,no …</strong>
+        <div class="note-preview">This is a real escalation step. It makes sense only if a newer dated legal step follows it later.</div>
+      </div>
+      <div><span class="chip danger">Legal step</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-11-26 12:36:00 Debt Status [BLRA] BLR ATTORNEYS: New handover,no update yet</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is a real escalation step. It makes sense only if a newer dated legal step follows it later.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-12-17 13:17:00 Debt Status [ASC] ATTORNEY SUMMONS TO COURT: Summo…</strong>
+        <div class="note-preview">This is a real escalation step. It makes sense only if a newer dated legal step follows it later.</div>
+      </div>
+      <div><span class="chip danger">Legal step</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-12-17 13:17:00 Debt Status [ASC] ATTORNEY SUMMONS TO COURT: Summons sent to Court to be Issued on the 9th of December 2025.</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is a real escalation step. It makes sense only if a newer dated legal step follows it later.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2026-02-09 11:00:00 Debt Status Removed</strong>
+        <div class="note-preview">Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      </div>
+      <div><span class="chip info">Activity note</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2026-02-09 11:00:00 Debt Status Removed</div>
+      <div class="list-item"><strong>Interpretation</strong><br>Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2026-02-09 11:09:00 Debt Status [SUMS] ATTORNEY SUMMONS TO SHERIFF</strong>
+        <div class="note-preview">This is a real escalation step. It makes sense only if a newer dated legal step follows it later.</div>
+      </div>
+      <div><span class="chip danger">Legal step</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2026-02-09 11:09:00 Debt Status [SUMS] ATTORNEY SUMMONS TO SHERIFF</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is a real escalation step. It makes sense only if a newer dated legal step follows it later.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2026-03-11 17:00:00 Affidavit sent to be commissioned on the 19th of F…</strong>
+        <div class="note-preview">Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      </div>
+      <div><span class="chip info">Activity note</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2026-03-11 17:00:00 Affidavit sent to be commissioned on the 19th of February 2026. cAI</div>
+      <div class="list-item"><strong>Interpretation</strong><br>Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+</div>
+<div class="account-block">
+  <div><span class="chip red">Red</span><span class="chip info">AOD / admitted debt path</span><span class="chip info">Secondary row</span></div>
+  <h3>SIB004-D36t: SIBONGILE JOHANNAH KUBHEKA</h3>
+  <p>R 1,941.73 is already hardened and the file shows a repeated or escalated collections pattern in arrangement / promise cycle.</p>
+  <div class="grid kpis" style="grid-template-columns:repeat(4,minmax(120px,1fr));margin-top:16px">
+    <div class="card"><div class="kpi-label">Total balance</div><div class="kpi-value" style="font-size:24px">R 2,277.88</div></div>
+    <div class="card"><div class="kpi-label">30+ debt</div><div class="kpi-value" style="font-size:24px">R 1,941.73</div></div>
+    <div class="card"><div class="kpi-label">Owner</div><div class="kpi-value" style="font-size:16px">No clear owner visible</div></div>
+    <div class="card"><div class="kpi-label">Latest note</div><div class="kpi-value" style="font-size:16px">2026-05-18</div></div>
+  </div>
+  <div class="grid two-up" style="margin-top:16px">
+    <div class="list">
+      <div class="list-item"><strong>My read</strong><br>The file is being managed through promises / arrangement language. The next decision should be based on whether money really landed.</div>
+      <div class="list-item"><strong>Next best move</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+    <div class="list">
+      <div class="list-item"><strong>Status codes</strong><br>NP</div>
+      <div class="list-item"><strong>Process flags</strong><br>broken-arrangement-cycle</div>
+    </div>
+  </div>
+  <hr class="sep">
+  <h4 style="margin:0 0 8px">Notes</h4>
+  <div class="subtle">Newest note on top. Open only the ones you need.</div>
+  
+<details class="note" open>
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-07-11 11:25:00 Payment Arrangement: AOD signed to pay R 400 to Bl…</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-07-11 11:25:00 Payment Arrangement: AOD signed to pay R 400 to Blue Dot Rentals for the arrears for the services when she was still renting 9 R 4033.85 due</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-07-15 11:24:00 Debt Status [ANEW] ARRANGEMENT - NEW</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-07-15 11:24:00 Debt Status [ANEW] ARRANGEMENT - NEW</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-08-20 10:36:00 Debt Status [QRY] QUERY - HOLD: Enquirey done with…</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-08-20 10:36:00 Debt Status [QRY] QUERY - HOLD: Enquirey done with Melba as arrangement is R 400 and rentals only paid over R 150</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-09-05 10:04:00 Debt Status [QRY] QUERY - HOLD: Owner paid current…</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-09-05 10:04:00 Debt Status [QRY] QUERY - HOLD: Owner paid current, Rentals only R 150, follow up sent to enquire why the arrangement was paid short and when the payment will be received this month</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-10-20 11:49:00 Debt Status [AP] Arrangement Up to date</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-10-20 11:49:00 Debt Status [AP] Arrangement Up to date</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-11-12 09:14:00 Debt Status [NPay] Arrangement not paid</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-11-12 09:14:00 Debt Status [NPay] Arrangement not paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-11-12 12:23:00 Debt Status [PTP] PROMISE TO PAY: Owner promised t…</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-11-12 12:23:00 Debt Status [PTP] PROMISE TO PAY: Owner promised to pay arrears on 13/11/2025</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-11-19 08:59:00 Debt Status [NPay] Arrangement not paid: Tried exp…</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-11-19 08:59:00 Debt Status [NPay] Arrangement not paid: Tried explaining to the owner how levies and her arrangement works, she threatened?to send EFF to offices, explained?to her she needs to pay her current and the arrangement amount. She said we are scamming her.? She requested that Thando give her a call to explain in her owner language what she should pay.</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-11-26 12:37:00 Thando gave her a call and she then told Thando sh…</strong>
+        <div class="note-preview">Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      </div>
+      <div><span class="chip info">Activity note</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-11-26 12:37:00 Thando gave her a call and she then told Thando she does not want to talk to her.</div>
+      <div class="list-item"><strong>Interpretation</strong><br>Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-12-10 10:50:00 Debt Status [AP] Arrangement Up to date: Pays afte…</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-12-10 10:50:00 Debt Status [AP] Arrangement Up to date: Pays after the 15th, arrangement paid for November</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-12-10 10:52:00 Debt Status [AP] Arrangement Up to date: R 1000 re…</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-12-10 10:52:00 Debt Status [AP] Arrangement Up to date: R 1000 received on 4/12/2025</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2026-01-19 10:35:00 Debt Status [AP] Arrangement Up to date</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2026-01-19 10:35:00 Debt Status [AP] Arrangement Up to date</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Broken AOD path: stop soft reminders and confirm whether judgment is being pursued now.</div>
+    </div>
+  </div>
+</details>
+</div></div>
+</div></body>
+</html>

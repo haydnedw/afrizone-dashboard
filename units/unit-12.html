@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 12 - AFRIZONE</title>
+<style>
+:root {
+  --bg:#08111d;
+  --panel:#0f1b2d;
+  --panel-2:#12233c;
+  --line:#223858;
+  --text:#eef5ff;
+  --muted:#9eb6d4;
+  --yellow:#f1c84b;
+  --orange:#ff9b4a;
+  --red:#ef5f71;
+  --black:#c7d2e5;
+  --green:#64d58e;
+  --blue:#79b6ff;
+}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 Inter,system-ui,sans-serif;background:linear-gradient(180deg,#07101b,#091425 220px,#08111d);color:var(--text)}
+a{color:#d9e9ff;text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1280px;margin:0 auto;padding:24px}
+.hero,.card,.unit-card,.severity-card,details.note{background:rgba(15,27,45,.96);border:1px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.2)}
+.hero{padding:28px;border-radius:24px;background:radial-gradient(circle at top left,rgba(121,182,255,.18),transparent 32%),linear-gradient(180deg,#12233c,#0f1b2d)}
+.hero h1{margin:0;font-size:42px;line-height:1.02;letter-spacing:.02em}
+.hero p{margin:10px 0 0;color:var(--muted);max-width:920px}
+.subtle{color:var(--muted);font-size:13px}
+.grid{display:grid;gap:16px}
+.kpis{grid-template-columns:repeat(4,minmax(150px,1fr));margin-top:18px}
+.card{padding:18px;border-radius:18px}
+.kpi-label{text-transform:uppercase;font-size:11px;letter-spacing:.12em;color:var(--muted)}
+.kpi-value{font-size:32px;font-weight:800;margin-top:8px}
+.kpi-sub{color:var(--muted);font-size:13px;margin-top:6px}
+.severity-grid{grid-template-columns:repeat(4,minmax(220px,1fr));margin-top:22px}
+.severity-card{display:block;padding:20px;border-radius:22px;position:relative;overflow:hidden}
+.severity-card:hover{text-decoration:none;transform:translateY(-1px)}
+.severity-card.yellow{background:linear-gradient(180deg,rgba(241,200,75,.14),rgba(15,27,45,.96))}
+.severity-card.orange{background:linear-gradient(180deg,rgba(255,155,74,.15),rgba(15,27,45,.96))}
+.severity-card.red{background:linear-gradient(180deg,rgba(239,95,113,.14),rgba(15,27,45,.96))}
+.severity-card.black{background:linear-gradient(180deg,rgba(199,210,229,.14),rgba(15,27,45,.96))}
+.severity-title{font-size:28px;font-weight:800}
+.severity-count{font-size:44px;font-weight:900;margin-top:12px}
+.severity-amount{font-size:18px;margin-top:4px}
+.severity-copy{color:var(--muted);margin-top:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#173055;border:1px solid var(--line);font-size:12px;font-weight:700}
+.chip.yellow{background:rgba(241,200,75,.18);color:#fff0be}
+.chip.orange{background:rgba(255,155,74,.18);color:#ffe0bf}
+.chip.red{background:rgba(239,95,113,.18);color:#ffd9df}
+.chip.black{background:rgba(199,210,229,.18);color:#eef5ff}
+.chip.good{background:rgba(100,213,142,.16);color:#dcffe7}
+.chip.info{background:rgba(121,182,255,.16);color:#deebff}
+.chip.warning{background:rgba(255,155,74,.16);color:#ffe0bf}
+.chip.danger{background:rgba(239,95,113,.16);color:#ffd9df}
+.section-title{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:26px 0 10px}
+.section-title h2{margin:0;font-size:24px}
+.unit-list{grid-template-columns:repeat(2,minmax(300px,1fr))}
+.unit-card{display:block;padding:18px;border-radius:20px}
+.unit-card:hover{text-decoration:none;transform:translateY(-1px)}
+.unit-card h3{margin:10px 0 0;font-size:24px}
+.unit-card p{margin:10px 0 0;color:var(--muted)}
+.unit-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.unit-meta .mini{padding:10px 12px;border-radius:14px;background:#10203a;border:1px solid var(--line)}
+.unit-meta .mini strong{display:block;font-size:18px}
+.unit-header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.two-up{grid-template-columns:1fr 1fr}
+.account-block{padding:18px;border-radius:18px;background:#0f1d33;border:1px solid var(--line)}
+.account-block h3{margin:10px 0 0;font-size:22px;line-height:1.2}
+.account-grid{grid-template-columns:repeat(2,minmax(320px,1fr));margin-top:18px}
+.list{display:grid;gap:10px}
+.list-item{padding:12px 14px;border-radius:14px;background:#10203a;border:1px solid var(--line)}
+details.note{border-radius:16px;padding:0;overflow:hidden;margin-top:12px}
+details.note summary{cursor:pointer;list-style:none;padding:14px 16px;background:#10203a}
+details.note summary::-webkit-details-marker{display:none}
+.note-body{padding:14px 16px;border-top:1px solid var(--line)}
+.note-heading{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.note-preview{color:var(--muted);margin-top:8px}
+hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
+.back-link{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:#dce9ff}
+.footer{margin-top:30px;color:var(--muted);font-size:13px}
+@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list{grid-template-columns:1fr}.hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back-link" href="../severity/black.html">← Back to Black bucket</a>
+  <div class="hero">
+    <div class="unit-header">
+      <div>
+        <div class="subtle">AFR - Afrizone</div>
+        <h1>Unit 12</h1>
+        <p>R 15,446.74 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
+      </div>
+      <div class="chips"><span class="chip black">Black</span><span class="chip info">LG, RVD</span></div>
+    </div>
+  </div>
+
+  <div class="grid kpis">
+    <div class="card"><div class="kpi-label">Unit balance</div><div class="kpi-value">R 20,408.09</div><div class="kpi-sub">All visible account rows on this unit</div></div>
+    <div class="card"><div class="kpi-label">30+ debt</div><div class="kpi-value">R 18,127.28</div><div class="kpi-sub">Old debt carried by this unit</div></div>
+    <div class="card"><div class="kpi-label">Account rows</div><div class="kpi-value">2</div><div class="kpi-sub">Primary and secondary rows shown separately</div></div>
+    <div class="card"><div class="kpi-label">Freshest note</div><div class="kpi-value" style="font-size:24px">2023-05-31</div><div class="kpi-sub">Most recent visible note date across rows</div></div>
+  </div>
+
+  <div class="grid two-up">
+    <div class="card">
+      <h2 style="margin-top:0">Manager story</h2>
+      <div class="list">
+        <div class="list-item"><strong>What this unit says</strong><br>R 15,446.74 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</div>
+        <div class="list-item"><strong>My interpretation</strong><br>The account story is simple: old debt exists, and the notes need to prove forward motion rather than repeated contact.</div>
+        <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+      </div>
+    </div>
+    <div class="card"><h2 style="margin-top:0">Legal / collections terms on this unit</h2><div class="list"><div class="list-item"><strong>AOD</strong><br>An acknowledgement of debt: the debtor admits liability and offers a payment arrangement in writing.<br><span class="subtle">Timing: If the AOD is broken, section 57 mechanics may allow judgment to be sought on the admitted debt path. The key management question is whether default triggered a real legal move. · Source: Magistrates’ Courts Act section 57 summary</span></div></div></div>
+  </div>
+
+  <div class="section-title"><h2>Account rows on this unit</h2><div class="subtle">If the unit has two rows, treat them as one debtor story with two balances.</div></div>
+  <div class="grid account-grid">
+<div class="account-block">
+  <div><span class="chip black">Black</span><span class="chip info">AOD / admitted debt path</span><span class="chip info">Primary row</span></div>
+  <h3>ITU001-D12: Itumeleng Mokgethi</h3>
+  <p>R 15,446.74 already sits old and the file is in a late-stage control lane. This is no longer a routine arrears account; it is an enforcement problem.</p>
+  <div class="grid kpis" style="grid-template-columns:repeat(4,minmax(120px,1fr));margin-top:16px">
+    <div class="card"><div class="kpi-label">Total balance</div><div class="kpi-value" style="font-size:24px">R 17,210.68</div></div>
+    <div class="card"><div class="kpi-label">30+ debt</div><div class="kpi-value" style="font-size:24px">R 15,446.74</div></div>
+    <div class="card"><div class="kpi-label">Owner</div><div class="kpi-value" style="font-size:16px">LG, RVD</div></div>
+    <div class="card"><div class="kpi-label">Latest note</div><div class="kpi-value" style="font-size:16px">2026-02-26</div></div>
+  </div>
+  <div class="grid two-up" style="margin-top:16px">
+    <div class="list">
+      <div class="list-item"><strong>My read</strong><br>The account story is simple: old debt exists, and the notes need to prove forward motion rather than repeated contact.</div>
+      <div class="list-item"><strong>Next best move</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+    <div class="list">
+      <div class="list-item"><strong>Status codes</strong><br>CLR</div>
+      <div class="list-item"><strong>Process flags</strong><br>stale-follow-up, legal-inactivity-risk</div>
+    </div>
+  </div>
+  <hr class="sep">
+  <h4 style="margin:0 0 8px">Notes</h4>
+  <div class="subtle">Newest note on top. Open only the ones you need.</div>
+  
+<details class="note" open>
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2020-08-31 1st Notice @ R 1920.89</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2020-08-31 1st Notice @ R 1920.89</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2022-01-31 1st Notice @ R 2710.82</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2022-01-31 1st Notice @ R 2710.82</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2022-05-31 1st Notice @ R 2710.82</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2022-05-31 1st Notice @ R 2710.82</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2022-07-31 1st Notice @ R 2333.62</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2022-07-31 1st Notice @ R 2333.62</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-09-30 2nd Notice @ R 3494.32</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-09-30 2nd Notice @ R 3494.32</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-10-03 2nd Notice @ R 3518.32</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-10-03 2nd Notice @ R 3518.32</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-12-31 2nd Notice @ R 4198.42</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-12-31 2nd Notice @ R 4198.42</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2024-01-21 1st Notice @ R 4672.82</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2024-01-21 1st Notice @ R 4672.82</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2024-01-30 @ R 21.00</strong>
+        <div class="note-preview">Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      </div>
+      <div><span class="chip info">Activity note</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2024-01-30 @ R 21.00</div>
+      <div class="list-item"><strong>Interpretation</strong><br>Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2024-01-31 @ R 21.00</strong>
+        <div class="note-preview">Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      </div>
+      <div><span class="chip info">Activity note</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2024-01-31 @ R 21.00</div>
+      <div class="list-item"><strong>Interpretation</strong><br>Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2024-08-07 15:16:00 Payment Arrangement</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2024-08-07 15:16:00 Payment Arrangement</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2024-08-07 15:17:00 Debt Status [ANEW] ARRANGEMENT - NEW: AOD signed t…</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2024-08-07 15:17:00 Debt Status [ANEW] ARRANGEMENT - NEW: AOD signed to pay R2 430.00 a month, starting on the 25th of August. (LG)</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+</div>
+<div class="account-block">
+  <div><span class="chip red">Red</span><span class="chip info">Arrangement / promise cycle</span><span class="chip info">Secondary row</span></div>
+  <h3>ITU002-D12t: Itumeleng Mokgethi</h3>
+  <p>R 2,680.54 is already hardened and the file shows a repeated or escalated collections pattern in legal-active.</p>
+  <div class="grid kpis" style="grid-template-columns:repeat(4,minmax(120px,1fr));margin-top:16px">
+    <div class="card"><div class="kpi-label">Total balance</div><div class="kpi-value" style="font-size:24px">R 3,197.41</div></div>
+    <div class="card"><div class="kpi-label">30+ debt</div><div class="kpi-value" style="font-size:24px">R 2,680.54</div></div>
+    <div class="card"><div class="kpi-label">Owner</div><div class="kpi-value" style="font-size:16px">LG, RVD</div></div>
+    <div class="card"><div class="kpi-label">Latest note</div><div class="kpi-value" style="font-size:16px">2026-02-26</div></div>
+  </div>
+  <div class="grid two-up" style="margin-top:16px">
+    <div class="list">
+      <div class="list-item"><strong>My read</strong><br>The account story is simple: old debt exists, and the notes need to prove forward motion rather than repeated contact.</div>
+      <div class="list-item"><strong>Next best move</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+    <div class="list">
+      <div class="list-item"><strong>Status codes</strong><br>CLR</div>
+      <div class="list-item"><strong>Process flags</strong><br>stale-follow-up, legal-inactivity-risk</div>
+    </div>
+  </div>
+  <hr class="sep">
+  <h4 style="margin:0 0 8px">Notes</h4>
+  <div class="subtle">Newest note on top. Open only the ones you need.</div>
+  
+<details class="note" open>
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-05-31 1st Notice @ R 2422.65</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-05-31 1st Notice @ R 2422.65</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-09-30 2nd Notice @ R 1206.27</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-09-30 2nd Notice @ R 1206.27</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-01-23 14:21:00 Debt Status [P1] 30 DAY&#x27;S NOTICE: Notice sent. (LG…</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-01-23 14:21:00 Debt Status [P1] 30 DAY&#x27;S NOTICE: Notice sent. (LG)</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-01-23 14:49:00 Debt Status Removed</strong>
+        <div class="note-preview">Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      </div>
+      <div><span class="chip info">Activity note</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-01-23 14:49:00 Debt Status Removed</div>
+      <div class="list-item"><strong>Interpretation</strong><br>Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-02-19 10:14:00 Debt Status [P1] 30 DAY&#x27;S NOTICE</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-02-19 10:14:00 Debt Status [P1] 30 DAY&#x27;S NOTICE</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-03-11 09:12:00 Email received: &quot;Good day I could like to make pay…</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-03-11 09:12:00 Email received: &quot;Good day I could like to make payment arrangement of R500 which will be paid on the 15 March 24.&quot; (LG)</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-03-17 15:35:00 Debt Status [P1] 30 DAY&#x27;S NOTICE: Notices sent. (L…</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-03-17 15:35:00 Debt Status [P1] 30 DAY&#x27;S NOTICE: Notices sent. (LG)</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-04-24 08:12:00 Debt Status [P1] 30 DAY&#x27;S NOTICE: Notices sent. (L…</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-04-24 08:12:00 Debt Status [P1] 30 DAY&#x27;S NOTICE: Notices sent. (LG)</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-05-13 08:03:00 Email received: &quot;Am getting paid on the 15 May wil…</strong>
+        <div class="note-preview">Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      </div>
+      <div><span class="chip info">Activity note</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-05-13 08:03:00 Email received: &quot;Am getting paid on the 15 May will pay R800 then will pay the remaining amount on the 25 May.&quot; (LG)</div>
+      <div class="list-item"><strong>Interpretation</strong><br>Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-05-21 11:46:00 Debt Status Removed</strong>
+        <div class="note-preview">Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      </div>
+      <div><span class="chip info">Activity note</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-05-21 11:46:00 Debt Status Removed</div>
+      <div class="list-item"><strong>Interpretation</strong><br>Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-06-10 12:29:00 Debt Status [PTP] PROMISE TO PAY: PTP R 800 on 13/…</strong>
+        <div class="note-preview">This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      </div>
+      <div><span class="chip warning">Arrangement signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-06-10 12:29:00 Debt Status [PTP] PROMISE TO PAY: PTP R 800 on 13/6/25 and balance on 25/6/25</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is only useful if the promised money actually arrived. Otherwise it is delay disguised as progress.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2025-06-20 09:34:00 Debt Status Removed: Account is current (RVD)</strong>
+        <div class="note-preview">Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      </div>
+      <div><span class="chip info">Activity note</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2025-06-20 09:34:00 Debt Status Removed: Account is current (RVD)</div>
+      <div class="list-item"><strong>Interpretation</strong><br>Read this as evidence, not comfort. The next note should show a stronger action or a payment result.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Get one dated legal milestone in writing. If nobody can name the next legal step and date, the file is stalled.</div>
+    </div>
+  </div>
+</details>
+</div></div>
+</div></body>
+</html>

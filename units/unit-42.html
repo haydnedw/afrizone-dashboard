@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 42 - AFRIZONE</title>
+<style>
+:root {
+  --bg:#08111d;
+  --panel:#0f1b2d;
+  --panel-2:#12233c;
+  --line:#223858;
+  --text:#eef5ff;
+  --muted:#9eb6d4;
+  --yellow:#f1c84b;
+  --orange:#ff9b4a;
+  --red:#ef5f71;
+  --black:#c7d2e5;
+  --green:#64d58e;
+  --blue:#79b6ff;
+}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.55 Inter,system-ui,sans-serif;background:linear-gradient(180deg,#07101b,#091425 220px,#08111d);color:var(--text)}
+a{color:#d9e9ff;text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1280px;margin:0 auto;padding:24px}
+.hero,.card,.unit-card,.severity-card,details.note{background:rgba(15,27,45,.96);border:1px solid var(--line);box-shadow:0 16px 48px rgba(0,0,0,.2)}
+.hero{padding:28px;border-radius:24px;background:radial-gradient(circle at top left,rgba(121,182,255,.18),transparent 32%),linear-gradient(180deg,#12233c,#0f1b2d)}
+.hero h1{margin:0;font-size:42px;line-height:1.02;letter-spacing:.02em}
+.hero p{margin:10px 0 0;color:var(--muted);max-width:920px}
+.subtle{color:var(--muted);font-size:13px}
+.grid{display:grid;gap:16px}
+.kpis{grid-template-columns:repeat(4,minmax(150px,1fr));margin-top:18px}
+.card{padding:18px;border-radius:18px}
+.kpi-label{text-transform:uppercase;font-size:11px;letter-spacing:.12em;color:var(--muted)}
+.kpi-value{font-size:32px;font-weight:800;margin-top:8px}
+.kpi-sub{color:var(--muted);font-size:13px;margin-top:6px}
+.severity-grid{grid-template-columns:repeat(4,minmax(220px,1fr));margin-top:22px}
+.severity-card{display:block;padding:20px;border-radius:22px;position:relative;overflow:hidden}
+.severity-card:hover{text-decoration:none;transform:translateY(-1px)}
+.severity-card.yellow{background:linear-gradient(180deg,rgba(241,200,75,.14),rgba(15,27,45,.96))}
+.severity-card.orange{background:linear-gradient(180deg,rgba(255,155,74,.15),rgba(15,27,45,.96))}
+.severity-card.red{background:linear-gradient(180deg,rgba(239,95,113,.14),rgba(15,27,45,.96))}
+.severity-card.black{background:linear-gradient(180deg,rgba(199,210,229,.14),rgba(15,27,45,.96))}
+.severity-title{font-size:28px;font-weight:800}
+.severity-count{font-size:44px;font-weight:900;margin-top:12px}
+.severity-amount{font-size:18px;margin-top:4px}
+.severity-copy{color:var(--muted);margin-top:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#173055;border:1px solid var(--line);font-size:12px;font-weight:700}
+.chip.yellow{background:rgba(241,200,75,.18);color:#fff0be}
+.chip.orange{background:rgba(255,155,74,.18);color:#ffe0bf}
+.chip.red{background:rgba(239,95,113,.18);color:#ffd9df}
+.chip.black{background:rgba(199,210,229,.18);color:#eef5ff}
+.chip.good{background:rgba(100,213,142,.16);color:#dcffe7}
+.chip.info{background:rgba(121,182,255,.16);color:#deebff}
+.chip.warning{background:rgba(255,155,74,.16);color:#ffe0bf}
+.chip.danger{background:rgba(239,95,113,.16);color:#ffd9df}
+.section-title{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin:26px 0 10px}
+.section-title h2{margin:0;font-size:24px}
+.unit-list{grid-template-columns:repeat(2,minmax(300px,1fr))}
+.unit-card{display:block;padding:18px;border-radius:20px}
+.unit-card:hover{text-decoration:none;transform:translateY(-1px)}
+.unit-card h3{margin:10px 0 0;font-size:24px}
+.unit-card p{margin:10px 0 0;color:var(--muted)}
+.unit-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.unit-meta .mini{padding:10px 12px;border-radius:14px;background:#10203a;border:1px solid var(--line)}
+.unit-meta .mini strong{display:block;font-size:18px}
+.unit-header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.two-up{grid-template-columns:1fr 1fr}
+.account-block{padding:18px;border-radius:18px;background:#0f1d33;border:1px solid var(--line)}
+.account-block h3{margin:10px 0 0;font-size:22px;line-height:1.2}
+.account-grid{grid-template-columns:repeat(2,minmax(320px,1fr));margin-top:18px}
+.list{display:grid;gap:10px}
+.list-item{padding:12px 14px;border-radius:14px;background:#10203a;border:1px solid var(--line)}
+details.note{border-radius:16px;padding:0;overflow:hidden;margin-top:12px}
+details.note summary{cursor:pointer;list-style:none;padding:14px 16px;background:#10203a}
+details.note summary::-webkit-details-marker{display:none}
+.note-body{padding:14px 16px;border-top:1px solid var(--line)}
+.note-heading{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.note-preview{color:var(--muted);margin-top:8px}
+hr.sep{border:none;border-top:1px solid var(--line);margin:22px 0}
+.back-link{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;color:#dce9ff}
+.footer{margin-top:30px;color:var(--muted);font-size:13px}
+@media (max-width:1100px){.severity-grid,.kpis,.two-up,.account-grid,.unit-list{grid-template-columns:1fr}.hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back-link" href="../severity/yellow.html">← Back to Yellow bucket</a>
+  <div class="hero">
+    <div class="unit-header">
+      <div>
+        <div class="subtle">AFR - Afrizone</div>
+        <h1>Unit 42</h1>
+        <p>Recent notes show cure language, so this unit sits in the low-intensity watch bucket rather than the hard-chase bucket.</p>
+      </div>
+      <div class="chips"><span class="chip yellow">Yellow</span><span class="chip info">LG</span></div>
+    </div>
+  </div>
+
+  <div class="grid kpis">
+    <div class="card"><div class="kpi-label">Unit balance</div><div class="kpi-value">R 2,414.39</div><div class="kpi-sub">All visible account rows on this unit</div></div>
+    <div class="card"><div class="kpi-label">30+ debt</div><div class="kpi-value">R 0.00</div><div class="kpi-sub">Old debt carried by this unit</div></div>
+    <div class="card"><div class="kpi-label">Account rows</div><div class="kpi-value">2</div><div class="kpi-sub">Primary and secondary rows shown separately</div></div>
+    <div class="card"><div class="kpi-label">Freshest note</div><div class="kpi-value" style="font-size:24px">2023-03-22</div><div class="kpi-sub">Most recent visible note date across rows</div></div>
+  </div>
+
+  <div class="grid two-up">
+    <div class="card">
+      <h2 style="margin-top:0">Manager story</h2>
+      <div class="list">
+        <div class="list-item"><strong>What this unit says</strong><br>Recent notes show cure language, so this unit sits in the low-intensity watch bucket rather than the hard-chase bucket.</div>
+        <div class="list-item"><strong>My interpretation</strong><br>The account story is simple: old debt exists, and the notes need to prove forward motion rather than repeated contact.</div>
+        <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+      </div>
+    </div>
+    <div class="card"><h2 style="margin-top:0">Legal / collections terms on this unit</h2><div class="list"><div class="list-item"><strong>Letter Of Demand</strong><br>A formal written demand telling the debtor to pay. If the debtor does not respond or pay within the stated period, the matter usually moves toward summons.<br><span class="subtle">Timing: Use the deadline written in the demand itself. The note trail does not prove one universal waiting period, so the dashboard should not invent one. · Source: BLV Law debt collections overview</span></div></div></div>
+  </div>
+
+  <div class="section-title"><h2>Account rows on this unit</h2><div class="subtle">If the unit has two rows, treat them as one debtor story with two balances.</div></div>
+  <div class="grid account-grid">
+<div class="account-block">
+  <div><span class="chip yellow">Yellow</span><span class="chip info">Attorney / handover</span><span class="chip info">Primary row</span></div>
+  <h3>SOE002-D42: SOETVELD BELEGGINGS PTY LTD</h3>
+  <p>Recent notes show cure language, so this unit sits in the low-intensity watch bucket rather than the hard-chase bucket.</p>
+  <div class="grid kpis" style="grid-template-columns:repeat(4,minmax(120px,1fr));margin-top:16px">
+    <div class="card"><div class="kpi-label">Total balance</div><div class="kpi-value" style="font-size:24px">R 1,716.80</div></div>
+    <div class="card"><div class="kpi-label">30+ debt</div><div class="kpi-value" style="font-size:24px">R 0.00</div></div>
+    <div class="card"><div class="kpi-label">Owner</div><div class="kpi-value" style="font-size:16px">LG</div></div>
+    <div class="card"><div class="kpi-label">Latest note</div><div class="kpi-value" style="font-size:16px">2024-11-18</div></div>
+  </div>
+  <div class="grid two-up" style="margin-top:16px">
+    <div class="list">
+      <div class="list-item"><strong>My read</strong><br>The account story is simple: old debt exists, and the notes need to prove forward motion rather than repeated contact.</div>
+      <div class="list-item"><strong>Next best move</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+    <div class="list">
+      <div class="list-item"><strong>Status codes</strong><br>None</div>
+      <div class="list-item"><strong>Process flags</strong><br>stale-follow-up</div>
+    </div>
+  </div>
+  <hr class="sep">
+  <h4 style="margin:0 0 8px">Notes</h4>
+  <div class="subtle">Newest note on top. Open only the ones you need.</div>
+  
+<details class="note" open>
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2019-11-30 Letter of Demand @ R 3532.12</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2019-11-30 Letter of Demand @ R 3532.12</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2021-07-31 2nd Notice @ R 2362.08</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2021-07-31 2nd Notice @ R 2362.08</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2021-09-30 1st Notice @ R 2406.95</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2021-09-30 1st Notice @ R 2406.95</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2021-11-30 Letter of Demand @ R 4888.95</strong>
+        <div class="note-preview">This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      </div>
+      <div><span class="chip warning">Pre-legal pressure</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2021-11-30 Letter of Demand @ R 4888.95</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is pressure language, not resolution. If it repeats without escalation, the file is drifting.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-04-21 13:50:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-04-21 13:50:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-06-21 22:14:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-06-21 22:14:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-07-21 09:16:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-07-21 09:16:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-08-21 17:49:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-08-21 17:49:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-09-22 12:20:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-09-22 12:20:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-10-22 22:43:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-10-22 22:43:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-11-15 10:26:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-11-15 10:26:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-12-20 12:10:00 Balance Paid</strong>
+        <div class="note-preview">This is a genuine cure signal. The control task is to confirm it held in the next cycle.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-12-20 12:10:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is a genuine cure signal. The control task is to confirm it held in the next cycle.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+</div>
+<div class="account-block">
+  <div><span class="chip yellow">Yellow</span><span class="chip info">Current  /  Low-Balance Follow-Up</span><span class="chip info">Secondary row</span></div>
+  <h3>SOE004-D42t: SOETVELD BELEGGINGS PTY LTD</h3>
+  <p>Recent notes show cure language, so this unit sits in the low-intensity watch bucket rather than the hard-chase bucket.</p>
+  <div class="grid kpis" style="grid-template-columns:repeat(4,minmax(120px,1fr));margin-top:16px">
+    <div class="card"><div class="kpi-label">Total balance</div><div class="kpi-value" style="font-size:24px">R 697.59</div></div>
+    <div class="card"><div class="kpi-label">30+ debt</div><div class="kpi-value" style="font-size:24px">R 0.00</div></div>
+    <div class="card"><div class="kpi-label">Owner</div><div class="kpi-value" style="font-size:16px">No clear owner visible</div></div>
+    <div class="card"><div class="kpi-label">Latest note</div><div class="kpi-value" style="font-size:16px">2024-11-18</div></div>
+  </div>
+  <div class="grid two-up" style="margin-top:16px">
+    <div class="list">
+      <div class="list-item"><strong>My read</strong><br>Latest note repeats the previous move almost exactly. That is process noise, not progress.</div>
+      <div class="list-item"><strong>Next best move</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+    <div class="list">
+      <div class="list-item"><strong>Status codes</strong><br>None</div>
+      <div class="list-item"><strong>Process flags</strong><br>stale-follow-up</div>
+    </div>
+  </div>
+  <hr class="sep">
+  <h4 style="margin:0 0 8px">Notes</h4>
+  <div class="subtle">Newest note on top. Open only the ones you need.</div>
+  
+<details class="note" open>
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-03-22 09:19:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-03-22 09:19:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-04-21 13:50:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-04-21 13:50:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-06-21 16:09:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-06-21 16:09:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-07-21 09:06:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-07-21 09:06:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-08-21 17:37:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-08-21 17:37:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-09-22 12:16:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-09-22 12:16:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-10-22 22:44:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-10-22 22:44:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-11-15 10:23:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-11-15 10:23:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2023-12-20 12:10:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2023-12-20 12:10:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2024-01-18 14:15:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2024-01-18 14:15:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2024-02-19 15:04:00 Balance Paid</strong>
+        <div class="note-preview">This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2024-02-19 15:04:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This says the same thing as the next older note. That usually means the file is sitting still.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+<details class="note" >
+  <summary>
+    <div class="note-heading">
+      <div>
+        <strong>2024-03-07 11:39:00 Balance Paid</strong>
+        <div class="note-preview">This is a genuine cure signal. The control task is to confirm it held in the next cycle.</div>
+      </div>
+      <div><span class="chip positive">Payment / cure signal</span></div>
+    </div>
+  </summary>
+  <div class="note-body">
+    <div class="list">
+      <div class="list-item"><strong>Raw note</strong><br>2024-03-07 11:39:00 Balance Paid</div>
+      <div class="list-item"><strong>Interpretation</strong><br>This is a genuine cure signal. The control task is to confirm it held in the next cycle.</div>
+      <div class="list-item"><strong>Recommended next step</strong><br>Monitor closely and escalate fast if the next cycle worsens.</div>
+    </div>
+  </div>
+</details>
+</div></div>
+</div></body>
+</html>
